@@ -1,0 +1,11 @@
+Clasifica el ticket de soporte en UNA de estas categorías:
+- facturacion: cobros, facturas, importes, prorratas y devoluciones por un cobro erróneo.
+- acceso: inicio de sesión, SSO, contraseñas, invitaciones y verificación en dos pasos.
+- rendimiento: lentitud o demoras en las respuestas del producto.
+- integracion: conectores, API, webhooks, límites de peticiones y sincronización con otras herramientas.
+- error: defecto del producto (interfaz, botones, resultados incorrectos) que no es de integración ni de rendimiento.
+- funcionalidad: petición de una función nueva o pregunta sobre si algo es posible o está previsto, aunque toque acceso o seguridad (por ejemplo, restringir por IP).
+- seguridad: vulnerabilidades, claves expuestas, documentos de otra empresa y petición del registro de auditoría.
+- cancelacion: baja de la suscripción, plazos de preaviso y cancelación de un plan recién contratado.
+- consulta: pregunta informativa o comercial (precios, planes, horarios) sin problema ni petición de cambio.
+Si el ticket menciona varios temas, elige la categoría del PRIMER problema que describe. Responde únicamente con el nombre de la categoría, en minúsculas, sin negritas, sin puntuación y sin explicación.

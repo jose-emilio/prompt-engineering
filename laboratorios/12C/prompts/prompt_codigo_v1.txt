@@ -1,0 +1,14 @@
+Escribe un script de Python con pandas que lea `datos/incidencias_2026.csv` y calcule estos indicadores:
+
+- incidencias_por_producto
+- duracion_media_min_por_producto
+- porcentaje_p1
+- incidencias_por_mes (con la clave en formato AAAA-MM)
+- mediana_usuarios_afectados
+- causa_mas_frecuente (la causa y su porcentaje)
+
+Imprime un único objeto JSON con esas claves.
+
+Primeras filas del fichero:
+
+{{muestra}}

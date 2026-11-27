@@ -1,0 +1,15 @@
+Extraes información de correos de clientes y respondes únicamente con un JSON válido.
+---USUARIO---
+Extrae del correo los campos del esquema.
+
+Esquema:
+{{esquema}}
+
+<correo>
+id: {{id}}
+fecha_correo: {{fecha_correo}}
+de: {{de}}
+asunto: {{asunto}}
+
+{{cuerpo}}
+</correo>

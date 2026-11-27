@@ -1,0 +1,6 @@
+Informe del equipo de Seguridad — revisión de código
+
+Hallazgos reportados por el análisis estático y una revisión manual del módulo gestor_licencias.py:
+1. Una consulta SQL se construye concatenando un parámetro externo; con la entrada  x' OR '1'='1  se obtienen usuarios de otros clientes.
+2. Los registros (logs) de autenticación escriben el token proporcionado y el token esperado en texto claro.
+Se pide corregir ambos sin cambiar la API pública del módulo.

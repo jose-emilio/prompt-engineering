@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comprobador del sistema integrador · Laboratorio 14</title>
+<style>
+:root{--fondo:#fff;--texto:#1b1f24;--suave:#5b6470;--borde:#d0d7de;--panel:#f6f8fa;--ok:#1a7f37;--okf:#dafbe1;--mal:#cf222e;--malf:#ffebe9;--aviso:#9a6700;--avisof:#fff8c5;--acento:#0969da}
+@media(prefers-color-scheme:dark){:root{--fondo:#0d1117;--texto:#e6edf3;--suave:#9198a1;--borde:#30363d;--panel:#161b22;--ok:#3fb950;--okf:#12261e;--mal:#ff7b72;--malf:#2d1117;--aviso:#d29922;--avisof:#2a2008;--acento:#58a6ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:16px 16px 48px}h1{font-size:1.5rem;margin:.4em 0 .2em}h2{font-size:1.1rem;margin:1.4em 0 .4em}
+p,li{color:var(--texto)}.suave{color:var(--suave);font-size:.92rem}ol{padding-left:1.3em}
+label{display:block;font-weight:600;margin:.8em 0 .25em}select,textarea,input{width:100%;font:inherit;color:inherit;background:var(--panel);border:1px solid var(--borde);border-radius:6px;padding:8px}
+textarea{min-height:170px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem}
+button{font:inherit;font-weight:600;border:1px solid var(--borde);background:var(--acento);color:#fff;border-radius:6px;padding:8px 14px;cursor:pointer;margin:.6em .5em 0 0}
+button.sec{background:var(--panel);color:var(--texto)}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--acento);outline-offset:1px}
+.fila{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--borde);border-radius:8px;padding:8px 10px;margin:6px 0;background:var(--panel)}
+.fila.ok{border-color:var(--ok);background:var(--okf)}.fila.mal{border-color:var(--mal);background:var(--malf)}.fila.aviso{border-color:var(--aviso);background:var(--avisof)}
+.marca{font-weight:700;min-width:1.6em;text-align:center}.ok .marca{color:var(--ok)}.mal .marca{color:var(--mal)}.aviso .marca{color:var(--aviso)}
+.detalle{font-size:.9rem;color:var(--suave);margin:2px 0 0}table{border-collapse:collapse;width:100%;margin:.5em 0;font-size:.92rem}
+th,td{border:1px solid var(--borde);padding:5px 8px;text-align:left;vertical-align:top}th{background:var(--panel)}td.num{text-align:right}
+td.correcto{background:var(--okf)}td.inventado,td.equivocado{background:var(--malf)}td.omitido{background:var(--avisof)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;word-break:break-word}.oculto{display:none}
+.nota{border-left:4px solid var(--aviso);background:var(--avisof);padding:8px 12px;border-radius:0 6px 6px 0;margin:1em 0;font-size:.92rem}
+</style>
+</head>
+<body>
+<main>
+<h1>Comprobador del sistema integrador · Laboratorio 14</h1>
+<p>Esta página hace en el navegador lo que hacen las funciones <code>sanear()</code>, <code>politica()</code> y <code>puerta_final()</code> del sistema integrador: reglas fijas, sin modelo y sin enviar nada a ningún sitio. Sirve para el camino a mano; el resultado es el mismo que el del camino con código.</p>
+<ol><li>Pega un mensaje del cliente para ver qué datos personales se sustituyen por marcadores.</li><li>Elige la categoría y la prioridad para saber si el mensaje se escala a una persona.</li><li>Pega una respuesta redactada para saber si supera la puerta final.</li></ol>
+
+
+<h2>1 · Sanear un mensaje (Paso 4)</h2>
+<label for="msg">Mensaje del cliente</label>
+<textarea id="msg" spellcheck="false"></textarea>
+<button id="san">Buscar y sustituir datos personales</button>
+<div id="res-san" aria-live="polite"><p class="suave">Aún no se ha comprobado nada.</p></div>
+<h2>2 · Política de escalado (Paso 6)</h2>
+<label for="cat">Categoría que dio el asistente</label><select id="cat"></select>
+<label for="pri">Prioridad que dio el asistente</label><select id="pri"><option>P1</option><option>P2</option><option>P3</option><option>P4</option></select>
+<button id="esc">Aplicar la regla</button>
+<div id="res-esc" aria-live="polite"><p class="suave">Aún no se ha comprobado nada.</p></div>
+<h2>3 · Puerta final (Paso 9)</h2>
+<label for="resp">Respuesta redactada (solo el texto que se enviaría al cliente)</label>
+<textarea id="resp" spellcheck="false"></textarea>
+<button id="pas">Pasar por la puerta final</button>
+<div id="res-pas" aria-live="polite"><p class="suave">Aún no se ha comprobado nada.</p></div>
+</main>
+<script>
+const PATRONES={"DNI": "\\b\\d{8}[A-HJ-NP-TV-Z]\\b", "IBAN": "\\bES\\d{2}(?:\\s?\\d{4}){5}\\b", "EMAIL": "\\b[\\w.+-]+@[\\w-]+(?:\\.[\\w-]+)+\\b", "TEL": "(?<!\\d)(?:\\+34\\s?)?[6-9]\\d{2}[\\s.-]?\\d{3}[\\s.-]?\\d{3}(?!\\d)"};
+const PROMESAS=["garantizamos que", "le garantizo", "se lo concedo", "descuento del", "reembolso inmediato", "en menos de", "sin falta", "hoy mismo"];
+const CATEGORIAS=["facturacion", "acceso", "rendimiento", "integracion", "error", "funcionalidad", "seguridad", "cancelacion", "consulta", "necesita_aclaracion", "no_soporte"];
+
+function deepEqual(a,b){
+  if(a===b)return true;
+  if(typeof a!==typeof b||a===null||b===null)return false;
+  if(Array.isArray(a)){if(!Array.isArray(b)||a.length!==b.length)return false;return a.every((x,i)=>deepEqual(x,b[i]));}
+  if(typeof a==='object'){const ka=Object.keys(a),kb=Object.keys(b);if(ka.length!==kb.length)return false;return ka.every(k=>deepEqual(a[k],b[k]));}
+  return false;
+}
+function extraerJson(texto){
+  const t0=texto.trim();
+  try{return{obj:JSON.parse(t0),limpio:true,error:null};}catch(e){}
+  let t=t0,bloque=false;const m=t.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if(m){t=m[1].trim();bloque=true;try{return{obj:JSON.parse(t),limpio:false,aviso:'bloque',error:null};}catch(e){}}
+  const i=t.indexOf('{'),j=t.lastIndexOf('}');
+  if(i!==-1&&j>i){try{return{obj:JSON.parse(t.slice(i,j+1)),limpio:false,aviso:'texto',error:null};}catch(e){}}
+  let msg='no se puede leer';try{JSON.parse(t);}catch(e){msg=e.message;}
+  return{obj:null,limpio:false,error:'JSON inválido: '+msg};
+}
+const NOMBRE_TIPO={string:'texto',integer:'entero',number:'número',boolean:'verdadero/falso',array:'lista',object:'objeto',null:'null'};
+function tipoDe(x){if(x===null)return'null';if(Array.isArray(x))return'array';if(typeof x==='number')return Number.isInteger(x)?'integer':'number';return typeof x==='object'?'object':typeof x;}
+function esTipo(x,p){
+  switch(p){case'string':return typeof x==='string';case'integer':return typeof x==='number'&&Number.isInteger(x);
+    case'number':return typeof x==='number';case'boolean':return typeof x==='boolean';case'array':return Array.isArray(x);
+    case'object':return x!==null&&typeof x==='object'&&!Array.isArray(x);case'null':return x===null;}
+  return false;
+}
+function validarEsquema(obj,esq,ruta){
+  ruta=ruta||'$';const err=[];
+  if(esq.type){
+    const pos=Array.isArray(esq.type)?esq.type:[esq.type];
+    if(!pos.some(p=>esTipo(obj,p))){
+      return[{clase:'tipo',ruta,texto:ruta+': se esperaba '+pos.map(p=>NOMBRE_TIPO[p]).join(' o ')+' y hay '+NOMBRE_TIPO[tipoDe(obj)]}];
+    }
+  }
+  if(esq.enum&&!esq.enum.some(v=>deepEqual(v,obj)))err.push({clase:'lista',ruta,texto:ruta+': valor '+JSON.stringify(obj)+' fuera de la lista ('+esq.enum.map(v=>JSON.stringify(v)).join(', ')+')'});
+  if(typeof obj==='number'){
+    if('minimum' in esq&&obj<esq.minimum)err.push({clase:'rango',ruta,texto:ruta+': '+obj+' es menor que el mínimo '+esq.minimum});
+    if('maximum' in esq&&obj>esq.maximum)err.push({clase:'rango',ruta,texto:ruta+': '+obj+' es mayor que el máximo '+esq.maximum});
+  }
+  if(typeof obj==='string'){
+    if(esq.pattern&&!new RegExp(esq.pattern).test(obj))err.push({clase:'patron',ruta,texto:ruta+': '+JSON.stringify(obj)+' no tiene el formato esperado'});
+    if('minLength' in esq&&obj.length<esq.minLength)err.push({clase:'longitud',ruta,texto:ruta+': longitud menor que '+esq.minLength});
+    if('maxLength' in esq&&obj.length>esq.maxLength)err.push({clase:'longitud',ruta,texto:ruta+': longitud mayor que '+esq.maxLength});
+  }
+  if(esq.type&&obj!==null&&typeof obj==='object'&&!Array.isArray(obj)||(!esq.type&&obj!==null&&typeof obj==='object'&&!Array.isArray(obj))){
+    for(const r of(esq.required||[]))if(!(r in obj))err.push({clase:'falta',ruta,texto:ruta+': falta el campo obligatorio «'+r+'»'});
+    const props=esq.properties||{};
+    for(const k of Object.keys(obj)){
+      if(k in props)err.push(...validarEsquema(obj[k],props[k],ruta+'.'+k));
+      else if(esq.additionalProperties===false)err.push({clase:'sobra',ruta,texto:ruta+': sobra el campo «'+k+'», que no está en el esquema'});
+    }
+  }
+  if(Array.isArray(obj)){
+    if('minItems' in esq&&obj.length<esq.minItems)err.push({clase:'longitud',ruta,texto:ruta+': menos de '+esq.minItems+' elementos'});
+    if('maxItems' in esq&&obj.length>esq.maxItems)err.push({clase:'longitud',ruta,texto:ruta+': más de '+esq.maxItems+' elementos'});
+    if(esq.items)obj.forEach((x,i)=>err.push(...validarEsquema(x,esq.items,ruta+'['+i+']')));
+  }
+  return err;
+}
+
+
+function reg(t,flags){return new RegExp(t,flags||'');}
+function sanear(texto){
+  const tabla={},cont={};
+  for(const [tipo,pat] of Object.entries(PATRONES)){
+    texto=texto.replace(reg(pat,'g'),m=>{cont[tipo]=(cont[tipo]||0)+1;const marca='['+tipo+'_'+cont[tipo]+']';tabla[marca]=m;return marca;});
+  }
+  return{texto:texto,tabla:tabla};
+}
+function politica(cat,prio){
+  if(cat==='seguridad'||prio==='P1'||prio==='P2')return{escalar:true,motivo:'urgencia o seguridad'};
+  if(cat==='necesita_aclaracion'||cat==='no_soporte')return{escalar:true,motivo:'sin contenido atendible'};
+  return{escalar:false,motivo:''};
+}
+function puertaFinal(texto){
+  const motivos=[];
+  if(Object.values(PATRONES).some(p=>reg(p).test(texto))||/\[(DNI|IBAN|EMAIL|TEL)_\d+\]/.test(texto))motivos.push('datos personales o marcadores en la respuesta');
+  for(const p of PROMESAS)if(texto.toLowerCase().includes(p))motivos.push('promesa prohibida: '+p);
+  const n=texto.split(/\s+/).filter(Boolean).length;
+  if(n<70||n>160)motivos.push('longitud fuera de rango');
+  return{ok:motivos.length===0,motivos:motivos,palabras:n};
+}
+
+
+function el(t,props,...hijos){const e=document.createElement(t);Object.assign(e,props||{});hijos.flat().forEach(h=>e.append(h));return e;}
+function filaVerif(f){
+  const clase=f.ok===null?'fila':(f.ok?'fila ok':(f.aviso?'fila aviso':'fila mal'));
+  const marca=f.ok===null?'–':(f.ok?'✓':'✗');
+  const d=el('div',{},el('strong',{textContent:f.titulo}),el('div',{className:'detalle',textContent:f.detalle||''}));
+  return el('div',{className:clase},el('span',{className:'marca',textContent:marca}),d);
+}
+function vacio(n){while(n.firstChild)n.removeChild(n.firstChild);}
+
+const sc=document.getElementById('cat');for(const k of CATEGORIAS)sc.append(el('option',{value:k,textContent:k}));
+document.getElementById('san').onclick=()=>{
+  const out=document.getElementById('res-san');vacio(out);const t=document.getElementById('msg').value;
+  if(!t.trim()){out.append(el('p',{className:'suave',textContent:'Pega primero un mensaje.'}));return;}
+  const r=sanear(t),n=Object.keys(r.tabla).length;
+  out.append(filaVerif({ok:true,titulo:n+' dato(s) personal(es) sustituido(s)',detalle:n?Object.entries(r.tabla).map(([k,v])=>k+' = '+v).join(' · '):'No se ha encontrado ningún DNI, IBAN, correo ni teléfono.'}));
+  out.append(el('p',{className:'suave',textContent:'Texto saneado (el que se pega en el asistente):'}));
+  out.append(el('pre',{textContent:r.texto}));
+  out.append(el('p',{className:'suave',textContent:'Esta herramienta no sustituye nombres ni direcciones: eso queda como riesgo residual.'}));
+};
+document.getElementById('esc').onclick=()=>{
+  const out=document.getElementById('res-esc');vacio(out);const r=politica(sc.value,document.getElementById('pri').value);
+  out.append(filaVerif({ok:!r.escalar,aviso:r.escalar,titulo:r.escalar?'Se escala a una persona':'No se escala: sigue la respuesta automática',detalle:r.escalar?'Motivo: '+r.motivo:''}));
+};
+document.getElementById('pas').onclick=()=>{
+  const out=document.getElementById('res-pas');vacio(out);const t=document.getElementById('resp').value;
+  if(!t.trim()){out.append(el('p',{className:'suave',textContent:'Pega primero la respuesta.'}));return;}
+  const r=puertaFinal(t);
+  out.append(filaVerif({ok:r.ok,titulo:r.ok?'Puerta final: supera':'Puerta final: no supera',detalle:r.ok?'Se puede enviar.':'Hay '+r.motivos.length+' motivo(s) de rechazo.'}));
+  for(const x of r.motivos)out.append(filaVerif({ok:false,titulo:x,detalle:''}));
+  out.append(el('p',{className:'suave',textContent:'Palabras: '+r.palabras+' (rango 70–160).'}));
+  if(!r.ok)out.append(el('p',{className:'suave',textContent:'Si no supera la puerta, el mensaje se escala a una persona.'}));
+};
+
+</script>
+</body>
+</html>

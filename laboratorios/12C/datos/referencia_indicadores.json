@@ -1,0 +1,30 @@
+{
+  "incidencias_por_producto": {
+    "AgentHub": 81,
+    "Altanoria Copilot": 127,
+    "DocuMind": 140
+  },
+  "duracion_media_min_por_producto": {
+    "AgentHub": 44.5,
+    "Altanoria Copilot": 43.2,
+    "DocuMind": 48.7
+  },
+  "porcentaje_p1": 8.33,
+  "incidencias_por_mes": {
+    "2026-01": 25,
+    "2026-02": 27,
+    "2026-03": 29,
+    "2026-04": 33,
+    "2026-05": 39,
+    "2026-06": 33,
+    "2026-07": 21,
+    "2026-08": 25,
+    "2026-09": 48,
+    "2026-10": 68
+  },
+  "mediana_usuarios_afectados": 9.0,
+  "causa_mas_frecuente": {
+    "causa": "configuracion",
+    "porcentaje": 24.7
+  }
+}

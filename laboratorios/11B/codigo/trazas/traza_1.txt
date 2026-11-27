@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "informe_clientes.py", line 18, in <module>
+    id_licencia = gestor.licencia_de_cliente("Cliente Inexistente")
+  File "gestor_licencias.py", line 41, in licencia_de_cliente
+    return filas[0][0]
+IndexError: list index out of range
+
+Contexto: el informe recorre la lista de clientes del CRM y llama a este método para cada uno. Algunos clientes nuevos todavía no tienen licencia. Entrada que lo provoca: cliente = "Cliente Inexistente". Comportamiento esperado: que devuelva None.

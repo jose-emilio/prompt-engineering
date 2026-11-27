@@ -1,0 +1,38 @@
+{"id": "EXP-01", "tipo": "nombre", "valor": "Javier Millán Navarro"}
+{"id": "EXP-01", "tipo": "dni", "valor": "79554736J"}
+{"id": "EXP-01", "tipo": "categoria_especial_salud", "valor": "un episodio de ansiedad"}
+{"id": "EXP-01", "tipo": "nombre", "valor": "Gonzalo Carrasco Lozano"}
+{"id": "EXP-02", "tipo": "nombre", "valor": "Julia Bosch Escribano"}
+{"id": "EXP-02", "tipo": "dni", "valor": "71321416A"}
+{"id": "EXP-02", "tipo": "email", "valor": "julia.bosch@papeleradelseg.example"}
+{"id": "EXP-02", "tipo": "telefono", "valor": "+34 630 806 917"}
+{"id": "EXP-02", "tipo": "iban", "valor": "ES00 8126 5603 7427 4814 8455"}
+{"id": "EXP-03", "tipo": "nombre", "valor": "Eduardo Arroyo Esteve"}
+{"id": "EXP-03", "tipo": "dni", "valor": "75570933V"}
+{"id": "EXP-03", "tipo": "direccion", "valor": "Plaza del Ayuntamiento, 28, 2ºD"}
+{"id": "EXP-03", "tipo": "vida_privada", "valor": "divorcio"}
+{"id": "EXP-03", "tipo": "fecha_nacimiento", "valor": "6 de agosto de 1997"}
+{"id": "EXP-04", "tipo": "nombre", "valor": "Pablo Roig Lozano"}
+{"id": "EXP-04", "tipo": "dni", "valor": "79130318Z"}
+{"id": "EXP-04", "tipo": "email", "valor": "pablo.roig@textilalcoy188.example"}
+{"id": "EXP-04", "tipo": "telefono", "valor": "+34 641 343 936"}
+{"id": "EXP-04", "tipo": "direccion", "valor": "Avenida de Aragón, 15, 6ºA"}
+{"id": "EXP-05", "tipo": "nombre", "valor": "Diana Bellver Roig"}
+{"id": "EXP-05", "tipo": "dni", "valor": "77387050P"}
+{"id": "EXP-05", "tipo": "categoria_especial_salud", "valor": "un episodio de ansiedad"}
+{"id": "EXP-05", "tipo": "nombre", "valor": "Carlos Herrero Esteve"}
+{"id": "EXP-06", "tipo": "nombre", "valor": "Silvia Revert Olmos"}
+{"id": "EXP-06", "tipo": "dni", "valor": "75118826K"}
+{"id": "EXP-06", "tipo": "email", "valor": "silvia.revert@ingenieriahidr.example"}
+{"id": "EXP-06", "tipo": "telefono", "valor": "+34 665 796 318"}
+{"id": "EXP-06", "tipo": "iban", "valor": "ES00 4523 5107 1338 0648 5565"}
+{"id": "EXP-07", "tipo": "nombre", "valor": "Noelia Pla Pla"}
+{"id": "EXP-07", "tipo": "dni", "valor": "78859315C"}
+{"id": "EXP-07", "tipo": "direccion", "valor": "Plaza del Ayuntamiento, 118, 3ºD"}
+{"id": "EXP-07", "tipo": "vida_privada", "valor": "divorcio"}
+{"id": "EXP-07", "tipo": "fecha_nacimiento", "valor": "25 de enero de 1994"}
+{"id": "EXP-08", "tipo": "nombre", "valor": "Marina Carrasco Zaragozá"}
+{"id": "EXP-08", "tipo": "dni", "valor": "73082320G"}
+{"id": "EXP-08", "tipo": "email", "valor": "marina.carrasco@ingenieriahidr.example"}
+{"id": "EXP-08", "tipo": "telefono", "valor": "+34 634 146 859"}
+{"id": "EXP-08", "tipo": "direccion", "valor": "Plaza del Ayuntamiento, 92, 4ºC"}

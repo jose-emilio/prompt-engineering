@@ -1,0 +1,5 @@
+modelo,precio_entrada_por_millon_eur,precio_salida_por_millon_eur,ventana_tokens,salida_maxima_tokens
+Modelo-S (pequeño),0.15,0.6,128000,16000
+Modelo-M (medio),2.5,10.0,200000,32000
+Modelo-L (grande),12.0,60.0,200000,64000
+Modelo-Local (autoalojado),0.0,0.0,32000,4000

@@ -1,0 +1,16 @@
+id,persona,area,peticion_original,necesidad_real,datos_disponibles
+1,Lucía Benavent (Ventas),Ventas,hazme algo con el acta,"Resumen ejecutivo de acta_reunion.md para el director comercial, con acuerdos y responsables, para un correo de seguimiento a los asistentes",acta_reunion.md
+2,Tomás Albors (Facturación),Facturación,revisa esta factura,Detectar discrepancias entre factura y pedido y listarlas para rectificar,(se adjunta en el enunciado)
+3,Marta Illueca (Soporte),Soporte,contesta a este cliente,"Respuesta a un cliente que reclama un cobro duplicado, con tono empático, sin prometer lo que las condiciones no permiten","ticket_ejemplo.txt, ../../comun/empresa/condiciones_servicio.md"
+4,Rodrigo Palau (Producto),Producto,analiza las métricas,Identificar tendencias del trimestre y proponer tres acciones,metricas_trimestre.csv
+5,Inés Calatayud (Seguridad),Seguridad,mira si esto es legal,Revisar una cláusula de tratamiento de datos y señalar riesgos para un informe interno (no sustituye asesoría jurídica),../../comun/empresa/politica_privacidad.md
+6,Hugo Cervera (Ingeniería),Ingeniería,explícame este error,Explicar una excepción y proponer causas probables y comprobaciones,(traza en el enunciado)
+7,Lucía Benavent (Ventas),Ventas,escribe un correo,Correo de oferta a un cliente que prueba Team y quiere pasar a Enterprise,../../comun/empresa/catalogo_planes.md
+8,Marta Illueca (Soporte),Soporte,resume los tickets de hoy,Resumen diario de tickets por categoría con los P1/P2 destacados,tickets del día (CSV)
+9,Rodrigo Palau (Producto),Producto,ideas para el producto,"Diez ideas de funcionalidad para DocuMind dirigidas a equipos legales, con una frase de valor cada una",(ninguno)
+10,Tomás Albors (Facturación),Facturación,calcula lo que debemos,Calcular el importe a facturar por un cambio de plan a mitad de mes,../../comun/empresa/catalogo_planes.md
+11,Inés Calatayud (Seguridad),Seguridad,redacta una política,"Borrador de política de uso aceptable de IA generativa para empleados, de una página",(ninguno)
+12,Hugo Cervera (Ingeniería),Ingeniería,mejora este código,Refactorizar una función para legibilidad sin cambiar su comportamiento,(código en el enunciado)
+13,Lucía Benavent (Ventas),Ventas,prepara la reunión,Guion de reunión de 30 minutos con un cliente de seguros interesado en DocuMind,(ninguno)
+14,Marta Illueca (Soporte),Soporte,tradúcelo,Traducir al inglés una respuesta a un cliente manteniendo tono formal,(texto en el enunciado)
+15,Rodrigo Palau (Producto),Producto,compara estos dos,Comparar el plan Team con el Enterprise de Copilot para un cliente que duda,../../comun/empresa/catalogo_planes.md

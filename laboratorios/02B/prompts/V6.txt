@@ -1,0 +1,10 @@
+[TAREA]
+Redacta la respuesta a la reclamación indicada en los datos de entrada.
+
+[DATOS DE ENTRADA]
+<reclamacion>
+{{DATOS_DEL_CASO}}
+</reclamacion>
+<condiciones_aplicables>
+{{CONDICION_APLICABLE}}
+</condiciones_aplicables>

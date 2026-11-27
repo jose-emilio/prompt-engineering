@@ -1,0 +1,56 @@
+id,tipo,idioma,texto
+1,prosa,es,"Altanoria desarrolla soluciones de inteligencia artificial generativa para empresas de banca, seguros e industria."
+2,prosa,es,El cliente solicita la rectificación de la factura correspondiente al mes de marzo porque incluye licencias que ya no utiliza.
+3,prosa,es_sin_tildes,El cliente solicita la rectificacion de la factura correspondiente al mes de marzo porque incluye licencias que ya no utiliza.
+4,prosa,es,¿Podrían indicarme cuándo estará disponible la integración con Jira? Necesitamos planificar el despliegue del próximo trimestre.
+5,prosa,en,"Altanoria builds generative AI solutions for companies in banking, insurance and manufacturing."
+6,prosa,en,The customer asks for the invoice of March to be corrected because it includes licences that are no longer in use.
+7,prosa,ca,"Altanoria desenvolupa solucions d'intel·ligència artificial generativa per a empreses de banca, assegurances i indústria."
+8,prosa,fr,Altanoria développe des solutions d'intelligence artificielle générative pour les entreprises du secteur bancaire.
+9,prosa,de,"Altanoria entwickelt generative KI-Lösungen für Unternehmen aus Bankwesen, Versicherung und Industrie."
+10,prosa,pt,A Altanoria desenvolve soluções de inteligência artificial generativa para empresas bancárias e seguradoras.
+11,palabra_larga,es,anticonstitucionalmente
+12,palabra_larga,es,electroencefalografista
+13,palabra_larga,es,otorrinolaringología
+14,palabra_larga,en,internationalization
+15,palabra_larga,de,Donaudampfschifffahrtsgesellschaftskapitän
+16,jerga,es,"Configurar el pipeline de CI/CD con GitOps, observabilidad con OpenTelemetry y despliegue canary en Kubernetes."
+17,codigo,python,"def calcular_iva(base: float, tipo: float = 0.21) -> float:
+    return round(base * tipo, 2)"
+18,codigo,python,"for ticket in tickets:
+    if ticket['prioridad'] == 'P1':
+        escalar(ticket)"
+19,codigo,javascript,"const total = items.reduce((acc, it) => acc + it.precio * it.cantidad, 0);"
+20,codigo,sql,"SELECT cliente_id, SUM(importe) AS total FROM facturas WHERE fecha >= '2026-01-01' GROUP BY cliente_id ORDER BY total DESC LIMIT 10;"
+21,codigo,json,"{""ticket"": ""T-1042"", ""prioridad"": ""P2"", ""producto"": ""DocuMind"", ""usuarios_afectados"": 14}"
+22,codigo,yaml,"servicio:
+  nombre: documind
+  replicas: 3
+  recursos:
+    cpu: 500m
+    memoria: 1Gi"
+23,numeros,-,1234567890
+24,numeros,-,"3,14159265358979"
+25,numeros,-,"1.250.480,75 €"
+26,numeros,-,2026-11-08T14:32:07+01:00
+27,numeros,-,+34 600 123 456
+28,numeros,-,ES91 2100 0418 4502 0005 1332
+29,url_email,-,https://estado.altanoria.example/incidencias/2026/10/INC-4821?lang=es&formato=json
+30,url_email,-,maria.fernandez@aceros-del-turia.example
+31,simbolos,-,→ ✓ ✗ © ® ™ € £ ¥ § ¶ ≈ ≠ ≤ ≥ ∞
+32,emoji,-,😀😀😀😀😀
+33,emoji,-,Gracias por la ayuda 👍🙏 ¡Genial! 🎉
+34,emoji,-,👨‍👩‍👧‍👦
+35,mayusculas,es,"POR FAVOR, ES URGENTE: NO PODEMOS ACCEDER AL SISTEMA DESDE ESTA MAÑANA"
+36,mayusculas,es,"por favor, es urgente: no podemos acceder al sistema desde esta mañana"
+37,repeticion,-,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+38,repeticion,-,ja ja ja ja ja ja ja ja ja ja ja ja ja ja ja ja ja ja ja ja
+39,espacios,-,"Hola          mundo
+
+
+
+	sangría con tabulador"
+40,otro_alfabeto,ja,Altanoriaは、銀行・保険・製造業向けに生成AIソリューションを開発しています。
+41,otro_alfabeto,ru,Altanoria разрабатывает решения на основе генеративного искусственного интеллекта для банков и страховых компаний.
+42,otro_alfabeto,ar,تطور شركة ألتانوريا حلولاً برمجية للذكاء الاصطناعي التوليدي للشركات.
+43,otro_alfabeto,zh,Altanoria 为银行、保险和制造业企业开发生成式人工智能解决方案。

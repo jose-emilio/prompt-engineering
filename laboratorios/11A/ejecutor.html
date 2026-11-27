@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejecutor de código · Laboratorio 11A</title>
+<style>
+:root{--fondo:#fff;--texto:#1b1f24;--suave:#5b6470;--borde:#d0d7de;--panel:#f6f8fa;--ok:#1a7f37;--okf:#dafbe1;--mal:#cf222e;--malf:#ffebe9;--aviso:#9a6700;--avisof:#fff8c5;--acento:#0969da}
+@media(prefers-color-scheme:dark){:root{--fondo:#0d1117;--texto:#e6edf3;--suave:#9198a1;--borde:#30363d;--panel:#161b22;--ok:#3fb950;--okf:#12261e;--mal:#ff7b72;--malf:#2d1117;--aviso:#d29922;--avisof:#2a2008;--acento:#58a6ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:16px 16px 48px}h1{font-size:1.5rem;margin:.4em 0 .2em}h2{font-size:1.1rem;margin:1.4em 0 .4em}
+p,li{color:var(--texto)}.suave{color:var(--suave);font-size:.92rem}ol{padding-left:1.3em}
+label{display:block;font-weight:600;margin:.8em 0 .25em}select,textarea,input{width:100%;font:inherit;color:inherit;background:var(--panel);border:1px solid var(--borde);border-radius:6px;padding:8px}
+textarea{min-height:170px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem}
+button{font:inherit;font-weight:600;border:1px solid var(--borde);background:var(--acento);color:#fff;border-radius:6px;padding:8px 14px;cursor:pointer;margin:.6em .5em 0 0}
+button.sec{background:var(--panel);color:var(--texto)}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--acento);outline-offset:1px}
+.fila{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--borde);border-radius:8px;padding:8px 10px;margin:6px 0;background:var(--panel)}
+.fila.ok{border-color:var(--ok);background:var(--okf)}.fila.mal{border-color:var(--mal);background:var(--malf)}.fila.aviso{border-color:var(--aviso);background:var(--avisof)}
+.marca{font-weight:700;min-width:1.6em;text-align:center}.ok .marca{color:var(--ok)}.mal .marca{color:var(--mal)}.aviso .marca{color:var(--aviso)}
+.detalle{font-size:.9rem;color:var(--suave);margin:2px 0 0}table{border-collapse:collapse;width:100%;margin:.5em 0;font-size:.92rem}
+th,td{border:1px solid var(--borde);padding:5px 8px;text-align:left;vertical-align:top}th{background:var(--panel)}td.num{text-align:right}
+td.correcto{background:var(--okf)}td.inventado,td.equivocado{background:var(--malf)}td.omitido{background:var(--avisof)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;word-break:break-word}.oculto{display:none}
+.nota{border-left:4px solid var(--aviso);background:var(--avisof);padding:8px 12px;border-radius:0 6px 6px 0;margin:1em 0;font-size:.92rem}
+</style>
+</head>
+<body>
+<main>
+<h1>Ejecutor de código · Laboratorio 11A</h1>
+<p>Esta página ejecuta Python en el navegador para el camino con código del laboratorio sin tener que abrir una terminal ni crear ficheros. Hace dos cosas, igual que <code>comprobar.py</code> y <code>python -m unittest</code>:</p>
+<ol><li><strong>Casos de aceptación</strong>: prueba la función con los 106 casos que el asistente no ha visto (cálculo y errores) y lista los que fallan, con el valor esperado y el obtenido.</li><li><strong>Tus pruebas</strong>: ejecuta las pruebas <code>unittest</code> que haya generado el asistente contra el código pegado.</li></ol>
+<p>Pega el código tal como lo devuelve el asistente, sin las comillas de bloque (<code>```</code>).</p>
+
+
+<div class="nota" id="red"><strong>Necesita conexión a internet</strong> la primera vez: descarga Python (unos 10 MB) y lo guarda en el navegador. Después, el código y las pruebas se ejecutan en tu ordenador; no se envían a ningún sitio.</div>
+<label for="codigo">Código de <code>facturacion.py</code> (el que ha escrito el asistente)</label>
+<textarea id="codigo" spellcheck="false" style="min-height:260px" placeholder="def calcular_factura_copilot(plan, usuarios, periodo='mensual', educativo=False):&#10;    ..."></textarea>
+<button id="acept">Ejecutar los casos de aceptación</button>
+<h2>Resultado de los casos de aceptación</h2>
+<div id="res-acept" aria-live="polite"><p class="suave">Aún no se ha ejecutado nada.</p></div>
+<h2>Tus pruebas (opcional)</h2>
+<label for="tests">Código de <code>test_facturacion.py</code> (las pruebas que ha escrito el asistente)</label>
+<textarea id="tests" spellcheck="false" placeholder="import unittest&#10;from facturacion import calcular_factura_copilot&#10;..."></textarea>
+<button id="pruebas" class="sec">Ejecutar mis pruebas</button>
+<pre id="res-pruebas" aria-live="polite" style="white-space:pre-wrap;background:var(--panel);border:1px solid var(--borde);border-radius:6px;padding:8px;font-size:.85rem"></pre>
+<p><button id="limpiar" class="sec">Borrar todo</button></p>
+</main>
+<script>
+const CASOS="plan,usuarios,periodo,educativo,error,base,descuento_pct,descuento,subtotal,iva,total\nStarter,1,mensual,False,,12.0,0.0,0.0,12.0,2.52,14.52\nStarter,2,mensual,False,,24.0,0.0,0.0,24.0,5.04,29.04\nStarter,19,mensual,False,,228.0,0.0,0.0,228.0,47.88,275.88\nStarter,20,mensual,False,,240.0,0.1,24.0,216.0,45.36,261.36\nStarter,21,mensual,False,,252.0,0.1,25.2,226.8,47.63,274.43\nStarter,99,mensual,False,,1188.0,0.1,118.8,1069.2,224.53,1293.73\nStarter,100,mensual,False,,1200.0,0.15,180.0,1020.0,214.2,1234.2\nStarter,101,mensual,False,,1212.0,0.15,181.8,1030.2,216.34,1246.54\nStarter,250,mensual,False,,3000.0,0.15,450.0,2550.0,535.5,3085.5\nStarter,1,mensual,True,,12.0,0.3,3.6,8.4,1.76,10.16\nStarter,2,mensual,True,,24.0,0.3,7.2,16.8,3.53,20.33\nStarter,19,mensual,True,,228.0,0.3,68.4,159.6,33.52,193.12\nStarter,20,mensual,True,,240.0,0.3,72.0,168.0,35.28,203.28\nStarter,21,mensual,True,,252.0,0.3,75.6,176.4,37.04,213.44\nStarter,99,mensual,True,,1188.0,0.3,356.4,831.6,174.64,1006.24\nStarter,100,mensual,True,,1200.0,0.3,360.0,840.0,176.4,1016.4\nStarter,101,mensual,True,,1212.0,0.3,363.6,848.4,178.16,1026.56\nStarter,250,mensual,True,,3000.0,0.3,900.0,2100.0,441.0,2541.0\nStarter,1,anual,False,,120.0,0.0,0.0,120.0,25.2,145.2\nStarter,2,anual,False,,240.0,0.0,0.0,240.0,50.4,290.4\nStarter,19,anual,False,,2280.0,0.0,0.0,2280.0,478.8,2758.8\nStarter,20,anual,False,,2400.0,0.0,0.0,2400.0,504.0,2904.0\nStarter,21,anual,False,,2520.0,0.0,0.0,2520.0,529.2,3049.2\nStarter,99,anual,False,,11880.0,0.0,0.0,11880.0,2494.8,14374.8\nStarter,100,anual,False,,12000.0,0.0,0.0,12000.0,2520.0,14520.0\nStarter,101,anual,False,,12120.0,0.0,0.0,12120.0,2545.2,14665.2\nStarter,250,anual,False,,30000.0,0.0,0.0,30000.0,6300.0,36300.0\nStarter,1,anual,True,,120.0,0.3,36.0,84.0,17.64,101.64\nStarter,2,anual,True,,240.0,0.3,72.0,168.0,35.28,203.28\nStarter,19,anual,True,,2280.0,0.3,684.0,1596.0,335.16,1931.16\nStarter,20,anual,True,,2400.0,0.3,720.0,1680.0,352.8,2032.8\nStarter,21,anual,True,,2520.0,0.3,756.0,1764.0,370.44,2134.44\nStarter,99,anual,True,,11880.0,0.3,3564.0,8316.0,1746.36,10062.36\nStarter,100,anual,True,,12000.0,0.3,3600.0,8400.0,1764.0,10164.0\nStarter,101,anual,True,,12120.0,0.3,3636.0,8484.0,1781.64,10265.64\nStarter,250,anual,True,,30000.0,0.3,9000.0,21000.0,4410.0,25410.0\nTeam,5,mensual,False,,145.0,0.0,0.0,145.0,30.45,175.45\nTeam,6,mensual,False,,174.0,0.0,0.0,174.0,36.54,210.54\nTeam,19,mensual,False,,551.0,0.0,0.0,551.0,115.71,666.71\nTeam,20,mensual,False,,580.0,0.1,58.0,522.0,109.62,631.62\nTeam,21,mensual,False,,609.0,0.1,60.9,548.1,115.1,663.2\nTeam,99,mensual,False,,2871.0,0.1,287.1,2583.9,542.62,3126.52\nTeam,100,mensual,False,,2900.0,0.15,435.0,2465.0,517.65,2982.65\nTeam,101,mensual,False,,2929.0,0.15,439.35,2489.65,522.83,3012.48\nTeam,250,mensual,False,,7250.0,0.15,1087.5,6162.5,1294.13,7456.63\nTeam,5,mensual,True,,145.0,0.3,43.5,101.5,21.32,122.82\nTeam,6,mensual,True,,174.0,0.3,52.2,121.8,25.58,147.38\nTeam,19,mensual,True,,551.0,0.3,165.3,385.7,81.0,466.7\nTeam,20,mensual,True,,580.0,0.3,174.0,406.0,85.26,491.26\nTeam,21,mensual,True,,609.0,0.3,182.7,426.3,89.52,515.82\nTeam,99,mensual,True,,2871.0,0.3,861.3,2009.7,422.04,2431.74\nTeam,100,mensual,True,,2900.0,0.3,870.0,2030.0,426.3,2456.3\nTeam,101,mensual,True,,2929.0,0.3,878.7,2050.3,430.56,2480.86\nTeam,250,mensual,True,,7250.0,0.3,2175.0,5075.0,1065.75,6140.75\nTeam,5,anual,False,,1440.0,0.0,0.0,1440.0,302.4,1742.4\nTeam,6,anual,False,,1728.0,0.0,0.0,1728.0,362.88,2090.88\nTeam,19,anual,False,,5472.0,0.0,0.0,5472.0,1149.12,6621.12\nTeam,20,anual,False,,5760.0,0.0,0.0,5760.0,1209.6,6969.6\nTeam,21,anual,False,,6048.0,0.0,0.0,6048.0,1270.08,7318.08\nTeam,99,anual,False,,28512.0,0.0,0.0,28512.0,5987.52,34499.52\nTeam,100,anual,False,,28800.0,0.0,0.0,28800.0,6048.0,34848.0\nTeam,101,anual,False,,29088.0,0.0,0.0,29088.0,6108.48,35196.48\nTeam,250,anual,False,,72000.0,0.0,0.0,72000.0,15120.0,87120.0\nTeam,5,anual,True,,1440.0,0.3,432.0,1008.0,211.68,1219.68\nTeam,6,anual,True,,1728.0,0.3,518.4,1209.6,254.02,1463.62\nTeam,19,anual,True,,5472.0,0.3,1641.6,3830.4,804.38,4634.78\nTeam,20,anual,True,,5760.0,0.3,1728.0,4032.0,846.72,4878.72\nTeam,21,anual,True,,6048.0,0.3,1814.4,4233.6,889.06,5122.66\nTeam,99,anual,True,,28512.0,0.3,8553.6,19958.4,4191.26,24149.66\nTeam,100,anual,True,,28800.0,0.3,8640.0,20160.0,4233.6,24393.6\nTeam,101,anual,True,,29088.0,0.3,8726.4,20361.6,4275.94,24637.54\nTeam,250,anual,True,,72000.0,0.3,21600.0,50400.0,10584.0,60984.0\nEnterprise,50,mensual,False,,2950.0,0.1,295.0,2655.0,557.55,3212.55\nEnterprise,51,mensual,False,,3009.0,0.1,300.9,2708.1,568.7,3276.8\nEnterprise,99,mensual,False,,5841.0,0.1,584.1,5256.9,1103.95,6360.85\nEnterprise,100,mensual,False,,5900.0,0.15,885.0,5015.0,1053.15,6068.15\nEnterprise,101,mensual,False,,5959.0,0.15,893.85,5065.15,1063.68,6128.83\nEnterprise,250,mensual,False,,14750.0,0.15,2212.5,12537.5,2632.88,15170.38\nEnterprise,50,mensual,True,,2950.0,0.3,885.0,2065.0,433.65,2498.65\nEnterprise,51,mensual,True,,3009.0,0.3,902.7,2106.3,442.32,2548.62\nEnterprise,99,mensual,True,,5841.0,0.3,1752.3,4088.7,858.63,4947.33\nEnterprise,100,mensual,True,,5900.0,0.3,1770.0,4130.0,867.3,4997.3\nEnterprise,101,mensual,True,,5959.0,0.3,1787.7,4171.3,875.97,5047.27\nEnterprise,250,mensual,True,,14750.0,0.3,4425.0,10325.0,2168.25,12493.25\nEnterprise,50,anual,False,,29400.0,0.0,0.0,29400.0,6174.0,35574.0\nEnterprise,51,anual,False,,29988.0,0.0,0.0,29988.0,6297.48,36285.48\nEnterprise,99,anual,False,,58212.0,0.0,0.0,58212.0,12224.52,70436.52\nEnterprise,100,anual,False,,58800.0,0.0,0.0,58800.0,12348.0,71148.0\nEnterprise,101,anual,False,,59388.0,0.0,0.0,59388.0,12471.48,71859.48\nEnterprise,250,anual,False,,147000.0,0.0,0.0,147000.0,30870.0,177870.0\nEnterprise,50,anual,True,,29400.0,0.3,8820.0,20580.0,4321.8,24901.8\nEnterprise,51,anual,True,,29988.0,0.3,8996.4,20991.6,4408.24,25399.84\nEnterprise,99,anual,True,,58212.0,0.3,17463.6,40748.4,8557.16,49305.56\nEnterprise,100,anual,True,,58800.0,0.3,17640.0,41160.0,8643.6,49803.6\nEnterprise,101,anual,True,,59388.0,0.3,17816.4,41571.6,8730.04,50301.64\nEnterprise,250,anual,True,,147000.0,0.3,44100.0,102900.0,21609.0,124509.0\nGold,5,mensual,False,ValueError,,,,,,\nTeam,4,mensual,False,ValueError,,,,,,\nEnterprise,49,anual,False,ValueError,,,,,,\nStarter,0,mensual,False,ValueError,,,,,,\nStarter,-3,mensual,False,ValueError,,,,,,\nTeam,5,trimestral,False,ValueError,,,,,,\nTeam,str:10,mensual,False,ValueError,,,,,,\nTeam,True,mensual,False,ValueError,,,,,,\nTeam,5.0,mensual,False,ValueError,,,,,,\n,5,mensual,False,ValueError,,,,,,\n";
+const PY="\nimport csv, io, math, sys, types\n\ndef _cargar(codigo, nombre):\n    mod = types.ModuleType(nombre)\n    exec(compile(codigo, nombre + \".py\", \"exec\"), mod.__dict__)\n    sys.modules[nombre] = mod\n    return mod\n\ndef aceptacion(codigo, casos_csv):\n    salida = []\n    try:\n        f = _cargar(codigo, \"facturacion\").calcular_factura_copilot\n    except Exception as e:\n        return {\"ok\": 0, \"fallos\": 1, \"lineas\": [type(e).__name__ + \" al cargar el código: \" + str(e)]}\n    ok = fallos = 0\n    for i, fila in enumerate(csv.DictReader(io.StringIO(casos_csv)), 2):\n        try: usuarios = int(fila[\"usuarios\"])\n        except ValueError: usuarios = fila[\"usuarios\"]\n        if fila[\"usuarios\"].startswith(\"str:\"): usuarios = fila[\"usuarios\"][4:]\n        elif fila[\"usuarios\"] == \"True\": usuarios = True\n        elif fila[\"usuarios\"] == \"5.0\": usuarios = 5.0\n        args = (fila[\"plan\"], usuarios, fila[\"periodo\"], fila[\"educativo\"] == \"True\")\n        try:\n            r = f(*args)\n            if fila[\"error\"]:\n                fallos += 1; salida.append(f\"línea {i} {args}: debía lanzar {fila['error']} y devolvió {r}\")\n                continue\n            malo = [k for k in (\"base\", \"descuento_pct\", \"descuento\", \"subtotal\", \"iva\", \"total\")\n                    if not math.isclose(float(r[k]), float(fila[k]), abs_tol=0.005)]\n            if malo:\n                fallos += 1\n                salida.append(f\"línea {i} {args}: difieren {malo}; esperado \" + \", \".join(f\"{k}={fila[k]}\" for k in malo)\n                              + \"; obtenido \" + \", \".join(f\"{k}={r[k]}\" for k in malo))\n            else: ok += 1\n        except ValueError as e:\n            if fila[\"error\"] == \"ValueError\": ok += 1\n            else: fallos += 1; salida.append(f\"línea {i} {args}: ValueError inesperado: {e}\")\n        except Exception as e:\n            fallos += 1; salida.append(f\"línea {i} {args}: {type(e).__name__}: {e}\")\n    return {\"ok\": ok, \"fallos\": fallos, \"lineas\": salida}\n\ndef pruebas(codigo, tests):\n    import unittest\n    try:\n        _cargar(codigo, \"facturacion\")\n    except Exception as e:\n        return \"Error al cargar el código: \" + type(e).__name__ + \": \" + str(e)\n    try:\n        t = _cargar(tests, \"test_facturacion\")\n    except Exception as e:\n        return \"Error al cargar las pruebas: \" + type(e).__name__ + \": \" + str(e)\n    flujo = io.StringIO()\n    resultado = unittest.TextTestRunner(stream=flujo, verbosity=2).run(unittest.defaultTestLoader.loadTestsFromModule(t))\n    return flujo.getvalue()\n";
+
+function el(t,props,...hijos){const e=document.createElement(t);Object.assign(e,props||{});hijos.flat().forEach(h=>e.append(h));return e;}
+function filaVerif(f){
+  const clase=f.ok===null?'fila':(f.ok?'fila ok':(f.aviso?'fila aviso':'fila mal'));
+  const marca=f.ok===null?'–':(f.ok?'✓':'✗');
+  const d=el('div',{},el('strong',{textContent:f.titulo}),el('div',{className:'detalle',textContent:f.detalle||''}));
+  return el('div',{className:clase},el('span',{className:'marca',textContent:marca}),d);
+}
+function vacio(n){while(n.firstChild)n.removeChild(n.firstChild);}
+
+let pyodidePromise=null;
+function cargarPython(estado){
+  if(pyodidePromise)return pyodidePromise;
+  estado('Cargando Python… (unos segundos la primera vez)');
+  pyodidePromise=new Promise((ok,mal)=>{
+    const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js';
+    s.onload=()=>loadPyodide().then(py=>{py.runPython(PY);ok(py);}).catch(mal);
+    s.onerror=()=>mal(new Error('No se ha podido descargar Python. Comprueba la conexión a internet.'));
+    document.head.append(s);
+  });
+  pyodidePromise.catch(()=>{pyodidePromise=null;});
+  return pyodidePromise;
+}
+function quitarBloque(t){return t.replace(/^```[a-z]*\n?/,'').replace(/```\s*$/,'');}
+document.getElementById('acept').onclick=async()=>{
+  const out=document.getElementById('res-acept');vacio(out);
+  const codigo=quitarBloque(document.getElementById('codigo').value);
+  if(!codigo.trim()){out.append(el('p',{className:'suave',textContent:'Pega primero el código.'}));return;}
+  const estado=t=>{vacio(out);out.append(el('p',{className:'suave',textContent:t}));};
+  try{
+    const py=await cargarPython(estado);estado('Ejecutando los casos de aceptación…');
+    const r=py.globals.get('aceptacion')(codigo,CASOS).toJs({dict_converter:Object.fromEntries});
+    vacio(out);
+    out.append(filaVerif({ok:r.fallos===0,titulo:'Correctos: '+r.ok+' · Fallos: '+r.fallos,detalle:r.fallos===0?'Pasa todos los casos de aceptación.':'Mira qué tienen en común los fallos: suelen señalar una regla que faltaba en las pruebas propias.'}));
+    r.lineas.slice(0,20).forEach(l=>out.append(filaVerif({ok:false,titulo:l,detalle:''})));
+    if(r.lineas.length>20)out.append(el('p',{className:'suave',textContent:'… y '+(r.lineas.length-20)+' fallos más.'}));
+  }catch(e){vacio(out);out.append(filaVerif({ok:false,titulo:'No se ha podido ejecutar',detalle:String(e.message||e)}));}
+};
+document.getElementById('pruebas').onclick=async()=>{
+  const out=document.getElementById('res-pruebas');
+  const codigo=quitarBloque(document.getElementById('codigo').value),tests=quitarBloque(document.getElementById('tests').value);
+  if(!codigo.trim()||!tests.trim()){out.textContent='Pega el código y las pruebas.';return;}
+  try{const py=await cargarPython(t=>{out.textContent=t;});out.textContent='Ejecutando…';out.textContent=py.globals.get('pruebas')(codigo,tests);}
+  catch(e){out.textContent=String(e.message||e);}
+};
+document.getElementById('limpiar').onclick=()=>{document.getElementById('codigo').value='';document.getElementById('tests').value='';vacio(document.getElementById('res-acept'));document.getElementById('res-pruebas').textContent='';};
+
+</script>
+</body>
+</html>

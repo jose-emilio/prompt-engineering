@@ -1,0 +1,361 @@
+id,abierta,producto,prioridad,duracion,unidad,usuarios_afectados,causa,canal,reabierta
+INC-6244,2026-06-14,Docu Mind,P4,24,min,11,configuracion,telefono,no
+INC-6072,2026-09-10,Copilot,P3,21,min,24,desconocida,telefono,no
+INC-6337,2026-05-10,DocuMind,P2,58,min,5,configuracion,chat,no
+INC-6315,14/02/2026,Altanoria Copilot,P3,19,min,9,configuracion,chat,no
+INC-6334,2026-04-19,AgentHub,P3,13,min,88,bug_codigo,telefono,no
+INC-6008,2026-06-19,AgentHub,P3,58,min,9,configuracion,telefono,no
+INC-6162,14/10/2026,agenthub,P3,34,min,3,capacidad,correo,no
+INC-6216,2026-10-10,Altanoria Copilot,P3,22,min,9,datos,chat,no
+INC-6168,2026-07-17,Altanoria Copilot,P2,1.7,h,,despliegue,portal,no
+INC-6071,2026-03-03,Altanoria Copilot,P4,5,min,10,configuracion,telefono,no
+INC-6222,11/09/2026,Altanoria Copilot,P3,54,min,13,capacidad,correo,no
+INC-6001,2026-08-09,DocuMind,P3,39,min,20,despliegue,telefono,no
+INC-6080,2026-03-03,DocuMind,P3,35,min,,configuracion,portal,no
+INC-6096,2026-03-21,agenthub,P3,44,min,3,configuracion,chat,no
+INC-6039,2026-01-21,Altanoria Copilot,P3,54,min,4,bug_codigo,chat,no
+INC-6253,2026-01-17,Documind,P4,23,min,16,despliegue,chat,no
+INC-6131,2026-09-04,DocuMind,P4,31,min,,bug_codigo,telefono,no
+INC-6043,2026-01-27,Docu Mind,P3,33,min,38,despliegue,chat,no
+INC-6114,2026-08-19,Altanoria Copilot,P3,36,min,20,datos,portal,no
+INC-6310,19/06/2026,DocuMind,P3,15,min,6,desconocida,correo,no
+INC-6025,2026-08-14,Copilot,P4,5,min,17,despliegue,chat,no
+INC-6281,15/10/2026,agenthub,P3,0.8,h,31,configuracion,portal,no
+INC-6293,2026-07-25,DocuMind,P4,16,min,,despliegue,portal,no
+INC-6124,2026-03-04,Altanoria Copilot,P4,30,min,4,dependencia_externa,portal,no
+INC-6119,2026-09-24,Altanoria Copilot,P3,18,min,,datos,chat,si
+INC-6229,2026-01-26,DocuMind,P2,145,min,14,capacidad,chat,no
+INC-6268,2026-10-25,Altanoria Copilot,P3,46,min,1,despliegue,portal,no
+INC-6069,2026-06-27,Altanoria Copilot,P3,54,min,1,configuracion,chat,no
+INC-6034,2026-06-05,Agent Hub,P4,23,min,4800,despliegue,correo,no
+INC-6324,06/03/2026,agenthub,P3,29,min,39,bug_codigo,portal,no
+INC-6013,2026-09-26,Altanoria Copilot,P2,85,min,25,bug_codigo,portal,no
+INC-6202,2026-08-27,Copilot,P3,28,min,16,despliegue,telefono,si
+INC-6342,2026-10-08,Copilot,P1,1.4,h,5,configuracion,portal,no
+INC-6221,2026-09-12,Documind,P4,6,min,35,despliegue,portal,no
+INC-6070,2026-04-05,Copilot,P1,97,min,1,seguridad,correo,no
+INC-6157,21/02/2026,DocuMind,P3,47,min,27,configuracion,telefono,si
+INC-6117,2026-10-05,Documind,P3,52,min,11,bug_codigo,portal,no
+INC-6269,2026-10-04,AgentHub,P1,120,min,8,configuracion,correo,no
+INC-6111,2026-10-17,Agent Hub,P3,19,min,3,seguridad,chat,no
+INC-6345,2026-09-02,Agent Hub,P1,81,min,26,capacidad,portal,no
+INC-6149,2026-10-03,DocuMind,P3,50,min,,dependencia_externa,portal,no
+INC-6288,2026-10-13,Altanoria Copilot,P4,40,min,24,configuracion,portal,no
+INC-6025,2026-08-14,Copilot,P4,5,min,17,despliegue,chat,no
+INC-6287,2026-10-15,Altanoria Copilot,P3,11,min,11,configuracion,portal,no
+INC-6079,2026-06-21,Docu Mind,P1,173,min,1,bug_codigo,chat,no
+INC-6138,25/02/2026,Docu Mind,P3,5,min,13,configuracion,correo,no
+INC-6335,2026-07-08,Copilot,P4,22,min,49,despliegue,chat,si
+INC-6146,2026-04-20,DocuMind,P4,27,min,10,despliegue,correo,no
+INC-6016,2026-10-21,copilot,P2,62,min,115,bug_codigo,telefono,no
+INC-6113,2026-07-24,Docu Mind,P3,30,min,19,configuracion,portal,no
+INC-6323,2026-09-21,AgentHub,P4,26,min,5,dependencia_externa,chat,no
+INC-6251,2026-02-23,Agent Hub,P2,0.6,h,14,bug_codigo,portal,no
+INC-6121,2026-05-27,Docu Mind,P4,15,min,23,configuracion,portal,no
+INC-6120,13/10/2026,DocuMind,P2,1.2,h,,bug_codigo,portal,si
+INC-6278,2026-01-21,AgentHub,P2,71,min,8,configuracion,correo,no
+INC-6316,2026-09-11,Altanoria Copilot,P3,37,min,6,dependencia_externa,correo,no
+INC-6115,2026-02-11,Documind,P4,20,min,9,configuracion,telefono,no
+INC-6333,01/06/2026,Altanoria Copilot,P3,57,min,81,bug_codigo,portal,no
+INC-6064,2026-04-26,Copilot,P3,25,min,,despliegue,chat,no
+INC-6038,19/10/2026,Documind,P3,58,min,18,datos,chat,no
+INC-6271,20/10/2026,Documind,P2,76,min,6,configuracion,portal,si
+INC-6047,2026-03-20,agenthub,P2,18,min,42,capacidad,portal,no
+INC-6179,2026-09-23,Documind,P3,48,min,6,capacidad,correo,no
+INC-6215,2026-06-22,Altanoria Copilot,P3,1.2,h,5,configuracion,portal,no
+INC-6156,2026-09-17,Copilot,P4,17,min,9,despliegue,correo,no
+INC-6170,2026-10-03,Agent Hub,P4,25,min,1,bug_codigo,correo,no
+INC-6265,2026-10-06,Altanoria Copilot,P4,26,min,8,despliegue,portal,no
+INC-6132,2026-06-14,AgentHub,P3,33,min,10,dependencia_externa,telefono,no
+INC-6252,07/09/2026,copilot,P3,21,min,40,configuracion,telefono,no
+INC-6313,2026-03-12,DocuMind,P3,31,min,4,datos,telefono,no
+INC-6021,2026-03-21,DocuMind,P3,0.6,h,,despliegue,telefono,si
+INC-6062,06/06/2026,Documind,P2,56,min,122,despliegue,chat,no
+INC-6226,2026-06-12,Copilot,P4,11,min,2400,seguridad,chat,no
+INC-6018,2026-04-26,DocuMind,P1,203,min,3,bug_codigo,correo,no
+INC-6147,2026-06-25,DocuMind,P3,59,min,8,bug_codigo,telefono,no
+INC-6304,2026-06-17,DocuMind,P4,28,min,70,bug_codigo,correo,no
+INC-6011,2026-07-26,AgentHub,P3,34,min,5,configuracion,portal,no
+INC-6161,2026-10-05,DocuMind,P1,132,min,18,configuracion,chat,no
+INC-6308,2026-04-07,DocuMind,P2,66,min,8,configuracion,correo,no
+INC-6305,15/09/2026,DocuMind,P2,1.2,h,10,despliegue,portal,si
+INC-6258,2026-01-15,Altanoria Copilot,P4,18,min,,capacidad,portal,no
+INC-6178,09/04/2026,Documind,P3,51,min,4,dependencia_externa,correo,no
+INC-6346,2026-10-22,DocuMind,P4,30,min,,dependencia_externa,chat,no
+INC-6135,2026-08-28,Docu Mind,P3,63,min,2,datos,correo,no
+INC-6116,2026-01-27,DocuMind,P2,51,min,7,capacidad,correo,no
+INC-6259,2026-09-17,Altanoria Copilot,P4,12,min,,configuracion,portal,no
+INC-6015,18/10/2026,AgentHub,P1,66,min,,bug_codigo,chat,no
+INC-6104,18/09/2026,AgentHub,P3,57,min,6,despliegue,telefono,no
+INC-6348,24/06/2026,DocuMind,P3,0.8,h,6,configuracion,portal,no
+INC-6061,2026-01-17,Agent Hub,P2,5,min,63,capacidad,portal,no
+INC-6159,2026-03-07,Altanoria Copilot,P1,90,min,30,bug_codigo,portal,no
+INC-6328,26/10/2026,Copilot,P4,23,min,,configuracion,telefono,no
+INC-6230,2026-06-03,Copilot,P3,33,min,8,datos,correo,no
+INC-6280,2026-04-24,Copilot,P3,0.6,h,15,bug_codigo,telefono,no
+INC-6310,19/06/2026,DocuMind,P3,15,min,6,desconocida,correo,no
+INC-6200,05/02/2026,Copilot,P3,32,min,2,dependencia_externa,chat,no
+INC-6031,08/10/2026,Altanoria Copilot,P1,78,min,10,seguridad,telefono,si
+INC-6046,2026-10-28,Copilot,P3,1.1,h,9,datos,chat,no
+INC-6109,2026-07-01,Altanoria Copilot,P3,39,min,16,bug_codigo,correo,no
+INC-6217,01/09/2026,DocuMind,P2,1.2,h,6,desconocida,correo,no
+INC-6196,2026-10-25,AgentHub,P3,55,min,12,capacidad,telefono,no
+INC-6195,2026-10-13,AgentHub,P2,0.8,h,9,configuracion,correo,no
+INC-6257,09/09/2026,Altanoria Copilot,P3,16,min,11,bug_codigo,chat,no
+INC-6302,2026-03-18,DocuMind,P3,33,min,,bug_codigo,telefono,no
+INC-6035,2026-03-03,Documind,P2,106,min,6,dependencia_externa,chat,no
+INC-6126,2026-04-05,Altanoria Copilot,P3,60,min,3,configuracion,chat,no
+INC-6088,2026-05-12,DocuMind,P4,33,min,16,configuracion,telefono,no
+INC-6176,2026-10-04,DocuMind,P3,36,min,9,despliegue,telefono,no
+INC-6127,2026-10-09,Docu Mind,P4,5,min,6,configuracion,portal,si
+INC-6023,13/01/2026,DocuMind,P4,17,min,5,dependencia_externa,chat,no
+INC-6311,2026-02-14,Docu Mind,P1,1.6,h,30,configuracion,correo,no
+INC-6245,2026-01-22,DocuMind,P4,25,min,1,capacidad,chat,si
+INC-6068,24/08/2026,AgentHub,P2,103,min,3,bug_codigo,correo,si
+INC-6029,2026-04-02,AgentHub,P3,40,min,,capacidad,chat,si
+INC-6285,2026-09-11,Altanoria Copilot,P4,36,min,27,despliegue,chat,no
+INC-6189,2026-09-21,agenthub,P4,24,min,29,dependencia_externa,correo,no
+INC-6296,25/10/2026,Documind,P2,63,min,6,configuracion,chat,si
+INC-6163,2026-10-26,Docu Mind,P2,1.0,h,7,desconocida,correo,no
+INC-6048,2026-04-19,Agent Hub,P3,34,min,4,despliegue,chat,no
+INC-6341,2026-05-19,AgentHub,P4,26,min,17,bug_codigo,portal,si
+INC-6307,2026-04-06,Altanoria Copilot,P2,25,min,,bug_codigo,correo,no
+INC-6183,2026-09-23,DocuMind,P3,61,min,2,configuracion,chat,no
+INC-6282,2026-03-01,Copilot,P2,11,min,,datos,correo,no
+INC-6140,2026-07-05,DocuMind,P4,21,min,2,dependencia_externa,correo,no
+INC-6172,2026-10-23,DocuMind,P1,135,min,,configuracion,chat,no
+INC-6003,2026-06-12,DocuMind,P3,28,min,,despliegue,chat,no
+INC-6325,2026-10-28,Docu Mind,P3,28,min,4800,dependencia_externa,correo,no
+INC-6188,18/08/2026,copilot,P4,12,min,4,bug_codigo,chat,si
+INC-6295,13/07/2026,Altanoria Copilot,P2,1.4,h,6,dependencia_externa,correo,no
+INC-6020,2026-04-16,DocuMind,P3,32,min,11,desconocida,correo,no
+INC-6128,2026-05-09,DocuMind,P1,28,min,4,configuracion,telefono,no
+INC-6236,2026-05-22,Copilot,P3,39,min,8,despliegue,correo,no
+INC-6059,18/07/2026,Docu Mind,P3,52,min,8,configuracion,telefono,no
+INC-6223,2026-06-10,AgentHub,P3,70,min,2,bug_codigo,telefono,no
+INC-6026,2026-05-08,AgentHub,P3,32,min,11,despliegue,telefono,no
+INC-6152,2026-08-08,DocuMind,P3,0.9,h,7,despliegue,portal,no
+INC-6262,2026-10-27,DocuMind,P2,45,min,3,capacidad,telefono,si
+INC-6207,2026-08-14,Altanoria Copilot,P2,30,min,22,configuracion,correo,si
+INC-6199,02/02/2026,copilot,P1,129,min,16,despliegue,portal,no
+INC-6036,2026-10-08,DocuMind,P3,29,min,61,dependencia_externa,correo,no
+INC-6272,20/05/2026,Agent Hub,P3,43,min,,desconocida,telefono,no
+INC-6144,2026-05-04,DocuMind,P4,24,min,25,datos,telefono,no
+INC-6254,2026-04-08,Altanoria Copilot,P4,27,min,62,desconocida,correo,no
+INC-6129,2026-01-24,Docu Mind,P3,34,min,7,bug_codigo,correo,no
+INC-6298,20/06/2026,AgentHub,P4,40,min,8,capacidad,chat,no
+INC-6095,2026-05-21,Copilot,P2,47,min,7,bug_codigo,telefono,no
+INC-6314,2026-04-05,DocuMind,P2,0.8,h,7,configuracion,telefono,no
+INC-6087,2026-06-20,AgentHub,P1,125,min,9,bug_codigo,chat,no
+INC-6175,2026-08-28,AgentHub,P1,68,min,9,configuracion,portal,no
+INC-6029,2026-04-02,AgentHub,P3,40,min,,capacidad,chat,si
+INC-6027,12/02/2026,Documind,P4,17,min,3,configuracion,portal,no
+INC-6303,10/05/2026,Altanoria Copilot,P3,62,min,2,desconocida,telefono,no
+INC-6177,2026-07-05,Altanoria Copilot,P3,49,min,29,configuracion,telefono,no
+INC-6329,2026-08-05,Altanoria Copilot,P3,45,min,21,bug_codigo,correo,no
+INC-6185,2026-02-25,Altanoria Copilot,P2,80,min,3,configuracion,portal,no
+INC-6103,2026-05-12,DocuMind,P3,49,min,,despliegue,portal,si
+INC-6022,2026-09-21,Copilot,P3,19,min,,bug_codigo,correo,no
+INC-6240,2026-10-12,Altanoria Copilot,P4,0.7,h,10,despliegue,telefono,no
+INC-6049,2026-05-14,AgentHub,P4,22,min,27,datos,telefono,no
+INC-6201,2026-04-28,AgentHub,P4,15,min,9,configuracion,telefono,no
+INC-6005,2026-04-10,agenthub,P3,55,min,24,capacidad,correo,no
+INC-6237,2026-10-01,AgentHub,P3,31,min,,despliegue,telefono,no
+INC-6197,2026-05-25,Altanoria Copilot,P4,35,min,9,configuracion,telefono,no
+INC-6347,2026-01-25,Altanoria Copilot,P3,44,min,15,despliegue,portal,no
+INC-6181,2026-10-02,AgentHub,P4,29,min,4800,bug_codigo,correo,no
+INC-6098,2026-05-22,AgentHub,P4,19,min,3100,dependencia_externa,correo,no
+INC-6164,2026-08-13,AgentHub,P4,18,min,5,bug_codigo,telefono,si
+INC-6057,21/01/2026,Altanoria Copilot,P3,29,min,3,bug_codigo,chat,no
+INC-6309,05/04/2026,Altanoria Copilot,P2,60,min,12,bug_codigo,telefono,si
+INC-6250,10/05/2026,Altanoria Copilot,P3,27,min,17,despliegue,chat,no
+INC-6108,28/02/2026,DocuMind,P3,1.0,h,18,bug_codigo,correo,no
+INC-6009,2026-01-20,DocuMind,P4,20,min,,configuracion,correo,no
+INC-6017,08/04/2026,Docu Mind,P3,33,min,4,bug_codigo,telefono,no
+INC-6274,2026-06-15,DocuMind,P3,29,min,7,dependencia_externa,telefono,no
+INC-6211,2026-10-28,Documind,P2,47,min,12,bug_codigo,portal,no
+INC-6331,03/07/2026,Altanoria Copilot,P2,1.8,h,8,despliegue,correo,no
+INC-6209,2026-10-12,DocuMind,P3,25,min,10,despliegue,correo,no
+INC-6037,22/02/2026,AgentHub,P3,42,min,6,bug_codigo,correo,si
+INC-6182,02/10/2026,Docu Mind,P2,100,min,11,dependencia_externa,portal,no
+INC-6094,2026-06-23,Copilot,P3,44,min,30,capacidad,portal,no
+INC-6213,2026-05-28,Altanoria Copilot,P2,99,min,17,capacidad,telefono,no
+INC-6123,2026-01-23,AgentHub,P4,17,min,,despliegue,portal,no
+INC-6249,2026-02-18,Altanoria Copilot,P4,20,min,7,datos,telefono,no
+INC-6204,2026-03-05,Copilot,P4,6,min,7,dependencia_externa,correo,no
+INC-6089,2026-08-26,DocuMind,P1,0.8,h,5,capacidad,telefono,no
+INC-6243,2026-03-18,Documind,P3,8,min,7,despliegue,telefono,no
+INC-6198,2026-09-21,copilot,P3,52,min,41,dependencia_externa,portal,no
+INC-6125,2026-04-26,DocuMind,P4,8,min,13,bug_codigo,chat,no
+INC-6336,2026-01-24,Agent Hub,P3,35,min,,configuracion,correo,no
+INC-6148,2026-05-21,Altanoria Copilot,P4,5,min,,configuracion,portal,no
+INC-6041,2026-04-07,DocuMind,P4,44,min,3,despliegue,chat,no
+INC-6077,02/05/2026,Copilot,P2,108,min,,capacidad,portal,no
+INC-6205,2026-03-02,DocuMind,P1,146,min,3100,datos,telefono,no
+INC-6321,2026-09-10,Docu Mind,P2,110,min,11,despliegue,chat,no
+INC-6110,2026-10-22,AgentHub,P4,22,min,2,bug_codigo,telefono,no
+INC-6292,2026-10-16,Altanoria Copilot,P4,17,min,4,configuracion,portal,no
+INC-6291,14/05/2026,AgentHub,P3,33,min,6,seguridad,correo,no
+INC-6247,28/05/2026,Copilot,P3,56,min,10,bug_codigo,chat,no
+INC-6115,2026-02-11,Documind,P4,20,min,9,configuracion,telefono,no
+INC-6171,18/02/2026,DocuMind,P2,89,min,11,despliegue,correo,no
+INC-6040,13/04/2026,Altanoria Copilot,P4,18,min,38,datos,portal,si
+INC-6097,01/03/2026,Altanoria Copilot,P3,25,min,26,bug_codigo,portal,no
+INC-6004,2026-08-11,DocuMind,P3,1.2,h,17,bug_codigo,portal,si
+INC-6225,2026-06-09,Agent Hub,P3,75,min,3,capacidad,telefono,si
+INC-6232,09/09/2026,Copilot,P3,25,min,60,despliegue,telefono,no
+INC-6075,2026-09-18,Documind,P1,2.1,h,15,configuracion,portal,no
+INC-6081,16/09/2026,DocuMind,P3,8,min,8,bug_codigo,telefono,no
+INC-6258,2026-01-15,Altanoria Copilot,P4,18,min,,capacidad,portal,no
+INC-6076,2026-07-08,Agent Hub,P4,25,min,18,bug_codigo,telefono,no
+INC-6106,06/09/2026,AgentHub,P3,38,min,22,bug_codigo,correo,si
+INC-6032,2026-01-18,agenthub,P2,104,min,1,configuracion,correo,no
+INC-6220,2026-09-13,DocuMind,P2,78,min,,dependencia_externa,telefono,no
+INC-6224,2026-09-17,AgentHub,P2,96,min,2,bug_codigo,chat,si
+INC-6053,2026-01-20,DocuMind,P3,69,min,6,despliegue,portal,no
+INC-6246,2026-09-10,DocuMind,P3,38,min,19,desconocida,telefono,no
+INC-6306,2026-06-18,DocuMind,P3,47,min,,dependencia_externa,chat,no
+INC-6322,2026-04-09,Altanoria Copilot,P3,25,min,31,dependencia_externa,chat,no
+INC-6166,24/09/2026,DocuMind,P4,0.6,h,18,configuracion,chat,no
+INC-6085,2026-10-21,Docu Mind,P4,28,min,7,seguridad,chat,no
+INC-6235,2026-10-19,Altanoria Copilot,P2,75,min,3,capacidad,portal,no
+INC-6169,2026-03-02,DocuMind,P3,42,min,16,dependencia_externa,correo,no
+INC-6044,2026-09-01,Altanoria Copilot,P1,2.6,h,33,desconocida,correo,no
+INC-6151,2026-05-02,AgentHub,P4,13,min,2,desconocida,telefono,no
+INC-6024,2026-09-17,Docu Mind,P3,45,min,2,capacidad,chat,si
+INC-6317,2026-02-13,DocuMind,P3,30,min,,configuracion,portal,no
+INC-6186,2026-10-01,Docu Mind,P4,13,min,11,bug_codigo,telefono,no
+INC-6101,2026-09-09,Documind,P2,5,min,5,bug_codigo,correo,no
+INC-6231,03/05/2026,DocuMind,P3,24,min,12,dependencia_externa,telefono,no
+INC-6173,27/06/2026,Copilot,P3,26,min,36,configuracion,correo,no
+INC-6073,2026-09-22,AgentHub,P3,28,min,56,despliegue,chat,no
+INC-6289,02/04/2026,Copilot,P3,35,min,16,configuracion,telefono,no
+INC-6326,2026-05-09,Docu Mind,P1,125,min,7,despliegue,portal,no
+INC-6093,2026-10-18,DocuMind,P4,21,min,10,datos,telefono,no
+INC-6194,2026-06-26,DocuMind,P4,36,min,,despliegue,chat,no
+INC-6157,21/02/2026,DocuMind,P3,47,min,27,configuracion,telefono,si
+INC-6084,2026-10-27,AgentHub,P2,29,min,4,datos,portal,no
+INC-6141,2026-04-08,AgentHub,P3,44,min,8,datos,portal,no
+INC-6300,2026-06-16,Altanoria Copilot,P4,19,min,7,configuracion,telefono,no
+INC-6153,2026-02-14,AgentHub,P4,33,min,,bug_codigo,chat,no
+INC-6279,04/05/2026,Copilot,P3,59,min,3,bug_codigo,correo,no
+INC-6344,16/02/2026,DocuMind,P1,18,min,15,dependencia_externa,telefono,no
+INC-6261,2026-05-05,DocuMind,P3,41,min,15,configuracion,portal,no
+INC-6107,2026-10-08,Altanoria Copilot,P3,0.6,h,,dependencia_externa,chat,no
+INC-6276,26/08/2026,Agent Hub,P2,31,min,,configuracion,telefono,si
+INC-6050,16/08/2026,Documind,P2,69,min,15,configuracion,chat,no
+INC-6297,2026-07-28,DocuMind,P3,39,min,12,despliegue,correo,no
+INC-6102,03/09/2026,Altanoria Copilot,P4,16,min,5,configuracion,correo,no
+INC-6294,2026-02-19,Altanoria Copilot,P2,98,min,6,bug_codigo,correo,no
+INC-6327,2026-07-14,Copilot,P3,25,min,17,configuracion,telefono,no
+INC-6083,2026-03-18,Altanoria Copilot,P4,12,min,1,bug_codigo,telefono,no
+INC-6227,25/04/2026,AgentHub,P4,24,min,8,dependencia_externa,telefono,no
+INC-6130,2026-02-07,DocuMind,P2,48,min,14,configuracion,correo,no
+INC-6234,2026-03-27,Altanoria Copilot,P3,35,min,11,bug_codigo,correo,no
+INC-6133,10/07/2026,DocuMind,P4,17,min,,configuracion,telefono,no
+INC-6112,16/07/2026,DocuMind,P3,48,min,4,bug_codigo,portal,no
+INC-6219,2026-02-10,DocuMind,P3,20,min,4,bug_codigo,chat,no
+INC-6067,2026-04-03,Altanoria Copilot,P3,42,min,6,despliegue,chat,no
+INC-6019,2026-06-28,agenthub,P3,27,min,7,bug_codigo,portal,no
+INC-6266,08/03/2026,Altanoria Copilot,P3,29,min,15,desconocida,portal,no
+INC-6267,2026-09-02,copilot,P2,5,min,4,dependencia_externa,portal,no
+INC-6160,2026-08-09,Agent Hub,P1,2.4,h,1,despliegue,chat,no
+INC-6137,2026-09-17,Altanoria Copilot,P2,76,min,14,bug_codigo,portal,no
+INC-6122,2026-09-25,AgentHub,P3,22,min,3,datos,portal,no
+INC-6145,04/09/2026,Copilot,P3,38,min,6,configuracion,chat,no
+INC-6284,2026-03-10,DocuMind,P4,26,min,4,capacidad,portal,no
+INC-6028,27/10/2026,Copilot,P4,15,min,3,bug_codigo,correo,no
+INC-6206,2026-03-18,Documind,P3,28,min,32,bug_codigo,chat,no
+INC-6065,2026-04-13,DocuMind,P3,46,min,,desconocida,telefono,no
+INC-6283,2026-02-02,DocuMind,P4,15,min,2,capacidad,correo,no
+INC-6066,05/08/2026,AgentHub,P2,1.6,h,28,despliegue,correo,no
+INC-6010,2026-10-25,Altanoria Copilot,P4,44,min,10,capacidad,correo,no
+INC-6006,2026-08-24,DocuMind,P3,54,min,,bug_codigo,telefono,no
+INC-6002,2026-05-04,Agent Hub,P4,24,min,2,despliegue,portal,no
+INC-6142,2026-01-17,AgentHub,P3,37,min,22,bug_codigo,chat,si
+INC-6218,2026-05-03,Altanoria Copilot,P1,84,min,8,despliegue,chat,no
+INC-6210,2026-08-17,AgentHub,P2,19,min,7,despliegue,portal,no
+INC-6343,09/10/2026,AgentHub,P3,25,min,6,despliegue,chat,no
+INC-6291,14/05/2026,AgentHub,P3,33,min,6,seguridad,correo,no
+INC-6118,2026-07-11,DocuMind,P3,40,min,2,dependencia_externa,telefono,no
+INC-6150,2026-07-11,Copilot,P3,46,min,,datos,telefono,no
+INC-6203,2026-10-19,DocuMind,P3,32,min,2,bug_codigo,telefono,no
+INC-6012,2026-05-23,DocuMind,P4,18,min,12,desconocida,portal,no
+INC-6099,2026-05-19,DocuMind,P4,32,min,4,bug_codigo,telefono,no
+INC-6139,2026-06-15,Copilot,P3,86,min,20,capacidad,correo,no
+INC-6042,13/08/2026,Copilot,P3,30,min,8,capacidad,correo,no
+INC-6187,2026-05-21,Copilot,P3,53,min,5,configuracion,correo,no
+INC-6273,2026-06-15,DocuMind,P3,57,min,7,bug_codigo,portal,no
+INC-6340,2026-01-24,DocuMind,P4,29,min,7,configuracion,portal,no
+INC-6134,2026-01-20,Altanoria Copilot,P2,50,min,21,configuracion,chat,no
+INC-6191,17/10/2026,AgentHub,P1,90,min,4,bug_codigo,portal,no
+INC-6238,2026-10-17,Altanoria Copilot,P4,33,min,32,despliegue,correo,no
+INC-6082,2026-09-04,agenthub,P3,42,min,6,despliegue,portal,no
+INC-6086,14/05/2026,DocuMind,P2,103,min,3100,despliegue,chat,no
+INC-6056,06/10/2026,Altanoria Copilot,P3,60,min,11,despliegue,telefono,si
+INC-6074,2026-07-09,Altanoria Copilot,P2,101,min,,bug_codigo,chat,no
+INC-6263,2026-04-23,Documind,P3,43,min,48,desconocida,portal,no
+INC-6239,2026-09-01,DocuMind,P4,13,min,,bug_codigo,portal,no
+INC-6136,2026-10-03,Docu Mind,P2,126,min,,bug_codigo,portal,no
+INC-6228,2026-02-28,Altanoria Copilot,P3,32,min,30,desconocida,telefono,no
+INC-6165,13/09/2026,DocuMind,P3,19,min,32,despliegue,chat,no
+INC-6212,2026-06-23,Docu Mind,P4,15,min,10,capacidad,chat,no
+INC-6105,2026-04-15,copilot,P3,60,min,3,despliegue,portal,no
+INC-6014,2026-08-28,Documind,P1,67,min,61,despliegue,chat,no
+INC-6229,2026-01-26,DocuMind,P2,145,min,14,capacidad,chat,no
+INC-6193,2026-10-20,Altanoria Copilot,P4,15,min,58,desconocida,telefono,no
+INC-6299,2026-02-06,DocuMind,P1,2.1,h,5,configuracion,telefono,no
+INC-6143,2026-06-01,DocuMind,P3,31,min,12,configuracion,chat,no
+INC-6277,2026-07-21,Agent Hub,P3,0.7,h,4,configuracion,chat,no
+INC-6338,13/01/2026,Docu Mind,P4,28,min,4,desconocida,correo,no
+INC-6063,2026-03-24,Altanoria Copilot,P4,11,min,5,bug_codigo,telefono,si
+INC-6051,2026-07-08,DocuMind,P3,0.6,h,28,despliegue,correo,no
+INC-6127,2026-10-09,Docu Mind,P4,5,min,6,configuracion,portal,si
+INC-6332,2026-04-21,Altanoria Copilot,P3,0.8,h,3,bug_codigo,telefono,no
+INC-6233,2026-01-13,agenthub,P3,0.6,h,10,configuracion,correo,no
+INC-6242,2026-06-12,Copilot,P2,71,min,2,dependencia_externa,telefono,no
+INC-6320,2026-01-17,DocuMind,P3,58,min,24,configuracion,telefono,no
+INC-6154,2026-05-22,Altanoria Copilot,P3,43,min,11,despliegue,telefono,no
+INC-6007,2026-09-22,Altanoria Copilot,P4,35,min,10,capacidad,chat,no
+INC-6290,2026-03-17,Copilot,P4,0.5,h,15,despliegue,portal,si
+INC-6045,2026-10-04,Agent Hub,P1,0.9,h,2,configuracion,portal,no
+INC-6260,2026-10-11,Altanoria Copilot,P2,1.5,h,6,bug_codigo,portal,no
+INC-6158,2026-02-18,DocuMind,P1,87,min,22,dependencia_externa,telefono,no
+INC-6264,2026-08-19,Documind,P3,40,min,,dependencia_externa,telefono,no
+INC-6256,2026-10-17,Documind,P3,28,min,6,capacidad,telefono,no
+INC-6190,2026-05-27,AgentHub,P2,1.2,h,5,bug_codigo,portal,si
+INC-6208,2026-10-13,DocuMind,P3,6,min,5,despliegue,chat,no
+INC-6174,18/10/2026,copilot,P4,14,min,8,despliegue,correo,no
+INC-6180,2026-05-28,copilot,P4,11,min,2,bug_codigo,telefono,no
+INC-6054,15/02/2026,Docu Mind,P4,13,min,14,capacidad,portal,no
+INC-6205,2026-03-02,DocuMind,P1,146,min,3100,datos,telefono,no
+INC-6090,08/09/2026,Altanoria Copilot,P3,32,min,12,despliegue,portal,no
+INC-6301,2026-02-10,Documind,P4,18,min,7,despliegue,correo,no
+INC-6248,2026-03-16,Altanoria Copilot,P2,84,min,,configuracion,chat,no
+INC-6255,21/10/2026,AgentHub,P2,1.5,h,4,configuracion,correo,no
+INC-6286,2026-01-17,AgentHub,P3,63,min,3,desconocida,chat,no
+INC-6192,2026-03-07,Agent Hub,P3,33,min,11,configuracion,chat,no
+INC-6319,2026-04-24,DocuMind,P3,40,min,10,bug_codigo,telefono,no
+INC-6100,2026-08-10,DocuMind,P3,0.8,h,2,desconocida,correo,no
+INC-6033,2026-02-14,AgentHub,P3,25,min,3,bug_codigo,portal,si
+INC-6241,05/04/2026,Altanoria Copilot,P4,19,min,11,despliegue,portal,no
+INC-6055,2026-10-04,copilot,P4,25,min,26,datos,correo,no
+INC-6030,08/05/2026,copilot,P4,22,min,2,configuracion,chat,no
+INC-6318,13/10/2026,Agent Hub,P4,27,min,50,despliegue,portal,no
+INC-6155,2026-03-18,Altanoria Copilot,P2,35,min,21,despliegue,correo,no
+INC-6330,2026-05-01,agenthub,P3,1.0,h,7,desconocida,telefono,no
+INC-6167,03/03/2026,Docu Mind,P2,75,min,8,despliegue,chat,no
+INC-6052,2026-03-24,DocuMind,P2,1.3,h,6,dependencia_externa,portal,no
+INC-6232,09/09/2026,Copilot,P3,25,min,60,despliegue,telefono,no
+INC-6078,2026-09-01,Altanoria Copilot,P3,52,min,71,configuracion,chat,no
+INC-6270,2026-06-18,agenthub,P4,15,min,,dependencia_externa,portal,no
+INC-6214,2026-05-02,Copilot,P3,41,min,12,configuracion,chat,no
+INC-6339,2026-09-04,copilot,P2,85,min,8,configuracion,chat,no
+INC-6091,2026-10-10,DocuMind,P2,2.2,h,31,capacidad,correo,no
+INC-6275,07/08/2026,Altanoria Copilot,P4,22,min,9,configuracion,correo,no
+INC-6312,2026-10-09,AgentHub,P3,35,min,47,configuracion,correo,no
+INC-6060,14/09/2026,Altanoria Copilot,P3,24,min,8,seguridad,chat,no
+INC-6092,04/05/2026,Docu Mind,P3,47,min,7,configuracion,portal,si
+INC-6058,01/10/2026,agenthub,P2,95,min,18,configuracion,telefono,no
+INC-6184,2026-10-17,agenthub,P3,6,min,9,configuracion,correo,no
+INC-6042,13/08/2026,Copilot,P3,30,min,8,capacidad,correo,no

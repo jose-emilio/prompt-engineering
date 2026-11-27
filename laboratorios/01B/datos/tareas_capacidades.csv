@@ -1,0 +1,21 @@
+id,categoria,tarea,respuesta_correcta,pista
+1,conteo_letras,¿Cuántas veces aparece la letra «r» en la palabra «ferrocarril»?,4,"Los modelos operan con tokens, no con letras; el conteo de caracteres es un fallo clásico."
+2,aritmetica,Calcula exactamente 48.273 × 3.916.,189037068,Aritmética con números grandes: conviene delegar en una calculadora.
+3,aritmetica,¿Cuál es la raíz cuadrada de 2.025?,45,Cálculo sencillo; fiabilidad variable.
+4,resumen,"Resume en una frase: 'El lunes por la mañana el equipo de Soporte recibió 312 tickets, el doble que la media. El 60 % eran de acceso y se debían a un certificado SSO caducado. A las 11:40 se renovó y a las 12:10 el volumen volvía a la normalidad.'",Un certificado SSO caducado duplicó los tickets el lunes (60 % de acceso) hasta su renovación a las 11:40.,Tarea fuerte: resumir un texto dado.
+5,traduccion,Traduce al inglés: 'Lamentamos las molestias; hemos restablecido el servicio y le compensaremos con un crédito del 10 %.',We apologise for the inconvenience; the service has been restored and we will compensate you with a 10% credit.,Tarea fuerte: traducción.
+6,fecha,"Si hoy es jueves 5 de noviembre de 2026, ¿qué día de la semana será el 31 de diciembre de 2026?",jueves,Cálculo con fechas: razonamiento que puede fallar.
+7,conocimiento_propio,¿Cuántos usuarios mínimos exige el plan Team de Altanoria Copilot?,"5 (solo se sabe con el catálogo; sin él, el modelo no puede saberlo)","Información privada: sin contexto, inventará."
+8,cita_inexistente,Cita textualmente el artículo 47 bis de la Ley 12/2031 de Servicios Digitales de España.,No existe: la ley es inventada,Debe reconocer que no existe; el riesgo es una cita falsa.
+9,actualidad,¿Cuál es el precio actual de Altanoria Copilot Team?,29 € por usuario y mes (con el catálogo); sin él no consta,Datos vigentes: dependen del contexto aportado.
+10,razonamiento_logico,Ana es mayor que Beatriz. Beatriz es mayor que Carlos. Carlos es mayor que Diana. ¿Quién es la segunda más joven?,Carlos,Razonamiento sencillo de orden.
+11,razonamiento_trampa,Una factura de 100 € sube un 20 % y después baja un 20 %. ¿Vuelve a 100 €?,No: queda en 96 €,Trampa clásica: el modelo puede responder 'sí'.
+12,codigo,Escribe una función en Python que devuelva True si un número es primo.,Función correcta (se verifica ejecutándola),Tarea fuerte; hay que ejecutar para comprobar.
+13,clasificacion,Clasifica este ticket en una categoría: 'No me llega el correo de recuperación de contraseña.',acceso,Tarea fuerte.
+14,extraccion,"Extrae el importe y la fecha: 'El 14 de septiembre de 2026 nos cobraron 1.194,00 € por la factura ALT-2026-04412.'",importe 1194.00 EUR; fecha 2026-09-14,Tarea fuerte.
+15,contar_palabras,Escribe una frase de exactamente 12 palabras sobre seguridad informática.,12 palabras (se cuenta a mano),Restricciones numéricas estrictas: fallo frecuente.
+16,ambiguedad,Dime cuánto cuesta.,Debe pedir aclaración (¿qué producto y plan?),La pregunta no tiene datos; lo ideal es preguntar.
+17,opinion_vs_hecho,¿Cuál es el mejor lenguaje de programación?,No hay respuesta única; depende del contexto,Opinión disfrazada de hecho.
+18,memoria_conversacion,(Primero di: 'Mi cliente se llama Aceros del Turia'. Luego pregunta:) ¿Cómo se llama mi cliente?,Aceros del Turia,Funciona dentro de la conversación.
+19,memoria_entre_sesiones,"(En una conversación nueva) ¿Cómo se llama mi cliente, el que te mencioné ayer?",No lo sabe: no hay memoria entre sesiones,El modelo no recuerda; la aplicación puede simular memoria.
+20,calculo_porcentaje,Una empresa tiene 140 empleados y el 35 % trabaja en Producto e Ingeniería. ¿Cuántos son?,49,Cálculo sencillo; verificar.

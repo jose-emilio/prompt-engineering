@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comprobador de fichas JSON · Laboratorio 06A</title>
+<style>
+:root{--fondo:#fff;--texto:#1b1f24;--suave:#5b6470;--borde:#d0d7de;--panel:#f6f8fa;--ok:#1a7f37;--okf:#dafbe1;--mal:#cf222e;--malf:#ffebe9;--aviso:#9a6700;--avisof:#fff8c5;--acento:#0969da}
+@media(prefers-color-scheme:dark){:root{--fondo:#0d1117;--texto:#e6edf3;--suave:#9198a1;--borde:#30363d;--panel:#161b22;--ok:#3fb950;--okf:#12261e;--mal:#ff7b72;--malf:#2d1117;--aviso:#d29922;--avisof:#2a2008;--acento:#58a6ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:16px 16px 48px}h1{font-size:1.5rem;margin:.4em 0 .2em}h2{font-size:1.1rem;margin:1.4em 0 .4em}
+p,li{color:var(--texto)}.suave{color:var(--suave);font-size:.92rem}ol{padding-left:1.3em}
+label{display:block;font-weight:600;margin:.8em 0 .25em}select,textarea,input{width:100%;font:inherit;color:inherit;background:var(--panel);border:1px solid var(--borde);border-radius:6px;padding:8px}
+textarea{min-height:170px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem}
+button{font:inherit;font-weight:600;border:1px solid var(--borde);background:var(--acento);color:#fff;border-radius:6px;padding:8px 14px;cursor:pointer;margin:.6em .5em 0 0}
+button.sec{background:var(--panel);color:var(--texto)}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--acento);outline-offset:1px}
+.fila{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--borde);border-radius:8px;padding:8px 10px;margin:6px 0;background:var(--panel)}
+.fila.ok{border-color:var(--ok);background:var(--okf)}.fila.mal{border-color:var(--mal);background:var(--malf)}.fila.aviso{border-color:var(--aviso);background:var(--avisof)}
+.marca{font-weight:700;min-width:1.6em;text-align:center}.ok .marca{color:var(--ok)}.mal .marca{color:var(--mal)}.aviso .marca{color:var(--aviso)}
+.detalle{font-size:.9rem;color:var(--suave);margin:2px 0 0}table{border-collapse:collapse;width:100%;margin:.5em 0;font-size:.92rem}
+th,td{border:1px solid var(--borde);padding:5px 8px;text-align:left;vertical-align:top}th{background:var(--panel)}td.num{text-align:right}
+td.correcto{background:var(--okf)}td.inventado,td.equivocado{background:var(--malf)}td.omitido{background:var(--avisof)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;word-break:break-word}.oculto{display:none}
+.nota{border-left:4px solid var(--aviso);background:var(--avisof);padding:8px 12px;border-radius:0 6px 6px 0;margin:1em 0;font-size:.92rem}
+</style>
+</head>
+<body>
+<main>
+<h1>Comprobador de fichas JSON · Laboratorio 06A</h1>
+<p>Esta página hace en el navegador lo que hace <code>validar_json.py</code> en el camino con código: comprueba si la ficha JSON que ha devuelto el asistente cumple el esquema de incidencias. No envía nada a ningún sitio: todo ocurre en tu navegador.</p>
+<ol><li>Elige la nota con la que has trabajado y pega la respuesta del asistente.</li><li>Pulsa «Comprobar el formato»: salen las seis preguntas del Paso 7, con ✓ o ✗.</li><li>Anota el resultado en la pestaña «Validación» de la hoja de cálculo. Para el Paso 9, la comparación con la ficha correcta indica qué campos no coinciden.</li></ol>
+
+
+<label for="nota">Nota de incidencia</label>
+<select id="nota"></select>
+<label for="resp">Respuesta del asistente (pegada tal cual, con todo lo que haya escrito)</label>
+<textarea id="resp" spellcheck="false" placeholder='{"id": "INC-4001", ...}'></textarea>
+<button id="comprobar">Comprobar el formato</button>
+<button id="limpiar" class="sec">Borrar</button>
+<h2>Resultado del formato</h2>
+<div id="verif" aria-live="polite"><p class="suave">Aún no se ha comprobado nada.</p></div>
+<div id="bloque-gold" class="oculto">
+<h2>Comparación con la ficha correcta</h2>
+<p class="nota">Hazla solo después de anotar la validación a mano: ver la ficha correcta antes quita sentido al ejercicio.</p>
+<button id="comparar" class="sec">Comparar con la ficha correcta</button>
+<div id="cmp" aria-live="polite"></div>
+</div>
+</main>
+<script>
+const ESQUEMA={"type": "object", "additionalProperties": false, "required": ["id", "cliente", "producto", "prioridad", "inicio", "duracion_minutos", "usuarios_afectados", "causa_raiz", "acciones", "resuelta", "credito_sla_eur"], "properties": {"id": {"type": "string", "pattern": "^INC-\\d{4}$"}, "cliente": {"type": "string", "minLength": 1}, "producto": {"type": "string", "enum": ["Altanoria Copilot", "DocuMind", "AgentHub"]}, "prioridad": {"type": "string", "enum": ["P1", "P2", "P3", "P4"]}, "inicio": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$"}, "duracion_minutos": {"type": "integer", "minimum": 0}, "usuarios_afectados": {"type": "integer", "minimum": 0}, "causa_raiz": {"type": "string", "enum": ["configuracion", "despliegue", "dependencia_externa", "capacidad", "bug_codigo", "datos", "seguridad", "desconocida"]}, "acciones": {"type": "array", "items": {"type": "string"}, "minItems": 0}, "resuelta": {"type": "boolean"}, "credito_sla_eur": {"type": ["number", "null"], "minimum": 0}}};
+const GOLD={"INC-4001": {"id": "INC-4001", "cliente": "Naviera Bética", "producto": "Altanoria Copilot", "prioridad": "P4", "inicio": "2026-03-25T21:50", "duracion_minutos": 5, "usuarios_afectados": 2, "causa_raiz": "despliegue", "acciones": ["reinicio del servicio", "ampliación de capacidad", "reindexado de documentos"], "resuelta": true, "credito_sla_eur": null}, "INC-4002": {"id": "INC-4002", "cliente": "Papelera del Segura", "producto": "DocuMind", "prioridad": "P4", "inicio": "2026-09-27T18:30", "duracion_minutos": 5, "usuarios_afectados": 0, "causa_raiz": "datos", "acciones": ["reversión del despliegue", "ampliación de capacidad", "corrección de configuración"], "resuelta": true, "credito_sla_eur": null}, "INC-4003": {"id": "INC-4003", "cliente": "Clínica Dental Sonrisa", "producto": "AgentHub", "prioridad": "P3", "inicio": "2026-09-05T19:20", "duracion_minutos": 10, "usuarios_afectados": 120, "causa_raiz": "seguridad", "acciones": ["renovación del certificado", "ampliación de capacidad"], "resuelta": true, "credito_sla_eur": null}, "INC-4004": {"id": "INC-4004", "cliente": "Grupo Hortelano", "producto": "Altanoria Copilot", "prioridad": "P2", "inicio": "2026-10-16T09:00", "duracion_minutos": 25, "usuarios_afectados": 3, "causa_raiz": "despliegue", "acciones": ["aplicación de parche", "renovación del certificado"], "resuelta": true, "credito_sla_eur": null}, "INC-4005": {"id": "INC-4005", "cliente": "Inmobiliaria Costa Azahar", "producto": "Altanoria Copilot", "prioridad": "P1", "inicio": "2026-03-28T05:30", "duracion_minutos": 95, "usuarios_afectados": 0, "causa_raiz": "bug_codigo", "acciones": ["aplicación de parche", "reinicio del servicio"], "resuelta": false, "credito_sla_eur": null}, "INC-4006": {"id": "INC-4006", "cliente": "Eólica del Maestrazgo", "producto": "AgentHub", "prioridad": "P4", "inicio": "2026-09-18T08:50", "duracion_minutos": 90, "usuarios_afectados": 2, "causa_raiz": "bug_codigo", "acciones": ["ampliación de capacidad"], "resuelta": true, "credito_sla_eur": null}, "INC-4007": {"id": "INC-4007", "cliente": "Aceros del Turia", "producto": "DocuMind", "prioridad": "P3", "inicio": "2026-10-19T11:00", "duracion_minutos": 90, "usuarios_afectados": 14, "causa_raiz": "dependencia_externa", "acciones": ["revocación de credenciales", "corrección de configuración"], "resuelta": true, "credito_sla_eur": null}, "INC-4008": {"id": "INC-4008", "cliente": "Ayuntamiento de Villanueva del Río", "producto": "Altanoria Copilot", "prioridad": "P2", "inicio": "2026-02-22T04:15", "duracion_minutos": 12, "usuarios_afectados": 14, "causa_raiz": "datos", "acciones": ["renovación del certificado"], "resuelta": true, "credito_sla_eur": 59.9}, "INC-4009": {"id": "INC-4009", "cliente": "Inmobiliaria Costa Azahar", "producto": "DocuMind", "prioridad": "P3", "inicio": "2026-04-21T04:20", "duracion_minutos": 90, "usuarios_afectados": 0, "causa_raiz": "datos", "acciones": ["reindexado de documentos", "reversión del despliegue"], "resuelta": false, "credito_sla_eur": null}, "INC-4010": {"id": "INC-4010", "cliente": "Renovables Sierra Norte", "producto": "DocuMind", "prioridad": "P2", "inicio": "2026-01-21T18:15", "duracion_minutos": 12, "usuarios_afectados": 1200, "causa_raiz": "datos", "acciones": ["renovación del certificado"], "resuelta": true, "credito_sla_eur": 299.0}, "INC-4011": {"id": "INC-4011", "cliente": "Eólica del Maestrazgo", "producto": "Altanoria Copilot", "prioridad": "P2", "inicio": "2026-06-06T22:40", "duracion_minutos": 75, "usuarios_afectados": 14, "causa_raiz": "bug_codigo", "acciones": ["corrección de configuración", "reindexado de documentos"], "resuelta": false, "credito_sla_eur": null}, "INC-4012": {"id": "INC-4012", "cliente": "Farmacia Central Online", "producto": "AgentHub", "prioridad": "P4", "inicio": "2026-01-22T09:20", "duracion_minutos": 35, "usuarios_afectados": 1, "causa_raiz": "seguridad", "acciones": ["renovación del certificado", "reinicio del servicio", "aplicación de parche"], "resuelta": true, "credito_sla_eur": null}, "INC-4013": {"id": "INC-4013", "cliente": "Consultora Atalaya", "producto": "Altanoria Copilot", "prioridad": "P2", "inicio": "2026-04-04T14:15", "duracion_minutos": 95, "usuarios_afectados": 40, "causa_raiz": "desconocida", "acciones": ["ampliación de capacidad"], "resuelta": true, "credito_sla_eur": null}, "INC-4014": {"id": "INC-4014", "cliente": "Editorial Cuatro Vientos", "producto": "AgentHub", "prioridad": "P2", "inicio": "2026-07-01T03:45", "duracion_minutos": 12, "usuarios_afectados": 500, "causa_raiz": "despliegue", "acciones": ["corrección de configuración", "renovación del certificado"], "resuelta": true, "credito_sla_eur": 59.9}, "INC-4015": {"id": "INC-4015", "cliente": "Mutua Atlántica", "producto": "Altanoria Copilot", "prioridad": "P3", "inicio": "2026-02-15T23:05", "duracion_minutos": 5, "usuarios_afectados": 14, "causa_raiz": "datos", "acciones": ["reversión del despliegue", "renovación del certificado"], "resuelta": true, "credito_sla_eur": null}, "INC-4016": {"id": "INC-4016", "cliente": "Cerámicas Levante", "producto": "DocuMind", "prioridad": "P3", "inicio": "2026-08-20T10:40", "duracion_minutos": 10, "usuarios_afectados": 120, "causa_raiz": "configuracion", "acciones": ["renovación del certificado", "reindexado de documentos"], "resuelta": true, "credito_sla_eur": null}, "INC-4017": {"id": "INC-4017", "cliente": "Inmobiliaria Costa Azahar", "producto": "Altanoria Copilot", "prioridad": "P3", "inicio": "2026-04-12T23:55", "duracion_minutos": 90, "usuarios_afectados": 14, "causa_raiz": "configuracion", "acciones": ["renovación del certificado", "revocación de credenciales"], "resuelta": true, "credito_sla_eur": null}, "INC-4018": {"id": "INC-4018", "cliente": "Distribuciones Marfil", "producto": "Altanoria Copilot", "prioridad": "P1", "inicio": "2026-08-25T14:45", "duracion_minutos": 40, "usuarios_afectados": 3, "causa_raiz": "capacidad", "acciones": ["corrección de configuración", "revocación de credenciales", "reindexado de documentos"], "resuelta": false, "credito_sla_eur": null}, "INC-4019": {"id": "INC-4019", "cliente": "Ingeniería Hidráulica Ebro", "producto": "Altanoria Copilot", "prioridad": "P1", "inicio": "2026-03-23T08:50", "duracion_minutos": 130, "usuarios_afectados": 3, "causa_raiz": "capacidad", "acciones": ["reversión del despliegue", "renovación del certificado"], "resuelta": true, "credito_sla_eur": 299.0}, "INC-4020": {"id": "INC-4020", "cliente": "Aceros del Turia", "producto": "AgentHub", "prioridad": "P2", "inicio": "2026-10-01T14:50", "duracion_minutos": 25, "usuarios_afectados": 3, "causa_raiz": "seguridad", "acciones": ["ampliación de capacidad", "reindexado de documentos"], "resuelta": true, "credito_sla_eur": 299.0}, "INC-4021": {"id": "INC-4021", "cliente": "Gestoría Rubio y Asociados", "producto": "DocuMind", "prioridad": "P3", "inicio": "2026-04-20T17:10", "duracion_minutos": 35, "usuarios_afectados": 1200, "causa_raiz": "bug_codigo", "acciones": ["revocación de credenciales", "ampliación de capacidad"], "resuelta": true, "credito_sla_eur": null}, "INC-4022": {"id": "INC-4022", "cliente": "Ingeniería Hidráulica Ebro", "producto": "Altanoria Copilot", "prioridad": "P3", "inicio": "2026-04-11T19:20", "duracion_minutos": 5, "usuarios_afectados": 40, "causa_raiz": "dependencia_externa", "acciones": ["reversión del despliegue"], "resuelta": true, "credito_sla_eur": null}, "INC-4023": {"id": "INC-4023", "cliente": "Cerámicas Levante", "producto": "AgentHub", "prioridad": "P3", "inicio": "2026-03-02T06:50", "duracion_minutos": 10, "usuarios_afectados": 0, "causa_raiz": "seguridad", "acciones": ["reversión del despliegue", "revocación de credenciales", "reinicio del servicio"], "resuelta": true, "credito_sla_eur": null}, "INC-4024": {"id": "INC-4024", "cliente": "Transportes Albufera", "producto": "Altanoria Copilot", "prioridad": "P3", "inicio": "2026-04-14T04:55", "duracion_minutos": 35, "usuarios_afectados": 120, "causa_raiz": "datos", "acciones": ["corrección de configuración", "revocación de credenciales"], "resuelta": true, "credito_sla_eur": null}, "INC-4025": {"id": "INC-4025", "cliente": "Ingeniería Hidráulica Ebro", "producto": "AgentHub", "prioridad": "P2", "inicio": "2026-10-13T00:10", "duracion_minutos": 360, "usuarios_afectados": 14, "causa_raiz": "bug_codigo", "acciones": ["reinicio del servicio", "reindexado de documentos", "corrección de configuración"], "resuelta": false, "credito_sla_eur": null}, "INC-4026": {"id": "INC-4026", "cliente": "Eólica del Maestrazgo", "producto": "Altanoria Copilot", "prioridad": "P2", "inicio": "2026-07-24T15:15", "duracion_minutos": 55, "usuarios_afectados": 120, "causa_raiz": "bug_codigo", "acciones": ["ampliación de capacidad"], "resuelta": false, "credito_sla_eur": null}, "INC-4027": {"id": "INC-4027", "cliente": "Textil Alcoy 1880", "producto": "Altanoria Copilot", "prioridad": "P2", "inicio": "2026-04-11T08:10", "duracion_minutos": 130, "usuarios_afectados": 1200, "causa_raiz": "bug_codigo", "acciones": ["reinicio del servicio"], "resuelta": true, "credito_sla_eur": null}, "INC-4028": {"id": "INC-4028", "cliente": "Olivares de Jaén Cooperativa", "producto": "Altanoria Copilot", "prioridad": "P3", "inicio": "2026-07-06T09:10", "duracion_minutos": 20, "usuarios_afectados": 500, "causa_raiz": "desconocida", "acciones": ["reversión del despliegue", "revocación de credenciales", "reindexado de documentos"], "resuelta": true, "credito_sla_eur": null}, "INC-4029": {"id": "INC-4029", "cliente": "Aguas de Cantabria", "producto": "DocuMind", "prioridad": "P3", "inicio": "2026-07-18T01:20", "duracion_minutos": 35, "usuarios_afectados": 1200, "causa_raiz": "seguridad", "acciones": ["corrección de configuración"], "resuelta": true, "credito_sla_eur": null}, "INC-4030": {"id": "INC-4030", "cliente": "Aceros del Turia", "producto": "Altanoria Copilot", "prioridad": "P4", "inicio": "2026-03-10T13:05", "duracion_minutos": 35, "usuarios_afectados": 0, "causa_raiz": "capacidad", "acciones": ["ampliación de capacidad", "aplicación de parche", "reversión del despliegue"], "resuelta": true, "credito_sla_eur": null}};
+const MUESTRA=["INC-4001", "INC-4002", "INC-4003", "INC-4004", "INC-4005"];
+
+function deepEqual(a,b){
+  if(a===b)return true;
+  if(typeof a!==typeof b||a===null||b===null)return false;
+  if(Array.isArray(a)){if(!Array.isArray(b)||a.length!==b.length)return false;return a.every((x,i)=>deepEqual(x,b[i]));}
+  if(typeof a==='object'){const ka=Object.keys(a),kb=Object.keys(b);if(ka.length!==kb.length)return false;return ka.every(k=>deepEqual(a[k],b[k]));}
+  return false;
+}
+function extraerJson(texto){
+  const t0=texto.trim();
+  try{return{obj:JSON.parse(t0),limpio:true,error:null};}catch(e){}
+  let t=t0,bloque=false;const m=t.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if(m){t=m[1].trim();bloque=true;try{return{obj:JSON.parse(t),limpio:false,aviso:'bloque',error:null};}catch(e){}}
+  const i=t.indexOf('{'),j=t.lastIndexOf('}');
+  if(i!==-1&&j>i){try{return{obj:JSON.parse(t.slice(i,j+1)),limpio:false,aviso:'texto',error:null};}catch(e){}}
+  let msg='no se puede leer';try{JSON.parse(t);}catch(e){msg=e.message;}
+  return{obj:null,limpio:false,error:'JSON inválido: '+msg};
+}
+const NOMBRE_TIPO={string:'texto',integer:'entero',number:'número',boolean:'verdadero/falso',array:'lista',object:'objeto',null:'null'};
+function tipoDe(x){if(x===null)return'null';if(Array.isArray(x))return'array';if(typeof x==='number')return Number.isInteger(x)?'integer':'number';return typeof x==='object'?'object':typeof x;}
+function esTipo(x,p){
+  switch(p){case'string':return typeof x==='string';case'integer':return typeof x==='number'&&Number.isInteger(x);
+    case'number':return typeof x==='number';case'boolean':return typeof x==='boolean';case'array':return Array.isArray(x);
+    case'object':return x!==null&&typeof x==='object'&&!Array.isArray(x);case'null':return x===null;}
+  return false;
+}
+function validarEsquema(obj,esq,ruta){
+  ruta=ruta||'$';const err=[];
+  if(esq.type){
+    const pos=Array.isArray(esq.type)?esq.type:[esq.type];
+    if(!pos.some(p=>esTipo(obj,p))){
+      return[{clase:'tipo',ruta,texto:ruta+': se esperaba '+pos.map(p=>NOMBRE_TIPO[p]).join(' o ')+' y hay '+NOMBRE_TIPO[tipoDe(obj)]}];
+    }
+  }
+  if(esq.enum&&!esq.enum.some(v=>deepEqual(v,obj)))err.push({clase:'lista',ruta,texto:ruta+': valor '+JSON.stringify(obj)+' fuera de la lista ('+esq.enum.map(v=>JSON.stringify(v)).join(', ')+')'});
+  if(typeof obj==='number'){
+    if('minimum' in esq&&obj<esq.minimum)err.push({clase:'rango',ruta,texto:ruta+': '+obj+' es menor que el mínimo '+esq.minimum});
+    if('maximum' in esq&&obj>esq.maximum)err.push({clase:'rango',ruta,texto:ruta+': '+obj+' es mayor que el máximo '+esq.maximum});
+  }
+  if(typeof obj==='string'){
+    if(esq.pattern&&!new RegExp(esq.pattern).test(obj))err.push({clase:'patron',ruta,texto:ruta+': '+JSON.stringify(obj)+' no tiene el formato esperado'});
+    if('minLength' in esq&&obj.length<esq.minLength)err.push({clase:'longitud',ruta,texto:ruta+': longitud menor que '+esq.minLength});
+    if('maxLength' in esq&&obj.length>esq.maxLength)err.push({clase:'longitud',ruta,texto:ruta+': longitud mayor que '+esq.maxLength});
+  }
+  if(esq.type&&obj!==null&&typeof obj==='object'&&!Array.isArray(obj)||(!esq.type&&obj!==null&&typeof obj==='object'&&!Array.isArray(obj))){
+    for(const r of(esq.required||[]))if(!(r in obj))err.push({clase:'falta',ruta,texto:ruta+': falta el campo obligatorio «'+r+'»'});
+    const props=esq.properties||{};
+    for(const k of Object.keys(obj)){
+      if(k in props)err.push(...validarEsquema(obj[k],props[k],ruta+'.'+k));
+      else if(esq.additionalProperties===false)err.push({clase:'sobra',ruta,texto:ruta+': sobra el campo «'+k+'», que no está en el esquema'});
+    }
+  }
+  if(Array.isArray(obj)){
+    if('minItems' in esq&&obj.length<esq.minItems)err.push({clase:'longitud',ruta,texto:ruta+': menos de '+esq.minItems+' elementos'});
+    if('maxItems' in esq&&obj.length>esq.maxItems)err.push({clase:'longitud',ruta,texto:ruta+': más de '+esq.maxItems+' elementos'});
+    if(esq.items)obj.forEach((x,i)=>err.push(...validarEsquema(x,esq.items,ruta+'['+i+']')));
+  }
+  return err;
+}
+
+
+function comprobarFicha(texto){
+  const r=extraerJson(texto);const salida={filas:[],errores:[],obj:r.obj};
+  const f=(ok,titulo,detalle,aviso)=>salida.filas.push({ok,titulo,detalle,aviso});
+  if(r.obj===null){
+    f(false,'¿Es JSON válido?',r.error);
+    for(const t of['¿Hay texto antes o después del JSON?','¿Sobran o faltan campos del esquema?','¿Los tipos son correctos?','¿Los valores de las listas cerradas son de la lista?','¿La fecha tiene el formato AAAA-MM-DDTHH:MM?'])f(null,t,'No se puede comprobar: antes hay que conseguir un JSON válido.');
+    return salida;
+  }
+  f(true,'¿Es JSON válido?','Se puede leer como JSON'+(r.limpio?'.':' (una vez separado del texto que lo rodea).'));
+  f(r.limpio,'¿Hay texto antes o después del JSON?',r.limpio?'No: la respuesta es solo el JSON.':(r.aviso==='bloque'?'Sí: la respuesta viene en un bloque de código o con texto alrededor. Para un sistema automático, eso es un fallo: el prompt debe pedir «únicamente el JSON».':'Sí: hay texto antes o después del JSON.'));
+  const e=validarEsquema(r.obj,ESQUEMA);salida.errores=e;
+  const de=(...cl)=>e.filter(x=>cl.includes(x.clase));
+  const mostrar=l=>l.map(x=>x.texto).join(' · ');
+  const fs=de('falta','sobra');f(fs.length===0,'¿Sobran o faltan campos del esquema?',fs.length?mostrar(fs):'No: están todos y solo ellos.');
+  const tp=de('tipo','rango','longitud');f(tp.length===0,'¿Los tipos son correctos?',tp.length?mostrar(tp):'Sí: números como números, null donde no consta.');
+  const li=de('lista');f(li.length===0,'¿Los valores de las listas cerradas son de la lista?',li.length?mostrar(li):'Sí.');
+  const fe=e.filter(x=>x.clase==='patron'&&x.ruta==='$.inicio');f(fe.length===0,'¿La fecha tiene el formato AAAA-MM-DDTHH:MM?',fe.length?mostrar(fe):'Sí.');
+  const otros=e.filter(x=>x.clase==='patron'&&x.ruta!=='$.inicio');
+  if(otros.length)f(false,'Otros formatos',mostrar(otros));
+  return salida;
+}
+function compararConGold(obj,gold){
+  const campos=Object.keys(gold);
+  return campos.map(k=>({campo:k,esperado:gold[k],obtenido:(obj&&k in obj)?obj[k]:undefined,igual:!!obj&&deepEqual(obj[k],gold[k])}));
+}
+
+
+function el(t,props,...hijos){const e=document.createElement(t);Object.assign(e,props||{});hijos.flat().forEach(h=>e.append(h));return e;}
+function filaVerif(f){
+  const clase=f.ok===null?'fila':(f.ok?'fila ok':(f.aviso?'fila aviso':'fila mal'));
+  const marca=f.ok===null?'–':(f.ok?'✓':'✗');
+  const d=el('div',{},el('strong',{textContent:f.titulo}),el('div',{className:'detalle',textContent:f.detalle||''}));
+  return el('div',{className:clase},el('span',{className:'marca',textContent:marca}),d);
+}
+function vacio(n){while(n.firstChild)n.removeChild(n.firstChild);}
+
+const sel=document.getElementById('nota');
+const g1=el('optgroup',{label:'Muestra del laboratorio'}),g2=el('optgroup',{label:'Resto del conjunto de 30 notas'});
+for(const id of Object.keys(GOLD))(MUESTRA.includes(id)?g1:g2).append(el('option',{value:id,textContent:id}));
+sel.append(g1,g2);
+let ultimo=null;
+document.getElementById('comprobar').onclick=()=>{
+  const texto=document.getElementById('resp').value;const v=document.getElementById('verif');vacio(v);
+  if(!texto.trim()){v.append(el('p',{className:'suave',textContent:'Pega primero la respuesta del asistente.'}));return;}
+  const r=comprobarFicha(texto);ultimo=r;r.filas.forEach(f=>v.append(filaVerif(f)));
+  const bien=r.filas.every(f=>f.ok!==false&&f.ok!==null);
+  v.append(el('p',{className:'suave',textContent:bien?'Cumple el esquema. Esto no garantiza que el contenido sea correcto: falta compararlo con la nota.':'No cumple el esquema: anota qué preguntas fallan y qué cambio del prompt lo evitaría.'}));
+  document.getElementById('bloque-gold').classList.toggle('oculto',r.obj===null);document.getElementById('cmp').replaceChildren();
+};
+document.getElementById('limpiar').onclick=()=>{document.getElementById('resp').value='';vacio(document.getElementById('verif'));document.getElementById('cmp').replaceChildren();document.getElementById('bloque-gold').classList.add('oculto');};
+document.getElementById('comparar').onclick=()=>{
+  const c=document.getElementById('cmp');vacio(c);if(!ultimo||!ultimo.obj)return;
+  const rows=compararConGold(ultimo.obj,GOLD[sel.value]);
+  const t=el('table',{},el('tr',{},el('th',{textContent:'Campo'}),el('th',{textContent:'Tu respuesta'}),el('th',{textContent:'Correcto'}),el('th',{textContent:''})));
+  for(const r of rows)t.append(el('tr',{},el('td',{textContent:r.campo}),el('td',{className:r.igual?'correcto':'equivocado'},el('code',{textContent:r.obtenido===undefined?'(falta)':JSON.stringify(r.obtenido)})),el('td',{},el('code',{textContent:JSON.stringify(r.esperado)})),el('td',{textContent:r.igual?'✓':'✗'})));
+  c.append(t);const mal=rows.filter(r=>!r.igual).length;
+  c.append(el('p',{className:'suave',textContent:mal===0?'La ficha coincide con la correcta en todos los campos.':mal+' campo(s) distinto(s) de la ficha correcta.'}));
+};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+id,audiencia,conocimiento,necesidad,tono,longitud,formato
+A1,"Cliente (director de operaciones, no técnico)","Entiende su negocio, no el vocabulario del SLA",Saber qué pasa si el servicio falla y qué debe hacer para recibir una compensación,Cercano pero profesional; sin jerga,150-200 palabras,Párrafos cortos + una lista de pasos
+A2,Agente comercial de Altanoria,Conoce los productos y planes; no es jurista,Poder explicarlo a un cliente en una llamada sin prometer de más,"Directo, práctico, con frases que pueda repetir",120-160 palabras,Puntos clave + 'qué decir' y 'qué no decir'
+A3,Jurista del departamento legal del cliente,Experto en contratación; poco tiempo,"Identificar alcance, plazos, exclusiones y remedios con precisión","Formal, preciso, impersonal",180-250 palabras,Texto numerado con referencias a las cláusulas

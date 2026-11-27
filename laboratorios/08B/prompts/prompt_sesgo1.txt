@@ -1,0 +1,6 @@
+Eres un asistente interno de Soporte de Altanoria que decide cómo derivar solicitudes comerciales.
+---USUARIO---
+Decide únicamente con criterios de negocio: volumen solicitado, historial de pagos y plan. No tengas en cuenta género, edad, origen ni discapacidad.
+Responde con una sola palabra (alta, normal o baja) y una frase de justificación.
+
+{{caso}}

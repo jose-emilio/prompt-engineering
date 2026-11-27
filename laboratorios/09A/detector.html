@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detector de datos personales · Laboratorio 09A</title>
+<style>
+:root{--fondo:#fff;--texto:#1b1f24;--suave:#5b6470;--borde:#d0d7de;--panel:#f6f8fa;--ok:#1a7f37;--okf:#dafbe1;--mal:#cf222e;--malf:#ffebe9;--aviso:#9a6700;--avisof:#fff8c5;--acento:#0969da}
+@media(prefers-color-scheme:dark){:root{--fondo:#0d1117;--texto:#e6edf3;--suave:#9198a1;--borde:#30363d;--panel:#161b22;--ok:#3fb950;--okf:#12261e;--mal:#ff7b72;--malf:#2d1117;--aviso:#d29922;--avisof:#2a2008;--acento:#58a6ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:16px 16px 48px}h1{font-size:1.5rem;margin:.4em 0 .2em}h2{font-size:1.1rem;margin:1.4em 0 .4em}
+p,li{color:var(--texto)}.suave{color:var(--suave);font-size:.92rem}ol{padding-left:1.3em}
+label{display:block;font-weight:600;margin:.8em 0 .25em}select,textarea,input{width:100%;font:inherit;color:inherit;background:var(--panel);border:1px solid var(--borde);border-radius:6px;padding:8px}
+textarea{min-height:170px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem}
+button{font:inherit;font-weight:600;border:1px solid var(--borde);background:var(--acento);color:#fff;border-radius:6px;padding:8px 14px;cursor:pointer;margin:.6em .5em 0 0}
+button.sec{background:var(--panel);color:var(--texto)}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--acento);outline-offset:1px}
+.fila{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--borde);border-radius:8px;padding:8px 10px;margin:6px 0;background:var(--panel)}
+.fila.ok{border-color:var(--ok);background:var(--okf)}.fila.mal{border-color:var(--mal);background:var(--malf)}.fila.aviso{border-color:var(--aviso);background:var(--avisof)}
+.marca{font-weight:700;min-width:1.6em;text-align:center}.ok .marca{color:var(--ok)}.mal .marca{color:var(--mal)}.aviso .marca{color:var(--aviso)}
+.detalle{font-size:.9rem;color:var(--suave);margin:2px 0 0}table{border-collapse:collapse;width:100%;margin:.5em 0;font-size:.92rem}
+th,td{border:1px solid var(--borde);padding:5px 8px;text-align:left;vertical-align:top}th{background:var(--panel)}td.num{text-align:right}
+td.correcto{background:var(--okf)}td.inventado,td.equivocado{background:var(--malf)}td.omitido{background:var(--avisof)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;word-break:break-word}.oculto{display:none}
+.nota{border-left:4px solid var(--aviso);background:var(--avisof);padding:8px 12px;border-radius:0 6px 6px 0;margin:1em 0;font-size:.92rem}
+</style>
+</head>
+<body>
+<main>
+<h1>Detector de datos personales · Laboratorio 09A</h1>
+<p>Esta página hace en el navegador lo que hace <code>detectar_pii.py</code> en el camino con código: busca en el texto los datos personales que se reconocen por su forma. Todo ocurre en tu navegador; no se envía nada, ni siquiera los datos ficticios.</p>
+<p>Úsala en el Paso 4, con el expediente ya tratado, y anota en la pestaña «Datos que quedan» lo que siga a la vista.</p>
+
+
+<label for="texto">Texto tratado (un expediente cada vez)</label>
+<textarea id="texto" spellcheck="false" placeholder="Pega aquí el expediente después de sustituir los datos por marcadores…"></textarea>
+<button id="revisar">Buscar datos personales</button>
+<button id="limpiar" class="sec">Borrar</button>
+<h2>Lo que queda a la vista</h2>
+<div id="res" aria-live="polite"><p class="suave">Aún no se ha revisado nada.</p></div>
+<div class="nota"><strong>Esta página no encuentra todo.</strong> Solo busca datos con una forma fija. No detecta nombres de persona, direcciones, cargos, datos de salud ni circunstancias personales: esos los tiene que revisar una persona. Un resultado vacío no significa que el texto esté limpio.</div>
+</main>
+<script>
+const PATRONES={"dni": "\\b\\d{8}[A-HJ-NP-TV-Z]\\b", "nie": "\\b[XYZ]\\d{7}[A-HJ-NP-TV-Z]\\b", "iban": "\\bES\\d{2}(?:\\s?\\d{4}){5}\\b", "email": "\\b[\\p{L}\\p{N}_.+-]+@[\\p{L}\\p{N}_-]+(?:\\.[\\p{L}\\p{N}_-]+)+\\b", "telefono": "(?<!\\d)(?:\\+34\\s?)?[6-9]\\d{2}[\\s.-]?\\d{3}[\\s.-]?\\d{3}(?!\\d)", "fecha_larga": "\\b\\d{1,2} de (?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre) de \\d{4}\\b", "codigo_postal": "\\b(?:0[1-9]|[1-4]\\d|5[0-2])\\d{3}\\b"};
+const NOMBRES={"dni": "DNI", "nie": "NIE", "iban": "IBAN", "email": "Correo electrónico", "telefono": "Teléfono", "fecha_larga": "Fecha completa", "codigo_postal": "Código postal"};
+
+function deepEqual(a,b){
+  if(a===b)return true;
+  if(typeof a!==typeof b||a===null||b===null)return false;
+  if(Array.isArray(a)){if(!Array.isArray(b)||a.length!==b.length)return false;return a.every((x,i)=>deepEqual(x,b[i]));}
+  if(typeof a==='object'){const ka=Object.keys(a),kb=Object.keys(b);if(ka.length!==kb.length)return false;return ka.every(k=>deepEqual(a[k],b[k]));}
+  return false;
+}
+function extraerJson(texto){
+  const t0=texto.trim();
+  try{return{obj:JSON.parse(t0),limpio:true,error:null};}catch(e){}
+  let t=t0,bloque=false;const m=t.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if(m){t=m[1].trim();bloque=true;try{return{obj:JSON.parse(t),limpio:false,aviso:'bloque',error:null};}catch(e){}}
+  const i=t.indexOf('{'),j=t.lastIndexOf('}');
+  if(i!==-1&&j>i){try{return{obj:JSON.parse(t.slice(i,j+1)),limpio:false,aviso:'texto',error:null};}catch(e){}}
+  let msg='no se puede leer';try{JSON.parse(t);}catch(e){msg=e.message;}
+  return{obj:null,limpio:false,error:'JSON inválido: '+msg};
+}
+const NOMBRE_TIPO={string:'texto',integer:'entero',number:'número',boolean:'verdadero/falso',array:'lista',object:'objeto',null:'null'};
+function tipoDe(x){if(x===null)return'null';if(Array.isArray(x))return'array';if(typeof x==='number')return Number.isInteger(x)?'integer':'number';return typeof x==='object'?'object':typeof x;}
+function esTipo(x,p){
+  switch(p){case'string':return typeof x==='string';case'integer':return typeof x==='number'&&Number.isInteger(x);
+    case'number':return typeof x==='number';case'boolean':return typeof x==='boolean';case'array':return Array.isArray(x);
+    case'object':return x!==null&&typeof x==='object'&&!Array.isArray(x);case'null':return x===null;}
+  return false;
+}
+function validarEsquema(obj,esq,ruta){
+  ruta=ruta||'$';const err=[];
+  if(esq.type){
+    const pos=Array.isArray(esq.type)?esq.type:[esq.type];
+    if(!pos.some(p=>esTipo(obj,p))){
+      return[{clase:'tipo',ruta,texto:ruta+': se esperaba '+pos.map(p=>NOMBRE_TIPO[p]).join(' o ')+' y hay '+NOMBRE_TIPO[tipoDe(obj)]}];
+    }
+  }
+  if(esq.enum&&!esq.enum.some(v=>deepEqual(v,obj)))err.push({clase:'lista',ruta,texto:ruta+': valor '+JSON.stringify(obj)+' fuera de la lista ('+esq.enum.map(v=>JSON.stringify(v)).join(', ')+')'});
+  if(typeof obj==='number'){
+    if('minimum' in esq&&obj<esq.minimum)err.push({clase:'rango',ruta,texto:ruta+': '+obj+' es menor que el mínimo '+esq.minimum});
+    if('maximum' in esq&&obj>esq.maximum)err.push({clase:'rango',ruta,texto:ruta+': '+obj+' es mayor que el máximo '+esq.maximum});
+  }
+  if(typeof obj==='string'){
+    if(esq.pattern&&!new RegExp(esq.pattern).test(obj))err.push({clase:'patron',ruta,texto:ruta+': '+JSON.stringify(obj)+' no tiene el formato esperado'});
+    if('minLength' in esq&&obj.length<esq.minLength)err.push({clase:'longitud',ruta,texto:ruta+': longitud menor que '+esq.minLength});
+    if('maxLength' in esq&&obj.length>esq.maxLength)err.push({clase:'longitud',ruta,texto:ruta+': longitud mayor que '+esq.maxLength});
+  }
+  if(esq.type&&obj!==null&&typeof obj==='object'&&!Array.isArray(obj)||(!esq.type&&obj!==null&&typeof obj==='object'&&!Array.isArray(obj))){
+    for(const r of(esq.required||[]))if(!(r in obj))err.push({clase:'falta',ruta,texto:ruta+': falta el campo obligatorio «'+r+'»'});
+    const props=esq.properties||{};
+    for(const k of Object.keys(obj)){
+      if(k in props)err.push(...validarEsquema(obj[k],props[k],ruta+'.'+k));
+      else if(esq.additionalProperties===false)err.push({clase:'sobra',ruta,texto:ruta+': sobra el campo «'+k+'», que no está en el esquema'});
+    }
+  }
+  if(Array.isArray(obj)){
+    if('minItems' in esq&&obj.length<esq.minItems)err.push({clase:'longitud',ruta,texto:ruta+': menos de '+esq.minItems+' elementos'});
+    if('maxItems' in esq&&obj.length>esq.maxItems)err.push({clase:'longitud',ruta,texto:ruta+': más de '+esq.maxItems+' elementos'});
+    if(esq.items)obj.forEach((x,i)=>err.push(...validarEsquema(x,esq.items,ruta+'['+i+']')));
+  }
+  return err;
+}
+
+
+function detectar(texto){
+  const h=[];
+  for(const [tipo,pat] of Object.entries(PATRONES)){
+    const re=new RegExp(pat,'gu');let m;
+    while((m=re.exec(texto))!==null){h.push({tipo,valor:m[0],pos:m.index});if(m[0].length===0)re.lastIndex++;}
+  }
+  return h;
+}
+
+
+function el(t,props,...hijos){const e=document.createElement(t);Object.assign(e,props||{});hijos.flat().forEach(h=>e.append(h));return e;}
+function filaVerif(f){
+  const clase=f.ok===null?'fila':(f.ok?'fila ok':(f.aviso?'fila aviso':'fila mal'));
+  const marca=f.ok===null?'–':(f.ok?'✓':'✗');
+  const d=el('div',{},el('strong',{textContent:f.titulo}),el('div',{className:'detalle',textContent:f.detalle||''}));
+  return el('div',{className:clase},el('span',{className:'marca',textContent:marca}),d);
+}
+function vacio(n){while(n.firstChild)n.removeChild(n.firstChild);}
+
+document.getElementById('revisar').onclick=()=>{
+  const out=document.getElementById('res');vacio(out);const t=document.getElementById('texto').value;
+  if(!t.trim()){out.append(el('p',{className:'suave',textContent:'Pega primero el texto del expediente.'}));return;}
+  const h=detectar(t);
+  if(!h.length){out.append(filaVerif({ok:true,titulo:'Ningún patrón evidente',detalle:'Sigue siendo necesaria la revisión de nombres, direcciones, cargos y datos de salud.'}));return;}
+  out.append(filaVerif({ok:false,titulo:h.length+' coincidencia(s)',detalle:'Datos personales que siguen a la vista en el texto tratado.'}));
+  const tb=el('table',{},el('tr',{},...['Tipo','Valor encontrado'].map(x=>el('th',{textContent:x}))));
+  for(const x of h)tb.append(el('tr',{},el('td',{textContent:NOMBRES[x.tipo]||x.tipo}),el('td',{},el('code',{textContent:x.valor}))));
+  out.append(tb);
+};
+document.getElementById('limpiar').onclick=()=>{document.getElementById('texto').value='';vacio(document.getElementById('res'));};
+
+</script>
+</body>
+</html>

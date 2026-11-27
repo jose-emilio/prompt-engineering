@@ -1,0 +1,7 @@
+criterio,peso,descripcion,valor_1,valor_3,valor_5
+Alineación con el objetivo y el mensaje principal,0.25,La idea comunica claramente el mensaje principal,No comunica el mensaje principal o comunica otro,"Comunica el mensaje principal, pero diluido entre otras ideas",Comunica con claridad el mensaje principal y el objetivo
+Veracidad respecto a la hoja de hechos,0.2,No contiene afirmaciones prohibidas ni cifras inventadas,Contiene afirmaciones prohibidas o cifras inventadas,"No inventa nada, pero exagera o va más allá de la hoja de hechos",Todo lo que afirma está respaldado por la hoja de hechos
+Originalidad,0.15,Evita el cliché del sector,"Es el cliché del sector (más rápido, más inteligente)","Es conocida, pero con un giro propio",Plantea un enfoque que no suele verse en el sector
+Relevancia para el público,0.2,Conecta con la preocupación del responsable de ingeniería,No conecta con la preocupación del responsable de ingeniería,Conecta con una preocupación genérica de cualquier responsable,Conecta directamente con la preocupación concreta del responsable de ingeniería
+Viabilidad de producción,0.1,Se puede producir con los recursos del equipo,Necesita recursos que el equipo no tiene,"Es posible, pero con un esfuerzo extra del equipo",Se puede producir con los recursos del equipo
+Escalabilidad entre canales,0.1,"Se adapta a correo, redes y vídeo",Solo funciona en un canal,"Se adapta a dos canales, con cambios grandes","Se adapta a correo, redes y vídeo con cambios pequeños"

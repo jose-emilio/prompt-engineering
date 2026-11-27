@@ -1,0 +1,35 @@
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Archivos de bloqueo que Excel y LibreOffice crean junto a las hojas de cálculo abiertas
+~$*
+.~lock.*#
+
+# Claves y entornos virtuales (las claves nunca se guardan en el repositorio)
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+
+# Presentaciones: solo se publica su PDF (sin notas); los PPTX no se publican
+*.pptx
+*.pdf
+!presentaciones/*.pdf
+
+# Resultados que generan los scripts de los laboratorios (se crean al ejecutarlos)
+laboratorios/**/resultados/
+laboratorios/**/resultados_*.csv
+laboratorios/**/salidas*.jsonl
+laboratorios/**/pred*.jsonl
+laboratorios/**/registro*.jsonl
+laboratorios/**/transcripcion_*.md
+laboratorios/**/contexto_largo.md
+laboratorios/**/preguntas_aguja.md
+laboratorios/**/respuestas_manuales/
+laboratorios/09A/expedientes_tratados.json
+laboratorios/09A/tabla_correspondencia.json

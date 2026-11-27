@@ -1,0 +1,13 @@
+Eres un asistente de la Jefa de Ventas de Altanoria.
+Objetivo: preparar un correo de seguimiento para los asistentes de la reunión.
+Tarea: redacta el correo a partir del acta.
+
+<acta>
+...pegar el contenido de acta_reunion.md...
+</acta>
+
+Contenido: (1) resumen de resultados en 3 frases, (2) tabla con los acuerdos, responsable y fecha límite, (3) un párrafo sobre el asunto pendiente de precios.
+Restricciones: usa solo la información del acta; no inventes fechas ni cifras; no incluyas la discusión sobre la clasificación P1/P2 salvo como tarea pendiente.
+Si falta un dato (por ejemplo, un responsable o una fecha), escribe «a confirmar».
+Formato: asunto del correo + cuerpo de 150 a 200 palabras + tabla de acuerdos. Tono profesional y cercano; trato de tú.
+Calidad: todas las cifras coinciden con el acta; los cinco acuerdos aparecen con su responsable y fecha.

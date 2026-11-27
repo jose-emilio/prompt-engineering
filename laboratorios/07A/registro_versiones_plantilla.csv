@@ -1,0 +1,2 @@
+version,fecha,modelo,temperatura,hipotesis,cambio_unico,exactitud_categoria,exactitud_prioridad,recall_p1_p2,json_valido,negativos_ok,regresiones,decision
+v0,,,,Línea base,Ninguno,,,,,,,

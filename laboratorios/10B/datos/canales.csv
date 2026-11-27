@@ -1,0 +1,6 @@
+canal,formato,restricciones
+correo_ventas,Asunto (≤ 50 caracteres) + cuerpo de 70-110 palabras + llamada a la acción,Una sola idea; sin adjetivos grandilocuentes; trato de tú
+red_social_corta,Máx. 260 caracteres + hasta 2 etiquetas,Sin emojis excesivos (máx. 2); gancho en la primera frase
+guion_video_30s,4-5 escenas con voz en off y texto en pantalla,Una idea por escena; ritmo ágil; 75-90 palabras de locución
+entrada_blog,Titular + 3 secciones con subtítulo + cierre,350-450 palabras; incluir 1 dato de la beta
+nota_prensa,"Titular, entradilla, cuerpo, cita y boilerplate",Tono neutro; tercera persona; solo hechos aprobados

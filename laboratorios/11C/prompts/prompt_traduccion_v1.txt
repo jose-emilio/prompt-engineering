@@ -1,0 +1,3 @@
+Traduce a JavaScript esta función de Python:
+
+{{codigo}}

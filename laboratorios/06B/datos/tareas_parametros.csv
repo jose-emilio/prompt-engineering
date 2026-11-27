@@ -1,0 +1,4 @@
+id,nombre,descripcion,entrada,esperado_determinista
+T1,extraccion,"Extraer producto, prioridad y número de usuarios de una nota",Ticket INC-4021 (P2). DocuMind. Afecta a unos 120 usuarios del equipo de Finanzas desde las 9:15.,producto=DocuMind; prioridad=P2; usuarios=120
+T2,eslogan,Proponer un eslogan para la campaña de lanzamiento de la revisión de pull requests de Copilot (máx. 8 palabras),Producto: Altanoria Copilot. Novedad: revisión automática de pull requests. Público: equipos de desarrollo.,(creativa: no hay respuesta única)
+T3,resumen,Resumir en dos frases una incidencia para un directivo,"El lunes por la mañana el equipo de Soporte recibió 312 tickets, el doble que la media. El 60 % eran de acceso y se debían a un certificado SSO caducado. A las 11:40 se renovó y a las 12:10 el volumen volvía a la normalidad. Se aplicará una alerta de caducidad con 30 días de antelación.","(media: debe incluir causa, duración y medida correctiva)"

@@ -1,0 +1,4 @@
+Convierte la nota de la incidencia en un JSON.
+---USUARIO---
+Nota:
+{{nota}}

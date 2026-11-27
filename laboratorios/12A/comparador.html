@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparador de extracción · Laboratorio 12A</title>
+<style>
+:root{--fondo:#fff;--texto:#1b1f24;--suave:#5b6470;--borde:#d0d7de;--panel:#f6f8fa;--ok:#1a7f37;--okf:#dafbe1;--mal:#cf222e;--malf:#ffebe9;--aviso:#9a6700;--avisof:#fff8c5;--acento:#0969da}
+@media(prefers-color-scheme:dark){:root{--fondo:#0d1117;--texto:#e6edf3;--suave:#9198a1;--borde:#30363d;--panel:#161b22;--ok:#3fb950;--okf:#12261e;--mal:#ff7b72;--malf:#2d1117;--aviso:#d29922;--avisof:#2a2008;--acento:#58a6ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:16px 16px 48px}h1{font-size:1.5rem;margin:.4em 0 .2em}h2{font-size:1.1rem;margin:1.4em 0 .4em}
+p,li{color:var(--texto)}.suave{color:var(--suave);font-size:.92rem}ol{padding-left:1.3em}
+label{display:block;font-weight:600;margin:.8em 0 .25em}select,textarea,input{width:100%;font:inherit;color:inherit;background:var(--panel);border:1px solid var(--borde);border-radius:6px;padding:8px}
+textarea{min-height:170px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem}
+button{font:inherit;font-weight:600;border:1px solid var(--borde);background:var(--acento);color:#fff;border-radius:6px;padding:8px 14px;cursor:pointer;margin:.6em .5em 0 0}
+button.sec{background:var(--panel);color:var(--texto)}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--acento);outline-offset:1px}
+.fila{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--borde);border-radius:8px;padding:8px 10px;margin:6px 0;background:var(--panel)}
+.fila.ok{border-color:var(--ok);background:var(--okf)}.fila.mal{border-color:var(--mal);background:var(--malf)}.fila.aviso{border-color:var(--aviso);background:var(--avisof)}
+.marca{font-weight:700;min-width:1.6em;text-align:center}.ok .marca{color:var(--ok)}.mal .marca{color:var(--mal)}.aviso .marca{color:var(--aviso)}
+.detalle{font-size:.9rem;color:var(--suave);margin:2px 0 0}table{border-collapse:collapse;width:100%;margin:.5em 0;font-size:.92rem}
+th,td{border:1px solid var(--borde);padding:5px 8px;text-align:left;vertical-align:top}th{background:var(--panel)}td.num{text-align:right}
+td.correcto{background:var(--okf)}td.inventado,td.equivocado{background:var(--malf)}td.omitido{background:var(--avisof)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;word-break:break-word}.oculto{display:none}
+.nota{border-left:4px solid var(--aviso);background:var(--avisof);padding:8px 12px;border-radius:0 6px 6px 0;margin:1em 0;font-size:.92rem}
+</style>
+</head>
+<body>
+<main>
+<h1>Comparador de extracción · Laboratorio 12A</h1>
+<p>Esta página hace en el navegador lo que hace <code>evaluar_extraccion.py</code> en el camino con código: compara, campo a campo, el JSON del asistente con los valores correctos. Cada campo queda en uno de cuatro estados. Todo ocurre en tu navegador; no se envía nada.</p>
+<ul><li><strong>correcto</strong>: coincide con el valor correcto (incluido «no consta» = <code>null</code>).</li><li><strong>inventado</strong>: lo correcto es <code>null</code> y el asistente puso un valor. Es el error más grave.</li><li><strong>omitido</strong>: hay un valor correcto y el asistente puso <code>null</code>.</li><li><strong>equivocado</strong>: los dos tienen valor, pero distinto.</li></ul>
+<p>Úsala después de haber leído los correos y guardado los JSON del asistente (Paso 4). Los totales por campo son los que se anotan en la pestaña «Medición v1» (y, más adelante, «Medición v2») de la hoja.</p>
+
+
+<label for="correo">Correo</label>
+<select id="correo"></select>
+<label for="resp">JSON que ha devuelto el asistente</label>
+<textarea id="resp" spellcheck="false" placeholder='{"id": "C-001", "remitente": ...}'></textarea>
+<button id="comparar">Comparar con los valores correctos</button>
+<button id="limpiar" class="sec">Borrar el cuadro</button>
+<div id="res" aria-live="polite"></div>
+<h2>Resumen de los correos comparados</h2>
+<div id="resumen"><p class="suave">Todavía no se ha comparado ningún correo.</p></div>
+<button id="copiar" class="sec">Copiar el resumen</button>
+<button id="reiniciar" class="sec">Empezar de nuevo</button>
+<p class="suave">Si vuelves a comparar un correo, su resultado sustituye al anterior. El resumen se guarda mientras no cierres la pestaña.</p>
+</main>
+<script>
+const ESQUEMA={"type": "object", "additionalProperties": false, "required": ["id", "remitente", "empresa", "producto", "plan", "tipo_solicitud", "fecha_hecho", "importe_reclamado_eur", "referencia_factura", "codigo_error", "usuarios_afectados", "urgencia"], "properties": {"id": {"type": "string"}, "remitente": {"type": ["string", "null"]}, "empresa": {"type": ["string", "null"]}, "producto": {"type": ["string", "null"], "enum": ["Altanoria Copilot", "DocuMind", "AgentHub", null]}, "plan": {"type": ["string", "null"], "enum": ["Starter", "Team", "Enterprise", null]}, "tipo_solicitud": {"type": "string", "enum": ["factura", "incidencia", "cancelacion", "comercial", "consulta"]}, "fecha_hecho": {"type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$"}, "importe_reclamado_eur": {"type": ["number", "null"], "minimum": 0}, "referencia_factura": {"type": ["string", "null"], "pattern": "^ALT-\\d{4}-\\d{5}$"}, "codigo_error": {"type": ["string", "null"]}, "usuarios_afectados": {"type": ["integer", "null"], "minimum": 0}, "urgencia": {"type": "string", "enum": ["alta", "media", "baja"]}}};
+const GOLD={"C-001": {"id": "C-001", "remitente": "Cristina Cano Campos", "empresa": "Logística Pirineos", "producto": "AgentHub", "plan": "Enterprise", "tipo_solicitud": "cancelacion", "fecha_hecho": "2026-10-06", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-002": {"id": "C-002", "remitente": "Cristina Pla Herrero", "empresa": "Quesos Artesanos Manchegos", "producto": null, "plan": null, "tipo_solicitud": "factura", "fecha_hecho": "2026-08-22", "importe_reclamado_eur": 87.0, "referencia_factura": "ALT-2026-07753", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-003": {"id": "C-003", "remitente": "Daniel Esteve Vidal", "empresa": "Banco Mediterráneo Digital", "producto": "AgentHub", "plan": null, "tipo_solicitud": "factura", "fecha_hecho": null, "importe_reclamado_eur": 87.0, "referencia_factura": "ALT-2026-06004", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-004": {"id": "C-004", "remitente": "Bruno Revert Peiró", "empresa": "Renovables Sierra Norte", "producto": "AgentHub", "plan": "Enterprise", "tipo_solicitud": "comercial", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": 20, "urgencia": "baja"}, "C-005": {"id": "C-005", "remitente": "Ismael Olmos Muñoz", "empresa": "Aguas de Cantabria", "producto": "DocuMind", "plan": "Starter", "tipo_solicitud": "factura", "fecha_hecho": null, "importe_reclamado_eur": 599.0, "referencia_factura": "ALT-2026-09124", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-006": {"id": "C-006", "remitente": "Mario Millán Herrero", "empresa": "Editorial Cuatro Vientos", "producto": "Altanoria Copilot", "plan": "Team", "tipo_solicitud": "incidencia", "fecha_hecho": "2026-06-29", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": 3, "urgencia": "baja"}, "C-007": {"id": "C-007", "remitente": "Bruno Orts Muñoz", "empresa": "Juguetes Lumbreras", "producto": "DocuMind", "plan": "Team", "tipo_solicitud": "incidencia", "fecha_hecho": "2026-05-15", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": 120, "urgencia": "media"}, "C-008": {"id": "C-008", "remitente": "Gonzalo Domènech Peiró", "empresa": "Papelera del Segura", "producto": null, "plan": null, "tipo_solicitud": "incidencia", "fecha_hecho": "2026-10-09", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "HTTP 502", "usuarios_afectados": null, "urgencia": "baja"}, "C-009": {"id": "C-009", "remitente": "Claudia Uribe Mascarell", "empresa": "Ingeniería Hidráulica Ebro", "producto": "Altanoria Copilot", "plan": "Enterprise", "tipo_solicitud": "factura", "fecha_hecho": "2026-09-18", "importe_reclamado_eur": 2400.0, "referencia_factura": "ALT-2026-01480", "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-010": {"id": "C-010", "remitente": "Silvia Herrero Arroyo", "empresa": "Banco Mediterráneo Digital", "producto": "Altanoria Copilot", "plan": null, "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-011": {"id": "C-011", "remitente": "Diana Bosch Escribano", "empresa": "Transportes Albufera", "producto": "Altanoria Copilot", "plan": "Enterprise", "tipo_solicitud": "incidencia", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "AUTH-403", "usuarios_afectados": 14, "urgencia": "alta"}, "C-012": {"id": "C-012", "remitente": "Laura Esteve Segarra", "empresa": "Distribuciones Marfil", "producto": "Altanoria Copilot", "plan": "Starter", "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-013": {"id": "C-013", "remitente": "Beatriz Bosch Cuesta", "empresa": "Olivares de Jaén Cooperativa", "producto": "Altanoria Copilot", "plan": null, "tipo_solicitud": "factura", "fecha_hecho": "2026-03-13", "importe_reclamado_eur": 87.0, "referencia_factura": "ALT-2026-02540", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-014": {"id": "C-014", "remitente": "Emilio Aguilar Peiró", "empresa": "Farmacia Central Online", "producto": "DocuMind", "plan": null, "tipo_solicitud": "incidencia", "fecha_hecho": "2026-06-07", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "ERR_SESSION_EXPIRED", "usuarios_afectados": 14, "urgencia": "alta"}, "C-015": {"id": "C-015", "remitente": "Raquel Mascarell Lozano", "empresa": "Papelera del Segura", "producto": "DocuMind", "plan": "Team", "tipo_solicitud": "cancelacion", "fecha_hecho": "2026-10-21", "importe_reclamado_eur": 599.0, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-016": {"id": "C-016", "remitente": "Yolanda Aguilar Cuesta", "empresa": "Grupo Hortelano", "producto": "AgentHub", "plan": "Starter", "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-017": {"id": "C-017", "remitente": "Eduardo Arroyo Herrero", "empresa": "Farmacia Central Online", "producto": "AgentHub", "plan": "Starter", "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-018": {"id": "C-018", "remitente": "Aitor Fabra Navarro", "empresa": "Quesos Artesanos Manchegos", "producto": "Altanoria Copilot", "plan": null, "tipo_solicitud": "incidencia", "fecha_hecho": "2026-07-27", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "alta"}, "C-019": {"id": "C-019", "remitente": "Bruno Segarra Villalba", "empresa": "Universidad Politécnica del Sur", "producto": null, "plan": null, "tipo_solicitud": "factura", "fecha_hecho": "2026-06-26", "importe_reclamado_eur": 1194.0, "referencia_factura": "ALT-2026-06337", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-020": {"id": "C-020", "remitente": "Leire Revert Fabra", "empresa": "Hoteles Costa Brava Sur", "producto": null, "plan": null, "tipo_solicitud": "factura", "fecha_hecho": "2026-07-11", "importe_reclamado_eur": 599.0, "referencia_factura": "ALT-2026-06893", "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-021": {"id": "C-021", "remitente": "Noelia Uribe Ibáñez", "empresa": "Distribuciones Marfil", "producto": "AgentHub", "plan": "Enterprise", "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-022": {"id": "C-022", "remitente": "Leire Vidal Bosch", "empresa": "Grupo Hortelano", "producto": "Altanoria Copilot", "plan": "Team", "tipo_solicitud": "factura", "fecha_hecho": "2026-09-06", "importe_reclamado_eur": 1194.0, "referencia_factura": "ALT-2026-09884", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-023": {"id": "C-023", "remitente": "Carlos Villalba Lacalle", "empresa": "Ayuntamiento de Villanueva del Río", "producto": null, "plan": null, "tipo_solicitud": "incidencia", "fecha_hecho": "2026-10-21", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "HTTP 502", "usuarios_afectados": 3, "urgencia": "baja"}, "C-024": {"id": "C-024", "remitente": "Noelia Lozano Uribe", "empresa": "Logística Pirineos", "producto": "AgentHub", "plan": "Starter", "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-025": {"id": "C-025", "remitente": "Fernando Muñoz Olmos", "empresa": "Distribuciones Marfil", "producto": "Altanoria Copilot", "plan": null, "tipo_solicitud": "factura", "fecha_hecho": "2026-08-20", "importe_reclamado_eur": 299.0, "referencia_factura": "ALT-2026-08619", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-026": {"id": "C-026", "remitente": "Raquel Millán Gil", "empresa": "Naviera Bética", "producto": "AgentHub", "plan": null, "tipo_solicitud": "incidencia", "fecha_hecho": "2026-09-25", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "AL-5012", "usuarios_afectados": 40, "urgencia": "alta"}, "C-027": {"id": "C-027", "remitente": "Aitor Barberá Cuesta", "empresa": "Quesos Artesanos Manchegos", "producto": "DocuMind", "plan": null, "tipo_solicitud": "comercial", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": 20, "urgencia": "baja"}, "C-028": {"id": "C-028", "remitente": "Helena Herrero Fabra", "empresa": "Mutua Atlántica", "producto": "Altanoria Copilot", "plan": "Starter", "tipo_solicitud": "factura", "fecha_hecho": "2026-10-01", "importe_reclamado_eur": 2400.0, "referencia_factura": "ALT-2026-06859", "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-029": {"id": "C-029", "remitente": "Estela Bellver Vidal", "empresa": "Eólica del Maestrazgo", "producto": "AgentHub", "plan": "Enterprise", "tipo_solicitud": "factura", "fecha_hecho": "2026-05-30", "importe_reclamado_eur": 87.0, "referencia_factura": "ALT-2026-05214", "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-030": {"id": "C-030", "remitente": "Raquel Uribe Muñoz", "empresa": "Editorial Cuatro Vientos", "producto": "AgentHub", "plan": "Team", "tipo_solicitud": "cancelacion", "fecha_hecho": "2026-03-19", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-031": {"id": "C-031", "remitente": "Iker Herrero Bosch", "empresa": "Aguas de Cantabria", "producto": "Altanoria Copilot", "plan": "Starter", "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-032": {"id": "C-032", "remitente": "Julia Campos Herrero", "empresa": "Transportes Albufera", "producto": "DocuMind", "plan": "Starter", "tipo_solicitud": "factura", "fecha_hecho": "2026-04-06", "importe_reclamado_eur": 87.0, "referencia_factura": "ALT-2026-06992", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-033": {"id": "C-033", "remitente": "Uxue Pla Cano", "empresa": "Mutua Atlántica", "producto": null, "plan": null, "tipo_solicitud": "cancelacion", "fecha_hecho": "2026-10-05", "importe_reclamado_eur": 1194.0, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-034": {"id": "C-034", "remitente": "Irene Cano Quiles", "empresa": "Aceros del Turia", "producto": "AgentHub", "plan": "Enterprise", "tipo_solicitud": "incidencia", "fecha_hecho": "2026-03-15", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "SSO-1207", "usuarios_afectados": null, "urgencia": "media"}, "C-035": {"id": "C-035", "remitente": "Patricia Peiró Cano", "empresa": "Universidad Politécnica del Sur", "producto": "DocuMind", "plan": "Team", "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-036": {"id": "C-036", "remitente": "Tomás Navarro Barberá", "empresa": "Farmacia Central Online", "producto": "DocuMind", "plan": "Enterprise", "tipo_solicitud": "factura", "fecha_hecho": null, "importe_reclamado_eur": 87.0, "referencia_factura": "ALT-2026-02746", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-037": {"id": "C-037", "remitente": "Aitor Galiana Revert", "empresa": "Ayuntamiento de Villanueva del Río", "producto": "Altanoria Copilot", "plan": "Enterprise", "tipo_solicitud": "incidencia", "fecha_hecho": "2026-07-07", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": 3, "urgencia": "alta"}, "C-038": {"id": "C-038", "remitente": "Manuel Carrasco Pla", "empresa": "Logística Pirineos", "producto": "Altanoria Copilot", "plan": "Starter", "tipo_solicitud": "factura", "fecha_hecho": "2026-09-03", "importe_reclamado_eur": 1194.0, "referencia_factura": "ALT-2026-03803", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-039": {"id": "C-039", "remitente": "Beatriz Ibáñez Campos", "empresa": "Clínica Dental Sonrisa", "producto": "Altanoria Copilot", "plan": "Starter", "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-040": {"id": "C-040", "remitente": "Cristina Navarro Millán", "empresa": "Mutua Atlántica", "producto": "Altanoria Copilot", "plan": null, "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-041": {"id": "C-041", "remitente": "Mateo Cabrera Cabrera", "empresa": "Ingeniería Hidráulica Ebro", "producto": "DocuMind", "plan": "Team", "tipo_solicitud": "incidencia", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "HTTP 502", "usuarios_afectados": null, "urgencia": "media"}, "C-042": {"id": "C-042", "remitente": "Beatriz Zaragozá Tormo", "empresa": "Ingeniería Hidráulica Ebro", "producto": "Altanoria Copilot", "plan": "Starter", "tipo_solicitud": "cancelacion", "fecha_hecho": null, "importe_reclamado_eur": 299.0, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-043": {"id": "C-043", "remitente": "Raquel Muñoz Segarra", "empresa": "Distribuciones Marfil", "producto": "Altanoria Copilot", "plan": null, "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-044": {"id": "C-044", "remitente": "Beatriz Esteve Alcaraz", "empresa": "Farmacia Central Online", "producto": null, "plan": null, "tipo_solicitud": "cancelacion", "fecha_hecho": "2026-07-10", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-045": {"id": "C-045", "remitente": "Noelia Escribano Tormo", "empresa": "Hoteles Costa Brava Sur", "producto": "Altanoria Copilot", "plan": "Team", "tipo_solicitud": "incidencia", "fecha_hecho": "2026-10-16", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "SSO-1207", "usuarios_afectados": null, "urgencia": "alta"}, "C-046": {"id": "C-046", "remitente": "Carlos Campos Escribano", "empresa": "Universidad Politécnica del Sur", "producto": "Altanoria Copilot", "plan": null, "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-047": {"id": "C-047", "remitente": "Patricia Guillén Sanchis", "empresa": "Banco Mediterráneo Digital", "producto": "Altanoria Copilot", "plan": "Starter", "tipo_solicitud": "incidencia", "fecha_hecho": "2026-10-08", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": 14, "urgencia": "baja"}, "C-048": {"id": "C-048", "remitente": "Laura Roig Aguilar", "empresa": "Papelera del Segura", "producto": "DocuMind", "plan": null, "tipo_solicitud": "consulta", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "baja"}, "C-049": {"id": "C-049", "remitente": "Mateo Millán Mascarell", "empresa": "Ayuntamiento de Villanueva del Río", "producto": "AgentHub", "plan": "Enterprise", "tipo_solicitud": "incidencia", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "HTTP 503", "usuarios_afectados": 40, "urgencia": "baja"}, "C-050": {"id": "C-050", "remitente": "Emilio Tormo Navarro", "empresa": "Textil Alcoy 1880", "producto": "AgentHub", "plan": "Enterprise", "tipo_solicitud": "incidencia", "fecha_hecho": "2026-02-28", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": 500, "urgencia": "media"}, "C-051": {"id": "C-051", "remitente": "Carlos Alcaraz Carrasco", "empresa": "Distribuciones Marfil", "producto": "DocuMind", "plan": "Enterprise", "tipo_solicitud": "cancelacion", "fecha_hecho": "2026-08-20", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-052": {"id": "C-052", "remitente": "Adrián Cano Navarro", "empresa": "Gestoría Rubio y Asociados", "producto": "Altanoria Copilot", "plan": null, "tipo_solicitud": "incidencia", "fecha_hecho": "2026-07-23", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "ERR_SESSION_EXPIRED", "usuarios_afectados": 14, "urgencia": "alta"}, "C-053": {"id": "C-053", "remitente": "Uxue Olmos Uribe", "empresa": "Naviera Bética", "producto": "AgentHub", "plan": "Starter", "tipo_solicitud": "comercial", "fecha_hecho": null, "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": 20, "urgencia": "baja"}, "C-054": {"id": "C-054", "remitente": "Víctor Villalba Guillén", "empresa": "Hoteles Costa Brava Sur", "producto": "Altanoria Copilot", "plan": "Team", "tipo_solicitud": "cancelacion", "fecha_hecho": "2026-02-23", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-055": {"id": "C-055", "remitente": "Mateo Vidal Mascarell", "empresa": "Seguros Tramuntana", "producto": "AgentHub", "plan": "Enterprise", "tipo_solicitud": "incidencia", "fecha_hecho": "2026-09-20", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": "HTTP 502", "usuarios_afectados": null, "urgencia": "media"}, "C-056": {"id": "C-056", "remitente": "Noelia Cuesta Aguilar", "empresa": "Olivares de Jaén Cooperativa", "producto": "AgentHub", "plan": "Starter", "tipo_solicitud": "incidencia", "fecha_hecho": "2026-06-29", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "alta"}, "C-057": {"id": "C-057", "remitente": "Víctor Domènech Arroyo", "empresa": "Aceros del Turia", "producto": "DocuMind", "plan": "Team", "tipo_solicitud": "factura", "fecha_hecho": "2026-07-06", "importe_reclamado_eur": 2400.0, "referencia_factura": "ALT-2026-06102", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-058": {"id": "C-058", "remitente": "Marina Tormo Villalba", "empresa": "Constructora Meseta", "producto": "AgentHub", "plan": null, "tipo_solicitud": "cancelacion", "fecha_hecho": "2026-04-16", "importe_reclamado_eur": null, "referencia_factura": null, "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-059": {"id": "C-059", "remitente": "Daniel Navarro Villalba", "empresa": "Ayuntamiento de Villanueva del Río", "producto": "DocuMind", "plan": null, "tipo_solicitud": "factura", "fecha_hecho": null, "importe_reclamado_eur": 299.0, "referencia_factura": "ALT-2026-09797", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}, "C-060": {"id": "C-060", "remitente": "Javier Zaragozá Peiró", "empresa": "Aceros del Turia", "producto": null, "plan": null, "tipo_solicitud": "factura", "fecha_hecho": "2026-05-07", "importe_reclamado_eur": 299.0, "referencia_factura": "ALT-2026-02160", "codigo_error": null, "usuarios_afectados": null, "urgencia": "media"}};
+const MUESTRA=["C-001", "C-002", "C-003", "C-004", "C-005", "C-006"];
+const CAMPOS=["remitente", "empresa", "producto", "plan", "tipo_solicitud", "fecha_hecho", "importe_reclamado_eur", "referencia_factura", "codigo_error", "usuarios_afectados", "urgencia"];
+
+function deepEqual(a,b){
+  if(a===b)return true;
+  if(typeof a!==typeof b||a===null||b===null)return false;
+  if(Array.isArray(a)){if(!Array.isArray(b)||a.length!==b.length)return false;return a.every((x,i)=>deepEqual(x,b[i]));}
+  if(typeof a==='object'){const ka=Object.keys(a),kb=Object.keys(b);if(ka.length!==kb.length)return false;return ka.every(k=>deepEqual(a[k],b[k]));}
+  return false;
+}
+function extraerJson(texto){
+  const t0=texto.trim();
+  try{return{obj:JSON.parse(t0),limpio:true,error:null};}catch(e){}
+  let t=t0,bloque=false;const m=t.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if(m){t=m[1].trim();bloque=true;try{return{obj:JSON.parse(t),limpio:false,aviso:'bloque',error:null};}catch(e){}}
+  const i=t.indexOf('{'),j=t.lastIndexOf('}');
+  if(i!==-1&&j>i){try{return{obj:JSON.parse(t.slice(i,j+1)),limpio:false,aviso:'texto',error:null};}catch(e){}}
+  let msg='no se puede leer';try{JSON.parse(t);}catch(e){msg=e.message;}
+  return{obj:null,limpio:false,error:'JSON inválido: '+msg};
+}
+const NOMBRE_TIPO={string:'texto',integer:'entero',number:'número',boolean:'verdadero/falso',array:'lista',object:'objeto',null:'null'};
+function tipoDe(x){if(x===null)return'null';if(Array.isArray(x))return'array';if(typeof x==='number')return Number.isInteger(x)?'integer':'number';return typeof x==='object'?'object':typeof x;}
+function esTipo(x,p){
+  switch(p){case'string':return typeof x==='string';case'integer':return typeof x==='number'&&Number.isInteger(x);
+    case'number':return typeof x==='number';case'boolean':return typeof x==='boolean';case'array':return Array.isArray(x);
+    case'object':return x!==null&&typeof x==='object'&&!Array.isArray(x);case'null':return x===null;}
+  return false;
+}
+function validarEsquema(obj,esq,ruta){
+  ruta=ruta||'$';const err=[];
+  if(esq.type){
+    const pos=Array.isArray(esq.type)?esq.type:[esq.type];
+    if(!pos.some(p=>esTipo(obj,p))){
+      return[{clase:'tipo',ruta,texto:ruta+': se esperaba '+pos.map(p=>NOMBRE_TIPO[p]).join(' o ')+' y hay '+NOMBRE_TIPO[tipoDe(obj)]}];
+    }
+  }
+  if(esq.enum&&!esq.enum.some(v=>deepEqual(v,obj)))err.push({clase:'lista',ruta,texto:ruta+': valor '+JSON.stringify(obj)+' fuera de la lista ('+esq.enum.map(v=>JSON.stringify(v)).join(', ')+')'});
+  if(typeof obj==='number'){
+    if('minimum' in esq&&obj<esq.minimum)err.push({clase:'rango',ruta,texto:ruta+': '+obj+' es menor que el mínimo '+esq.minimum});
+    if('maximum' in esq&&obj>esq.maximum)err.push({clase:'rango',ruta,texto:ruta+': '+obj+' es mayor que el máximo '+esq.maximum});
+  }
+  if(typeof obj==='string'){
+    if(esq.pattern&&!new RegExp(esq.pattern).test(obj))err.push({clase:'patron',ruta,texto:ruta+': '+JSON.stringify(obj)+' no tiene el formato esperado'});
+    if('minLength' in esq&&obj.length<esq.minLength)err.push({clase:'longitud',ruta,texto:ruta+': longitud menor que '+esq.minLength});
+    if('maxLength' in esq&&obj.length>esq.maxLength)err.push({clase:'longitud',ruta,texto:ruta+': longitud mayor que '+esq.maxLength});
+  }
+  if(esq.type&&obj!==null&&typeof obj==='object'&&!Array.isArray(obj)||(!esq.type&&obj!==null&&typeof obj==='object'&&!Array.isArray(obj))){
+    for(const r of(esq.required||[]))if(!(r in obj))err.push({clase:'falta',ruta,texto:ruta+': falta el campo obligatorio «'+r+'»'});
+    const props=esq.properties||{};
+    for(const k of Object.keys(obj)){
+      if(k in props)err.push(...validarEsquema(obj[k],props[k],ruta+'.'+k));
+      else if(esq.additionalProperties===false)err.push({clase:'sobra',ruta,texto:ruta+': sobra el campo «'+k+'», que no está en el esquema'});
+    }
+  }
+  if(Array.isArray(obj)){
+    if('minItems' in esq&&obj.length<esq.minItems)err.push({clase:'longitud',ruta,texto:ruta+': menos de '+esq.minItems+' elementos'});
+    if('maxItems' in esq&&obj.length>esq.maxItems)err.push({clase:'longitud',ruta,texto:ruta+': más de '+esq.maxItems+' elementos'});
+    if(esq.items)obj.forEach((x,i)=>err.push(...validarEsquema(x,esq.items,ruta+'['+i+']')));
+  }
+  return err;
+}
+
+
+function estadoCampo(gv,pv){
+  if(pv===undefined)pv=null;
+  if(typeof gv==='number'&&typeof pv==='number'&&Math.abs(gv-pv)<0.005)pv=gv;
+  if(deepEqual(gv,pv))return'correcto';
+  if(gv===null)return'inventado';
+  if(pv===null)return'omitido';
+  return'equivocado';
+}
+function compararCorreo(obj,gold,campos){
+  return campos.map(k=>({campo:k,esperado:gold[k],obtenido:obj[k]===undefined?null:obj[k],estado:estadoCampo(gold[k],obj[k])}));
+}
+
+
+function el(t,props,...hijos){const e=document.createElement(t);Object.assign(e,props||{});hijos.flat().forEach(h=>e.append(h));return e;}
+function filaVerif(f){
+  const clase=f.ok===null?'fila':(f.ok?'fila ok':(f.aviso?'fila aviso':'fila mal'));
+  const marca=f.ok===null?'–':(f.ok?'✓':'✗');
+  const d=el('div',{},el('strong',{textContent:f.titulo}),el('div',{className:'detalle',textContent:f.detalle||''}));
+  return el('div',{className:clase},el('span',{className:'marca',textContent:marca}),d);
+}
+function vacio(n){while(n.firstChild)n.removeChild(n.firstChild);}
+
+const sel=document.getElementById('correo');
+const g1=el('optgroup',{label:'Muestra del laboratorio'}),g2=el('optgroup',{label:'Resto del conjunto de 60 correos'});
+for(const id of Object.keys(GOLD))(MUESTRA.includes(id)?g1:g2).append(el('option',{value:id,textContent:id}));
+sel.append(g1,g2);
+let guardados={};
+try{guardados=JSON.parse(sessionStorage.getItem('cmp12A')||'{}');}catch(e){}
+function persistir(){try{sessionStorage.setItem('cmp12A',JSON.stringify(guardados));}catch(e){}}
+function pintarResumen(){
+  const r=document.getElementById('resumen');vacio(r);const ids=Object.keys(guardados).sort();
+  if(!ids.length){r.append(el('p',{className:'suave',textContent:'Todavía no se ha comparado ningún correo.'}));return;}
+  const t=el('table',{},el('tr',{},...['Campo','correcto','inventado','omitido','equivocado'].map(h=>el('th',{textContent:h}))));
+  const tot={correcto:0,inventado:0,omitido:0,equivocado:0};let invalidos=0;
+  for(const k of CAMPOS){const c={correcto:0,inventado:0,omitido:0,equivocado:0};
+    for(const id of ids){const e=guardados[id];if(e.invalido)continue;c[e.estados[k]]++;}
+    for(const s in c)tot[s]+=c[s];
+    t.append(el('tr',{},el('td',{textContent:k}),...['correcto','inventado','omitido','equivocado'].map(s=>el('td',{className:'num',textContent:String(c[s])}))));}
+  for(const id of ids)if(guardados[id].invalido)invalidos++;
+  r.append(t);const suma=tot.correcto+tot.inventado+tot.omitido+tot.equivocado;
+  r.append(el('p',{},'Correos comparados: '+ids.length+' · JSON inválido: '+invalidos+'. Aciertos totales: '+tot.correcto+'/'+suma+(suma?' = '+(100*tot.correcto/suma).toFixed(1)+' %':'')+' · Valores inventados: ',el('strong',{textContent:String(tot.inventado)})));
+}
+document.getElementById('comparar').onclick=()=>{
+  const out=document.getElementById('res');vacio(out);const texto=document.getElementById('resp').value;const id=sel.value;
+  if(!texto.trim()){out.append(el('p',{className:'suave',textContent:'Pega primero el JSON del asistente.'}));return;}
+  const r=extraerJson(texto);
+  if(r.obj===null){out.append(filaVerif({ok:false,titulo:id+': '+r.error,detalle:'Cuenta como «JSON inválido». Corrige el prompt para que devuelva solo un JSON.'}));guardados[id]={invalido:true};persistir();pintarResumen();return;}
+  if(!r.limpio)out.append(filaVerif({ok:false,aviso:true,titulo:'La respuesta lleva texto o un bloque de código alrededor del JSON',detalle:'Se ha leído igualmente, pero un sistema automático no podría.'}));
+  const e=validarEsquema(r.obj,ESQUEMA);
+  if(e.length)out.append(filaVerif({ok:false,aviso:true,titulo:'No cumple el esquema ('+e.length+')',detalle:e.slice(0,3).map(x=>x.texto).join(' · ')}));
+  if(r.obj.id&&r.obj.id!==id)out.append(filaVerif({ok:false,aviso:true,titulo:'El id del JSON ('+r.obj.id+') no coincide con el correo elegido ('+id+')',detalle:'Comprueba que has elegido el correo correcto.'}));
+  const rows=compararCorreo(r.obj,GOLD[id],CAMPOS);
+  const t=el('table',{},el('tr',{},...['Campo','Tu valor','Valor correcto','Estado'].map(h=>el('th',{textContent:h}))));
+  const estados={};
+  for(const f of rows){estados[f.campo]=f.estado;t.append(el('tr',{},el('td',{textContent:f.campo}),el('td',{},el('code',{textContent:JSON.stringify(f.obtenido)})),el('td',{},el('code',{textContent:JSON.stringify(f.esperado)})),el('td',{className:f.estado,textContent:f.estado})));}
+  out.append(t);guardados[id]={estados};persistir();pintarResumen();
+};
+document.getElementById('limpiar').onclick=()=>{document.getElementById('resp').value='';vacio(document.getElementById('res'));};
+document.getElementById('reiniciar').onclick=()=>{guardados={};persistir();pintarResumen();vacio(document.getElementById('res'));};
+document.getElementById('copiar').onclick=()=>{
+  const ids=Object.keys(guardados).filter(i=>!guardados[i].invalido);const lineas=['campo\tcorrecto\tinventado\tomitido\tequivocado'];
+  for(const k of CAMPOS){const c={correcto:0,inventado:0,omitido:0,equivocado:0};for(const id of ids)c[guardados[id].estados[k]]++;lineas.push([k,c.correcto,c.inventado,c.omitido,c.equivocado].join('\t'));}
+  const txt=lineas.join('\n');
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).catch(()=>{});
+};
+pintarResumen();
+
+</script>
+</body>
+</html>

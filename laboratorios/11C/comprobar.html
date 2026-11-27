@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comprobar la traducción · Laboratorio 11C</title>
+<style>
+  :root { --fondo: #fbf8f5; --texto: #443728; --borde: #c9bdb5; --caja: #ebe2e0; --ok: #1d6b3a; --mal: #a3261c; }
+  body { font: 16px/1.5 system-ui, sans-serif; background: var(--fondo); color: var(--texto); margin: 0 auto; padding: 16px; max-width: 60rem; }
+  h1 { font-size: 1.4rem; } h2 { font-size: 1.1rem; margin-top: 1.6rem; }
+  textarea { width: 100%; min-height: 16rem; box-sizing: border-box; font: 14px/1.4 ui-monospace, monospace; border: 1px solid var(--borde); padding: 8px; }
+  button { font: inherit; padding: 8px 16px; border: 1px solid var(--texto); background: var(--texto); color: #fff; border-radius: 4px; cursor: pointer; }
+  input, select { font: inherit; padding: 4px 6px; border: 1px solid var(--borde); }
+  pre { background: var(--caja); padding: 12px; overflow-x: auto; white-space: pre-wrap; border-radius: 4px; }
+  .fila { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+  label { display: flex; flex-direction: column; font-size: .9rem; }
+  .aviso { background: var(--caja); padding: 8px 12px; border-left: 4px solid var(--texto); }
+  .ok { color: var(--ok); font-weight: 600; } .mal { color: var(--mal); font-weight: 600; }
+  @media (prefers-color-scheme: dark) { :root { --fondo: #1e1a17; --texto: #eadfd6; --borde: #6b5f57; --caja: #2c2622; --ok: #6fd18f; --mal: #ff8a80; } button { background: var(--texto); color: var(--fondo); } input, select, textarea { background: var(--fondo); color: var(--texto); } }
+</style>
+</head>
+<body>
+<h1>Comprobar la traducción de calcular_factura_copilot</h1>
+<p class="aviso">Esta página ejecuta en tu navegador el código que pegues; no envía nada a ningún sitio. Lee el código antes de pulsar el botón: es código de otra persona (o de un modelo).</p>
+
+<h2>1 · Pega la traducción</h2>
+<p>Una función llamada <code>calcularFacturaCopilot</code>, en JavaScript estándar y sin bibliotecas.</p>
+<textarea id="codigo" spellcheck="false" aria-label="Código JavaScript de la traducción"></textarea>
+<p><button id="comprobar" type="button">Comprobar con los 106 casos</button> <button id="malla" type="button">Comprobar con la malla (2.188 entradas)</button></p>
+<p id="resumen" role="status"></p>
+<pre id="informe" hidden></pre>
+
+<h2>2 · Probar una llamada (para contrastar la documentación)</h2>
+<div class="fila">
+  <label>Plan <select id="plan"><option>Starter</option><option selected>Team</option><option>Enterprise</option></select></label>
+  <label>Usuarios <input id="usuarios" value="25" size="6"></label>
+  <label>Periodo <select id="periodo"><option>mensual</option><option>anual</option></select></label>
+  <label>Educativo <select id="educativo"><option value="false">no</option><option value="true">sí</option></select></label>
+  <button id="probar" type="button">Probar</button>
+</div>
+<pre id="resultado" hidden></pre>
+
+<script src="comprobar_nucleo.js"></script>
+<script src="datos/casos_aceptacion.js"></script>
+<script src="datos/malla_equivalencia.js"></script>
+<script>
+  const $ = id => document.getElementById(id);
+  function cargarFuncion() { return ComprobarNucleo.cargar($("codigo").value); }
+  function comprobar(casos) {
+    const resumen = $("resumen"), informe = $("informe");
+    try {
+      const c = cargarFuncion();
+      const r = ComprobarNucleo.ejecutar(c.funcion, casos);
+      resumen.className = r.pasan === r.total ? "ok" : "mal";
+      resumen.textContent = "Casos que pasan: " + r.pasan + "/" + r.total;
+      informe.hidden = false;
+      informe.textContent = c.avisos.map(a => "Aviso: " + a + "\n").join("") + ComprobarNucleo.informe(r, 15);
+    } catch (e) { resumen.className = "mal"; resumen.textContent = "No se puede comprobar."; informe.hidden = false; informe.textContent = e.message; }
+  }
+  $("comprobar").addEventListener("click", () => comprobar(CASOS));
+  $("malla").addEventListener("click", () => comprobar(ComprobarNucleo.expandirMalla(MALLA)));
+  $("probar").addEventListener("click", () => {
+    const salida = $("resultado"); salida.hidden = false;
+    try {
+      const c = cargarFuncion(); const t = $("usuarios").value.trim();
+      const u = /^-?\d+(\.\d+)?$/.test(t) ? Number(t) : t === "true" ? true : t;
+      salida.textContent = JSON.stringify(c.funcion($("plan").value, u, $("periodo").value, $("educativo").value === "true"), null, 2);
+    } catch (e) { salida.textContent = "Lanza un error: " + e.message; }
+  });
+</script>
+</body>
+</html>

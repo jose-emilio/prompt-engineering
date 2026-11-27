@@ -1,0 +1,6 @@
+id,cliente,empresa,producto,plan,hecho,importe_eur,antiguedad,gravedad,condicion_aplicable,no_prometer
+C1,Carolina Vidal Roig,Aceros del Turia,DocuMind,Team,"Cargo duplicado de 599,00 € (1 y 3 de octubre)",599.0,2 años,media,Error de facturación imputable a Altanoria: reembolso (condiciones 5.4),plazos de abono concretos
+C2,Bruno Esteve Cano,Logística Pirineos,Altanoria Copilot,Starter,Caída de 6 horas el día 14 de septiembre,36.0,8 meses,alta,Crédito SLA según disponibilidad del mes (sla.md §2); hay que solicitarlo en 30 días,compensación en efectivo
+C3,Andrea Roig Pla,Hoteles Costa Brava Sur,AgentHub,Team,"Cobro de 120,00 € por exceso de ejecuciones que considera injusto",120.0,1 año,baja,"Exceso a 0,008 € por ejecución sobre las 100.000 incluidas",anular el exceso sin revisar el uso
+C4,Gonzalo Peiró Gil,Constructora Meseta,Altanoria Copilot,Enterprise,Cuatro días sin poder usar el SSO,2950.0,3 años,crítica,"Incidencia P1 con respuesta en 1 hora; créditos SLA si baja del 99,9 %",causas internas sin confirmar
+C5,Nerea Sanchis Orts,Clínica Dental Sonrisa,DocuMind,Starter,Respuestas con información desactualizada de un documento,149.0,3 meses,media,El Servicio se presta «tal cual» respecto a la exactitud (condiciones 10.1); hay que reindexar,garantía de exactitud total

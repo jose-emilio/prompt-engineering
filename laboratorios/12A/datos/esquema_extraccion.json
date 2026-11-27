@@ -1,0 +1,111 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "remitente",
+    "empresa",
+    "producto",
+    "plan",
+    "tipo_solicitud",
+    "fecha_hecho",
+    "importe_reclamado_eur",
+    "referencia_factura",
+    "codigo_error",
+    "usuarios_afectados",
+    "urgencia"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "remitente": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "empresa": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "producto": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Altanoria Copilot",
+        "DocuMind",
+        "AgentHub",
+        null
+      ]
+    },
+    "plan": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "Starter",
+        "Team",
+        "Enterprise",
+        null
+      ]
+    },
+    "tipo_solicitud": {
+      "type": "string",
+      "enum": [
+        "factura",
+        "incidencia",
+        "cancelacion",
+        "comercial",
+        "consulta"
+      ]
+    },
+    "fecha_hecho": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "importe_reclamado_eur": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "referencia_factura": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^ALT-\\d{4}-\\d{5}$"
+    },
+    "codigo_error": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "usuarios_afectados": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "urgencia": {
+      "type": "string",
+      "enum": [
+        "alta",
+        "media",
+        "baja"
+      ]
+    }
+  }
+}

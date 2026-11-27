@@ -1,0 +1,36 @@
+id,tipo,pregunta,respuesta_esperada,fuente
+Q-01,respondible,¿Cuántos días de antelación se exigen para no renovar la suscripción anual?,15 días,condiciones 5.2
+Q-02,respondible,¿En qué plazo debe pagarse una factura y qué interés se aplica por demora?,30 días desde la fecha de la factura; 8 % anual,condiciones 4.3
+Q-03,respondible,¿Con cuánta antelación se comunican los cambios de precio?,60 días,condiciones 4.4
+Q-04,respondible,¿Quién es titular de los resultados que genera el Servicio?,"El cliente, sin perjuicio de derechos de terceros sobre el material aportado",condiciones 6.4
+Q-05,respondible,¿Cuánto tiempo mantiene la confidencialidad cada parte tras el contrato?,Cinco años después de la vigencia,condiciones 8
+Q-06,respondible,¿Cuál es el límite de la responsabilidad de Altanoria?,Las cantidades pagadas por el cliente en los 12 meses anteriores al hecho,condiciones 11.1
+Q-07,respondible,¿En qué plazo debe notificar Altanoria una brecha de seguridad al cliente?,Sin dilación indebida y como máximo en 48 horas desde que tenga conocimiento,condiciones 12
+Q-08,respondible,¿De cuánto tiempo dispone el cliente para exportar sus datos tras terminar el contrato?,30 días,condiciones 14.2
+Q-09,respondible,¿Ante qué tribunales se resuelven las controversias?,Juzgados y tribunales de Valencia (salvo fuero imperativo),condiciones 15
+Q-10,respondible,¿Puede Altanoria modificar las condiciones? ¿Con qué aviso?,"Sí, con 30 días de aviso; el cliente puede cancelar sin penalización antes de su entrada en vigor",condiciones 16
+Q-11,respondible,¿Qué pasa si el cliente solicita la cancelación de una suscripción mensual?,Surte efecto al final del periodo ya pagado; las mensuales no son reembolsables salvo error de facturación de Altanoria,condiciones 5.1 y 5.4
+Q-12,respondible,¿Dónde se alojan los datos?,"En la Unión Europea (Fráncfort e Irlanda), incluidas las copias de seguridad",privacidad 3
+Q-13,respondible,¿Qué cifrado usa Altanoria?,AES-256 en reposo y TLS 1.2 o superior en tránsito,privacidad 4
+Q-14,respondible,¿Cuánto tiempo se conservan las copias de seguridad?,30 días,privacidad 4
+Q-15,respondible,¿Cuánto tiempo se conservan los datos de facturación?,6 años por obligación legal,privacidad 8
+Q-16,respondible,¿Qué certificaciones tiene Altanoria y cuál está en proceso?,ISO/IEC 27001 desde 2023; ENS categoría media en proceso (previsión 2027),privacidad 5
+Q-17,respondible,¿Cuántas horas de mantenimiento programado se excluyen al mes y con qué aviso?,"Hasta 4 horas, con 72 horas de antelación",sla 1
+Q-18,respondible,¿Qué crédito corresponde si la disponibilidad es del 94 %?,50 % de la cuota mensual,sla 2
+Q-19,respondible,¿Cuál es el tiempo de primera respuesta de una incidencia P2 en el plan Team?,8 horas (horario de soporte),sla 4
+Q-20,respondible,¿Cuál es el horario de soporte?,"Lunes a viernes, 9:00 a 18:00 (hora peninsular), salvo festivos nacionales y de la Comunitat Valenciana",sla 4
+Q-21,respondible,¿Cuántas peticiones por minuto admite la API de Copilot Enterprise?,1.200,catálogo (Copilot)
+Q-22,respondible,¿Cuál es el precio de AgentHub Enterprise?,A medida: no hay precio publicado,catálogo (AgentHub)
+Q-23,respondible,¿Cuántas ejecuciones incluye AgentHub Team al mes y cuánto cuesta cada una adicional?,"100.000; 0,008 €",catálogo (AgentHub)
+Q-24,no_consta,¿Dispone Altanoria de certificación SOC 2?,No consta en la documentación,privacidad 5 (solo ISO 27001 y ENS en proceso)
+Q-25,no_consta,¿Cuál es el tiempo máximo de resolución garantizado para una incidencia P1?,No consta: Altanoria solo compromete tiempos de primera respuesta (salvo contratos Enterprise específicos),sla 4
+Q-26,no_consta,¿Ofrece Altanoria descuentos para organizaciones del sector público?,No consta (solo hay descuento educativo y sin ánimo de lucro),catálogo
+Q-27,no_consta,¿Qué modelo de lenguaje concreto usa Altanoria Copilot internamente?,No consta,privacidad 6 (solo describe un proveedor ficticio genérico)
+Q-28,no_consta,¿Cuántos clientes bancarios tiene Altanoria?,No consta,altanoria.md (no detalla)
+Q-29,no_consta,¿Hay un plan de recuperación ante desastres con un RTO de 4 horas?,No consta,privacidad (no lo menciona)
+Q-30,no_consta,¿Admite Altanoria Copilot el IDE Eclipse?,No consta (solo se mencionan VS Code y JetBrains),altanoria.md
+Q-31,ambigua,¿Cuánto cuesta?,"Pide aclaración: producto, plan y periodo de facturación",-
+Q-32,ambigua,¿Puedo cancelar y que me devuelvan el dinero?,Pide aclaración: ¿suscripción mensual o anual y cuándo se contrató?,condiciones 5
+Q-33,ambigua,¿Cuántos usuarios admite?,Pide aclaración: producto y plan,-
+Q-34,ambigua,¿Cuánto tarda el soporte en responder?,Pide aclaración: prioridad y plan,sla 4
+Q-35,ambigua,¿Me aplican descuento?,"Pide aclaración: producto, número de usuarios, periodo y si es entidad educativa",catálogo

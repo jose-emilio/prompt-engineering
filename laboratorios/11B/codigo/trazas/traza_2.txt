@@ -1,0 +1,7 @@
+Informe de QA — fallo funcional
+
+Pasos:
+1. Crear una licencia con caducidad 2026-11-08 (último día de validez).
+2. Consultar la vigencia con hoy = 2026-11-08.
+Resultado obtenido: esta_vigente() devuelve False y el cliente recibe un aviso de «licencia caducada» el mismo día en que aún es válida.
+Resultado esperado: True el día de caducidad (inclusive) y False al día siguiente.

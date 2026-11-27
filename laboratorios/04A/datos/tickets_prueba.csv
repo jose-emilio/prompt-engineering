@@ -1,0 +1,644 @@
+id,texto,categoria,dificil
+P-001,"Hola,
+
+La extensión de PyCharm bloquea el editor cada pocos minutos y el equipo de Atención al cliente no puede programar. Ya hemos reinstalado dos veces.
+
+Gracias.",integracion,no
+P-002,"Hola equipo de soporte:
+
+En la última factura emitida con número ALT-2026-08735, aún se reflejan 6 licencias, cuando solicitamos la reducción a 1 para el próximo ciclo. ¿Sería posible corregir este error en la facturación?
+
+Muchas gracias de antemano.",facturacion,no
+P-003,"El informe mensual de Altanoria Copilot muestra un total distinto al de la suma de sus líneas (3.480,00 € frente a la suma real). Parece un error de cálculo. Por otro lado, ¿Es viable configurar AgentHub para que solo permita accesos desde el rango de IP de nuestra oficina? Me gustaría saber si esta funcionalidad está disponible en el plan Team.",error,si
+P-004,"Hola equipo de soporte:
+
+Me gustaría saber cómo se gestiona la renovación automática de DocuMind y, además, me interesa conocer con qué antelación se notifica a los usuarios sobre cualquier cambio en el precio.
+
+Le paso también el PDF de la factura.",consulta,no
+P-005,"El cobro realizado el 14 de julio de 2026 por un importe de 2.400,00 € supera lo acordado, ya que nos estábais aplicando la tarifa estándar en lugar del descuento por volumen que ya habíamos firmado. Por otro lado, la información en AgentHub se está eliminando en vez de actualizarse durante la sincronización con Google Drive, lo que nos ha provocado una pérdida de datos durante 40 minutos y, en este momento, no contamos con el método para detenerlo.",facturacion,si
+P-006,"Desde el lunes, la indexación de documentos en DocuMind ha pasado a tardar más de seis horas, cuando antes se completaba en solo 20 minutos, lo que obliga al equipo de Atención al cliente a trabajar con información obsoleta.
+
+Un saludo,
+Silvia Galiana Uribe",rendimiento,no
+P-007,"El informe mensual de Altanoria Copilot muestra un total distinto al de la suma de sus líneas (599,00 € frente a la suma real). Parece un error de cálculo.
+
+Saludos cordiales,
+Bruno Lozano Mascarell
+Consultora Atalaya
+
+Obtener Outlook para Android",error,no
+P-008,"¿cuántos usuarios mínimos hay que contratar en el plan team? somos 120 personas.
+
+Quedo a la espera.",consulta,no
+P-009,"Hola equipo de soporte:
+
+Algunas respuestas de DocuMind se quedan cargando unos 30 segundos y luego terminan bien. Nos pasa dos o tres veces al día, sin un patrón claro.
+
+Gracias y un saludo.
+Carlos Ibáñez Segarra",rendimiento,no
+P-010,"Me pregunto si AgentHub es compatible con Jira Cloud, ya que no logro encontrarlo dentro de la lista de conectores disponibles. Por otro lado, se han registrado accesos no autorizados desde naciones en las que no tenemos presencia operativa utilizando las credenciales de administrador asignadas a Banco Mediterráneo Digital dentro del sistema Altanoria Copilot, y durante la noche de hoy se realizó la exportación de información perteneciente a nuestros clientes.",funcionalidad,si
+P-011,"Hola equipo de soporte:
+
+Al realizar la exportación del historial de Altanoria Copilot a formato CSV, al abrir el archivo resultante en Excel se observan símbolos extraños en lugar de los caracteres con tilde.
+
+Saludos cordiales,
+Irene Arroyo Fabra
+Eólica del Maestrazgo
+
+Enviado desde mi iPhone",error,no
+P-012,Sería de gran utilidad que DocuMind incluyera la funcionalidad para programar informes semanales que se envíen por correo electrónico. ¿Están considerando implementar esta característica?,funcionalidad,no
+P-013,"La extensión de IntelliJ IDEA para AgentHub no autocompleta desde la última actualización del IDE. En Visual Studio Code sí funciona; solo falla en IntelliJ IDEA.
+
+Gracias.",integracion,no
+P-014,"El informe mensual de AgentHub presenta un total que no coincide con la suma individual de sus líneas, mostrando 3.480,00 € en lugar del importe real, lo cual sugiere un problema en el cálculo.
+
+Un saludo,
+Carlos Galiana Pla",error,no
+P-015,"Estimados señores:
+
+¿Cuál es el plazo de respuesta del soporte para una incidencia urgente en el plan Team?
+
+Quedo a la espera.",consulta,no
+P-016,"---------- Mensaje reenviado ----------
+Estimados señores:
+
+Desde hace 15 minutos, el asistente de Altanoria Copilot está arrojando el error AUTH-401 en todas las solicitudes, afectando directamente nuestro centro de atención al cliente, que carece de una alternativa funcional en este momento crítico.
+
+Muchas gracias de antemano.",rendimiento,no
+P-017,"Después de varios intentos que no han tenido éxito, me muestra el mensaje de 'cuenta bloqueada'; aunque estoy dispuesto a esperar, me gustaría saber con precisión cuánto tiempo se mantendrá esta restricción.",acceso,no
+P-018,"Qué tal,
+
+Hoy han intenntado cobrar cuatro veces el importe anual de 299,00 € correspondiente a Altanoria Copilot en un solo día, lo cual ha agotado completamente el saldo disponible de nuestra tarjeta corporativa. Es imperativo que cancelen inmediatamente todos los reintentos de cobro.
+
+Un saludo,
+Emilio Cabrera Alcaraz",facturacion,no
+P-019,"Desde ayer, nuestro webhook de AgentHub está recibiendo cada evento tres veces, lo que está provocando una duplicación de pedidos en el ERP de Banco Mediterráneo Digital. Es urgente que esto se corrija hoy mismo. Por otro lado, el proceso de autenticación en dos pasos de AgentHub presenta un retraso de diez minutos, por lo que el código expira antes de que podamos utilizarlo, y en algunas ocasiones ni siquiera llega.",integracion,si
+P-020,"Hola equipo de soporte:
+
+Algunas respuestas de AgentHub se quedan cargando unos 30 segundos y luego terminan bien. Nos pasa dos o tres veces al día, sin un patrón claro.
+
+Saludos cordiales,
+Tomás Cabrera Cuesta
+Quesos Artesanos Manchegos
+
+Enviado desde mi móvil, perdonen las erratas",rendimiento,no
+P-021,"Qué tal,
+
+Desde el lunes, hemos observado que el proceso de indexación de documentos en Altanoria Copilot ha aumentado drásticamente a más de seis horas, mientrras que anteriormente se completaba en solo 20 minutos, lo que provoca que el equipo de Operaciones maneje información obsoleta.
+
+Enviado desde mi móvil, perdonen las erratas",rendimiento,no
+P-022,"Estimados señores:
+
+La pérdida de información en Altanoria Copilot continúa desde hace 55 minutos, y parece que la sincronización con Google Drive está eliminando documentos en vez de actualizarlos; necesitamos urgencia para detener esto.
+
+Quedo a la espera.",integracion,no
+P-023,"Buenas tardes,
+
+Desde el lunes, la indexación de documentos en Altanoria Copilot ha pasado a tardar más de seis horas, cuando antes se completaba en solo 20 minutos, lo que obliga al equipo de Ingeniería a trabajar con información obsoleta.
+
+Adjunto captura de pantalla.",rendimiento,no
+P-024,"Qué tal,
+
+Un antiguo empleado de Grupo Hortelano todavía aparece como administrador en Altanoria Copilot y ha descargado documentos esta semana. Necesitamos revocarle el acceso y saber qué ha visto.",seguridad,no
+P-025,"Algunas respuestas de DocuMind se quedan cargando unos 30 segundos y luego terminan bien. Nos pasa dos o tres veces al día, sin un patrón claro.
+
+Gracias.
+
+(Adjunto el log, pesa 2 MB.)",rendimiento,no
+P-026,"Buenos días,
+
+El intento de cobro anual de 299,00 € por Altanoria Copilot se ha realizado cuatro veces en un solo dia, dejando nuestra tarjeta corporativa sin saldo disponible; es urgente que cancelen estos reintentos de forma inmediata hoy mismo.",facturacion,no
+P-027,"Qué tal,
+
+¿Serían tan amables de orientarme sobre el procedimiento para obtener las facturas previas al año 2025 correspondientes a Altanoria Copilot? Nuestro área de contabilidad las requiere para sus trámites.
+
+Muchas gracias de antemano.",facturacion,no
+P-028,"HOLA MARTA,
+
+ME TEMO SI EXISTE DOCUMENTACIÓN QUE EXPLIQUE CÓMO REALIZAR LA PAGINACIÓN DE LOS RESULTADOS OBTENIDOS A TRAVÉS DE LA API DE AGENTHUB, YA QUE NO HE LOGRADO HALLAR NINGÚN EJEMPLO QUE MUESTRE MÁS DE 100 ELEMENTOS.
+
+QUEDO A LA ESPERA.",integracion,no
+P-029,"¿Serían tan amables de orientarme sobre el procedimiento para obtener las facturas previas al año 2025 correspondientes a AgentHub? Nuestro área de contabilidad las requiere para sus trámites.
+
+Muchas gracias de antemano.",facturacion,no
+P-030,"Hemos detectado accesos desde países donde no operamos con las credenciales de administrador de Logística Pirineos en DocuMind, y esta noche se han exportado datos de clientes.
+
+Muchas gracias de antemano.",seguridad,no
+P-031,"Cuando el texto a procesar excede un cierto tamaño, las respuestas generadas por AgentHub se cortan abruptamente en medio de una frase; sin embargo, funciona correctamente con textos de longitud reducida.
+
+Quedo a la espera.",error,no
+P-032,"Qué tal,
+
+¿Cómo funciona la renovación automática de Altanoria Copilot? ¿Con cuánta antelación avisan de los cambios de precio?
+
+Gracias y un saludo.
+Andrea Millán Cabrera",consulta,no
+P-033,"El informe mensual de AgentHub presenta un total que no coincide con la suma individual de sus líneas, mostrando 2.400,00 € en lugar del importe real, lo cual sugiere un problema en el cálculo.",error,no
+P-034,"HOLA,
+
+NECESITAMOS CANCELAR ALTANORIA COPILOT ESPECÍFICAMENTE PARA EL DEPARTAMENTO DE FINANZAS, CONSERVANDO TODAS LAS DEMÁS LICENCIAS ACTUALMENTE ACTIVAS. ¿PODRÍAN CONFIRMARNOS SI ESTO ES FACTIBLE Y EXPLICAR CÓMO AFECTARÁ ESTO A LA FACTURA MENSUAL?
+
+GRACIAS.",cancelacion,no
+P-035,"Mi cuenta aún está asociada a mi antiguo puesto y no tengo la opción de modificar el correo electrónico registrado bajo el usuario nicolas.bosch@ceramicaslevan.example. ¿Sería posible realizar esta actualización? Por otro lado, hoy han intentado cobrar cuatro veces el importe anual de 299,00 € correspondiente a DocuMind en un solo día, lo cual ha agotado completamente el saldo disponible de nuestra tarjeta corporativa. Es imperativo que cancelen inmediatamente todos los reintentos de cobro.",acceso,si
+P-036,"Buenos días,
+
+Desde el lunes, la indexación de documentos en DocuMind ha pasado a tardar más de seis horas, cuando antes se completaba en solo 20 minutos, lo que obliga al equipo de Operaciones a trabajar con información obsoleta.
+
+Muchas gracias de antemano.
+
+Enviado desde mi iPhone",rendimiento,no
+P-037,"Estimados señores:
+
+Desde la actualización implementada hoy, algunos usuarios de Operaciones han reportado que Altanoria Copilot está arrojando respuestas correspondientes a otra cuenta, mostrando resultados que definitivamente no pertenecen a nuestra base de datos.
+
+Saludos cordiales,
+Sergio Fabra Carrasco
+Grupo Hortelano",seguridad,no
+P-038,"Para cerrar el trimestre, nos gustaría solicitar un resumen completo de todas las facturas emitidas a Ayuntamiento de Villanueva del Río desde enero; no hay ningún error, es únicamente para fines de contabilidad.
+
+Saludos cordiales,
+Carlos Segarra Campos
+Ayuntamiento de Villanueva del Río",facturacion,no
+P-039,"Las respuestas de DocuMind salen cortadas a mitad de frase cuando el texto supera cierto tamaño. Con textos cortos va bien.
+
+Gracias.",error,no
+P-040,"Al exportar el historial de DocuMind a CSV, los caracteres con tilde salen como símbolos extraños al abrirlo en Excel. Por otro lado, la primera consulta del día en DocuMind es muy lenta (unos 20 s) y las siguientes van bien. ¿Es normal?",error,si
+P-041,"Queremos dar de baja AgentHub para el departamento de Marketing, pero mantener el resto de licencias. ¿Es possible y cómo queda la factura?
+
+Gracias.",cancelacion,no
+P-042,"Estimados señores:
+
+¿Se puede restringir el acceso a AgentHub por rango de IP para que solo se entre desde la red de la oficina? No sé si es posible en el plan Enterprise.
+
+Gracias.
+
+Enviado desde mi móvil, perdonen las erratas",funcionalidad,no
+P-043,"Hola equipo de soporte:
+
+Para cerrar el trimestre, nos gustaría solicitar un resumen completo de todas las facturas emitidas a Juguetes Lumbreras desde enero; no hay ningún error, es únicamente para fines de contabilidad.",facturacion,no
+P-044,"Hola Marta,
+
+Me han cobrado la renovación anual de DocuMind aunque envié un correo pidiendo la baja hace tres semanas. Solicito la cancelación y la devolución.
+
+Quedo a la espera.",cancelacion,no
+P-045,"Qué tal,
+
+Si no renovamos Altanoria Copilot, ¿durante cuánto tiempo seguirán disponibles nuestros datos para exportarlos?
+
+Gracias.",cancelacion,no
+P-046,"Buenas tardes,
+
+Un cliente de Aguas de Cantabria ha visto documentos internos de otra empresa en los resultados de DocuMind. Creemos que hay una fuga entre cuentas y exigimos que lo paren ya.
+
+Gracias.",seguridad,no
+P-047,"Hola Marta,
+
+¿Ofrecen descuentos para organizaciones sin fines de lucro o para instituciones educativas? Somos una fundación.
+
+Enviado desde mi iPhone",consulta,no
+P-048,"Hola equipo de soporte:
+
+Nos han aplicado el precio de tarifa y no el descuento por volumen que firmamos. El cargo de 15.000,00 € de 14 de febrero de 2026 es mayor de lo pactado.",facturacion,no
+P-049,"Hola Marta,
+
+¿Qué nivel de disponibilidad asegura el Acuerdo de Nivel de Servicio asociado al plan Enterprise, y en caso de incumplimiento, qué tipo de compensación se aplica?
+
+Gracias y un saludo.
+Óscar Gil Roig
+
+Adjunto captura de pantalla.",consulta,no
+P-050,"Qué tal,
+
+El intento de cobro anual de 29,00 € por AgentHub se ha realizado cuatro veces en un solo día, dejando nuestra tarjeta corporativa sin saldo disponible; es urgente que cancelen estos reintentos de forma inmediata hoy mismo.
+
+Gracias y un saludo.
+Eduardo Peiró Cabrera",facturacion,no
+P-051,"Hola Marta,
+
+Si no renovamos AgentHub, ¿durante cuánto tiempo seguirán disponibles nuestros datos para exportarlos?",cancelacion,no
+P-052,"Hola Marta,
+
+Solicité la baja por escrito el 31 de marzo de 2026 y sigo recibiendo facturas. Pido la confirmación de la cancelación y el abono de lo cobrado después.
+
+Un saludo,
+Iker Bellver Muñoz",cancelacion,no
+P-053,"BUENOS DÍAS,
+
+¿OFRECEN DESCUENTOS PARA FINES EDUCATIVOS O PARA ORGANIZACIONES SIN ÁNIOM DE LUCRO? SOMOS UNA FUNDACIÓN.",consulta,no
+P-054,"Hola,
+
+¿Es posible limitar el acceso a Altanoria Copilot únicamente a través del rango de IP de la red de la oficina? Me pregunto si esta funcionalidad está disponible en el plan Team.
+
+Un saludo,
+Silvia Mascarell Segarra
+
+Adjunto: captura_error.png",funcionalidad,no
+P-055,"Buenos días,
+
+Desde la actualización implementada hoy, algunos usuarios de Recursos Humanos han reportado que AgentHub está arrojando respuestas correspondientes a otra cuenta, mostrando resultados que definitivamente no pertenecen a nuestra base de datos.
+
+Un saludo,
+Cristina Carrasco Peiró",seguridad,no
+P-056,"¿Es viable configurar Altanoria Copilot para que solo permita accesos desde el rango de IP de nuestra oficina? Me gustaría saber si esta funcionalidad está disponible en el plan Team.
+
+Gracias y un saludo.
+Paula Campos Ibáñez
+
+Enviado desde mi móvil, perdonen las erratas",funcionalidad,no
+P-057,¿Admite Altanoria Copilot la integración con Jira Cloud? No la veo en la lista de conectores.,funcionalidad,no
+P-058,"Buenos días,
+
+El cobro realizado el 18 de junio de 2026 por un importe de 15.000,00 € supera lo acordado, ya que nos estábais aplicando la tarifa estándar en lugar del descuento por volumen que ya habíamos firmado.
+
+Un saludo,
+Noelia Bosch Aguilar",facturacion,no
+P-059,"Hola,
+
+En ocasiones, las respuestas de Altanoria Copilot permanecen en carga durante aproximadamente treinta segundos antes de mostrarse correctamente, y este inconveniente ocurre de dos a tres veces al día, sin que podamos identificar un patrón específico que lo cause.",rendimiento,no
+P-060,"Desde la actualización de contraseñas realizada ayer, el equipo de Marketing está obteniendo un mensaje de 'credenciales no válidas' al intentar acceder a DocuMind, mientras que los demás equipos no presentan problemas. Actualmente, 15 miembros de este equipo se encuentran sin acceso al sistema.
+
+--
+Sergio Aguilar Mascarell
+Mutua Atlántica
+Tel. 91 555 01 23",acceso,no
+P-061,"Estimados señores:
+
+Desde la actualización de contraseñas realizada ayer, el equipo de Recursos Humanos está obteniendo un mensaje de 'credenciales no válidas' al intentar acceder a AgentHub, mientras que los dmeás equipos no presentan problemas. Actualmente, 8 miembros de este equipo se encuentran sin acceso al sistema.
+
+Muchas gracias de antemano.",acceso,no
+P-062,"Buenas tardes,
+
+Si no procedemos con la renovación de Altanoria Copilot, quisiera saber por cuánto tiempo aún podremos acceder y exportar nuestros datos existentes.
+
+Gracias y un saludo.
+Daniel Pla Galiana",cancelacion,no
+P-063,"El 14 de enero de 2026 presenté una solicitud formal para dar de baja mi servicio, sin embargo, continúo recibiendo facturas de forma regular. Por este motivo, requiero una confirmación escrita de que mi cancelación ha sido procesada exitosamente, junto con el reembolso correspondiente por los cargos realizados tras dicha fecha.",cancelacion,no
+P-064,"¿Hay alguna opción para replicar un flujo de AgentHub de un espacio de trabajo a otro, o es necesario crearlo de cero en cada uno?
+
+Un saludo,
+Claudia Mascarell Roig",funcionalidad,no
+P-065,"Estimados señores:
+
+En las horas de mayor demanda hemos superado el límite de 90 solicitudes por minuto de la API, lo que nos está generando errores 429, y nos preguntamos si existe la posibilidad de ampliar este límite sin tener que cambiar de plan.
+
+Un saludo,
+Javier Lozano Aguilar",integracion,no
+P-066,"Hola,
+
+Desde la actualización de esta madrugada, el sistema de autenticación ha comenzado a rechazar a todos los usuarios de Viñedos Rioja Alta, lo que ha provocado que sea imposible acceder a AgentHub; además, el servicio de atención al cliente se encuentra completamente inactivo desde las 10:40.",acceso,no
+P-067,"Hola,
+
+Me aparece 'cuenta bloqueada' tras varios intentos fallidos. Puedo esperar, pero me gustaría saber cuánto tiempo dura el bloqueo.",acceso,no
+P-068,"Hola,
+
+El informe mensual de DocuMind presenta un total que no coincide con la suma individual de sus líneas, mostrando 29,00 € en lugar del importe real, lo cual sugiere un problema en el cálculo.
+
+Enviado desde mi iPhone",error,no
+P-069,"Me pregunto si Altanoria Copilot es compatible con Jira Cloud, ya que no logro encontrarlo dentro de la lista de conectores disponibles. Por otro lado, me gustaría saber cómo se gestiona la renovación automática de AgentHub y con qué antelación se notifica a los usuarios sobre posibles cambios de precio.",funcionalidad,si
+P-070,"---------- Mensaje reenviado ----------
+Buenos días,
+
+¿Admite AgentHub la integración con Jira Cloud? No la veo en la lista de conectores.
+
+Saludos cordiales,
+Sergio Alcaraz Barberá
+Olivares de Jaén Cooperativa",funcionalidad,no
+P-071,"Buenas tardes,
+
+En AgentHub, el modo oscuro hace que los enlaces en azul oscuro resulten ilegibles cuando sse colocan sobre un fondo negro, aunque no es algo de alta gravedad.
+
+Muchas gracias de antemano.",error,no
+P-072,"Hola,
+
+Desde el lunes, la indexación de documentos en AgentHub ha pasado a tardar más de seis horas, cuando antes se completaba en solo 20 minutos, lo que obliga al equipo de Marketing a trabajar con información obsoleta.
+
+Gracias.",rendimiento,no
+P-073,"SERÍA MUY ÚTIL QUE ALTANORIA COPILOT PERMITIERA PROGRAMAR INFORMES SEMANALES POR CORREO. ¿LO TIENEN EN CUENTA?
+
+QUEDO A LA ESPERA.",funcionalidad,no
+P-074,"Hola Marta,
+
+El equipo de Finanzas no puede programar debido a que la extensión de VS Code bloquea el editor cada pocos minutos, a pesar de haber realizado dos reinstalaciones sin obtener solución.",integracion,no
+P-075,"---------- Mensaje reenviado ----------
+Hola,
+
+Al intentar vincular SharePoint con AgentHub nos aparece el mensaje de error 'invalid_grant', a pesar de haber regenerado el token en dos ocasiones sin que esto resuelva el problema.",integracion,no
+P-076,"Hola,
+
+Un antiguo empleado de Seguros Tramuntana todavía aparece como administrador en DocuMind y ha descargado documentos esta semana. Necesitamos revocarle el acceso y saber qué ha visto.",seguridad,no
+P-077,"Hola,
+
+En las horas de mayor demanda hemos superado el límite de 90 solicitudes por minuto de la API, lo que nos está generando errores 429, y nos preguntamos si existe la posibilidad de ampliar este límite sin tener que cambiar de plan.",integracion,no
+P-078,"Estimados señores:
+
+Me pregunto si AgentHub es compatible con Jira Cloud, ya que no logro encontrarlo dentro de la lista de conectores disponibles.
+
+Muchas gracias de antemano.",funcionalidad,no
+P-079,"El intento de cobro anual de 15.000,00 € por Altanoria Copilot se ha realizado cuatro veces en un solo día, dejando nuestra tarjeta corporativa sin saldo disponible; es urgente que cancelen estos reintentos de forma inmediata hoy mismo. Por otro lado, el asistente de Altanoria Copilot devuelve error HTTP 503 en todas las peticiones desde hace 90 minutos. Nuestro centro de atención al cliente depende de él y no hay alternativa.",facturacion,si
+P-080,"Al exportar el historial de Altanoria Copilot a CSV, los caracteres con tilde salen como símbolos extraños al abrirlo en Excel.",error,no
+P-081,"El intento de cobro anual de 2.400,00 € por AgentHub se ha realizado cuatro veces en un solo día, dejando nuestra tarjeta corporativa sin saldo disponible; es urgente que cancelen estos reintentos de forma inmediata hoy mismo.
+
+Gracias y un saludo.
+Adrián Campos Sanchis",facturacion,no
+P-082,"Hola Marta,
+
+Nos gustaría saber en qué ubicación físicos se encuentran almacenados los datos de DocuMind y si estos se utilizan con el fin de entrenar modelos de procesamiento, ya que es una información esencial para incluir en nuestro informe de protección de datos.",seguridad,no
+P-083,"Hola equipo de soporte:
+
+Me gustaría saber cuál es el número mínimo de usuarios requerido para suscribirse al plan Team. Nuestro equipo está compuesto por 60 personas.",consulta,no
+P-084,"Buenos días,
+
+¿Cuántos usuarios mínimos hay que contratar en el plan Starter? Somos 120 personas.",consulta,no
+P-085,"Qué tal,
+
+¿Es viable configurar Altanoria Copilot para que solo permita accesos desde el rango de IP de nuestra oficina? Me gustaría saber si esta funcionalidad está disponible en el plan Team.
+
+Gracias.",funcionalidad,no
+P-086,"MI USUARIO EMILIO.OLMOS@FARMACIACENTRA.EXAMPLE SIGUE LIGADO A MI ANTIGUO PUESTO Y NO PUEDO CAMBIAR EL CORREO DE LA CUENTA. ¿PUEDEN ACTUALIZARLO?
+
+GRACIAS.",acceso,no
+P-087,"Qué tal,
+
+Al realizar la exportacion del historial de AgentHub a formato CSV, al abrir el archivo resultante en Excel se observan simbolos extranos en lugar de los caracteres con tilde.
+
+Muchas gracias de antemano.
+
+Le paso también el PDF de la factura.",error,no
+P-088,"Buenas tardes,
+
+El equipo de Recursos Humanos está imposibilitado para programar debido a que la extensión de WebStorm bloquea el editor cada cierto tiempo, específicamente cada pocos minutos, y a pesar de haber realizado dos reinstalaciones, el problema persiste.
+
+Gracias y un saludo.
+Claudia Uribe Mascarell",integracion,no
+P-089,"Buenas tardes,
+
+El código de la autenticación en dos pasos de DocuMind llega con 10 minutos de retraso y caduca antes de poder usarlo. A veces ni llega.
+
+Muchas gracias de antemano.
+
+Enviado desde mi móvil, perdonen las erratas",acceso,no
+P-090,"ESTIMADOS SEÑORES:
+
+EL INTENTO DE COBRO ANUAL DE 3.480,00 € POR DOCUMIND SE HA REALIZADO CUATRO VECES EN UN SOLO DÍA, DEJANDO NUESTRA TARJETA CORPORATIVA SIN SALDO DISPONIBLE; ES URGENTE QUE CANCELEN ESTOS REINTENTOS DE FORMA INMEDIATA HOY MISMO.
+
+GRACIAS Y UN SALUDO.
+SARA TORMO PLA",facturacion,no
+P-091,"Desde la actualización de esta madrugada, el sistema de gestión de identidad ha comenzado a rechazar a todos los usuarios de Olivares de Jaén Cooperativa. En estas condiciones, resulta imposible acceder a AgentHub, y además, el servicio de atención al cliente se encuentra completamente inacctivo desde las 9:15.",acceso,no
+P-092,"Qué tal,
+
+Me pregunto si Altanoria Copilot es compatible con Jira Cloud, ya que no logro encontrarlo dentro de la lista de conectores disponibles.
+
+Gracias.",funcionalidad,no
+P-093,"Buenos días,
+
+Solicitamos una nueva emisión de la factura ALT-2026-03452 a nombre de Seguros Tramuntana, ya que en la actual está registrado un CIF incorrecto. ¿Sería posible corregirlo y volver a emitirla con los datos adecuados?
+
+Adjunto captura de pantalla.",facturacion,no
+P-094,"Buenas tardes,
+
+Superamos el límite de 70 peticiones por minuto de la API en las horas punta y recibimos errores 429. ¿Se puede ampliar el límite sin cambiar de plan?",integracion,no
+P-095,"---------- Mensaje reenviado ----------
+Buenas tardes,
+
+La extensión de Altanoria Copilot para IntelliJ IDEA no se conecta con nuestro proxy corporaitvo. Aparece 'ECONNRESET'. Adjunto la configuración.",integracion,no
+P-096,"Buenas tardes,
+
+Solicitamos una nueva emisión de la factura ALT-2026-03710 a nombre de Aguas de Cantabria, ya que en la actual está registrado un CIF incorrecto. ¿Sería posible corregirlo y volver a emitirla con los datos adecuados?
+
+Adjunto captura de pantalla.",facturacion,no
+P-097,"Buenas tardes,
+
+Al exportar el historial de Altanoria Copilot a CSV, los caracteres con tilde salen como símbolos extraños al abrirlo en Excel.",error,no
+P-098,"---------- Mensaje reenviado ----------
+Al exportar el historial de AgentHub a CSV, los caracteres con tilde salen como símbolos extraños al abrirlo en Excel.
+
+Quedo a la espera.",error,no
+P-099,"Estimados señores:
+
+Hemos detectado accesos desde países donde no operamos con las credenciales de administrador de Viñedos Rioja Alta en DocuMind, y esta noche se han exportado datos de clientes.
+
+Un saludo,
+Laura Guillén Galiana",seguridad,no
+P-100,"Buenas tardes,
+
+Desde ayer, nuestro webhook de DocuMind ha estado recibiendo cada evento tres veces, lo cual está provocando una duplicación de pedidos en el ERP de Distribuciones Marfil. Es urgente que resuelvan este problema hoy mismo.
+
+Enviado desde mi iPhone",integracion,no
+P-101,"---------- Mensaje reenviado ----------
+Hola,
+
+el 24 de octubre de 2026 presenté una solicitud formal para dar de baja mi servicio, sin embargo, continúo recibiendo facturas de forma regular. por este motivo, requiero una confirmación escrita de que mi cancelación ha sido procesada exitosamente, junto con el reembolso correspondiente por los cargos realizados tras dicha fecha.
+
+Un saludo,
+Bruno Arroyo Alcaraz",cancelacion,no
+P-102,"Hola,
+
+Después de varios intentos fallidos, me muestra el mensaje de 'cuenta bloqueada', y aunque estoy dispuesto a esperar, quisiera saber con exactitud cuánto tiempo se mantendrá esta restricción.
+
+Obtener Outlook para Android",acceso,no
+P-103,"¿Que disponibilidad garantiza el SLA del plan Enterprise? Y si no se cumple, ¿que compensacion hay?
+
+Gracias y un saludo.
+Sergio Quiles Arroyo",consulta,no
+P-104,"Hola Marta,
+
+Queremos dar de baja DocuMind para el departamento de Ingeniería, pero mantener el resto de licencias. ¿Es posible y cómo queda la factura?
+
+Saludos cordiales,
+Elena Tormo Segarra
+Ingeniería Hidráulica Ebro",cancelacion,no
+P-105,"Hola,
+
+Cambiamos de proveedor y necesitamos cancelar AgentHub cuanto antes. Entendemos que hay permanencia; ¿cuál sería el coste de salida?
+
+Un saludo,
+Sergio Barberá Bosch",cancelacion,no
+P-106,"Hola equipo de soporte:
+
+Un usuario de Naviera Bética ha detectado que aparecen documentos confidenciales de otra organización en las salidas de Altanoria Copilot. Esto sugiere una violación entre cuentas que debe ser solucionada de inmediato, y requerimos que se tomen medidas urgentes para detenerla.
+
+Muchas gracias de antemano.
+
+(Adjunto el log, pesa 2 MB.)",seguridad,no
+P-107,"Buenas tardes,
+
+¿Es posible que AgentHub ofrezca respuestas en gallego, o se limita únicamente a castellano y catalán? Este punto es imprescindible para su uso en una administración autonómica.
+
+Saludos cordiales,
+Adrián Escribano Peiró
+Seguros Tramuntana
+
+--
+Adrián Escribano Peiró
+Seguros Tramuntana
+Tel. 91 555 01 23",funcionalidad,no
+P-108,"---------- Mensaje reenviado ----------
+Buenas tardes,
+
+Se han registrado accesos no autorizados desde naciones en las que no tenemos presencia operativa utilizando las credenciales de administrador asignadas a Ingeniería Hidráulica Ebro dentro del sistema AgentHub, y durante la noche de hoy se realizó la exportación de información perteneciente a nuestros clientes.",seguridad,no
+P-109,"Estimados señores:
+
+¿Ofrecen descuento para organizaciones sin ánimo de lucro o para educación? Somos una fundación.
+
+Gracias.",consulta,no
+P-110,"Hola equipo de soporte:
+
+Los usuarios nuevos de Marketing no reciben ninguna invitación a AgentHub desde hace dos días y no podemos incorporar a 25 personas.",acceso,no
+P-111,"Buenas tardes,
+
+Hemos decidido cambiar de proveedor y por ello solicitamos la cancelación inmediata de DocuMind. Somos conscientes de que existe un período de permanencia; nos gustaría saber cuál sería el costo asociado a la salida.",cancelacion,no
+P-112,"Hola Marta,
+
+hemos encontrado una clave de api de distribuciones marfil publicada en un repositorio público de github. creemos que lleva allí varios días y que alguien ya la ha usado.",seguridad,no
+P-113,"Para el cierre del trimestre, ¿pueden enviarnos un resumen de todo lo facturado a Constructora Meseta desde enero? No hay ningún error, es solo para contabilidad.
+
+Quedo a la espera.",facturacion,no
+P-114,"Qué tal,
+
+Desde el cambio de contraseñas de ayer, los usuarios del equipo de Legal reciben 'credenciales no válidas' en AgentHub. El resto de equipos entra bien. Somos 6 personas sin acceso.
+
+Quedo a la espera.",acceso,no
+P-115,"Hola Marta,
+
+Mi usuario leire.galiana@consultoraatal.example sigue ligado a mi antiguo puesto y no puedo cambiar el correo de la cuenta. ¿Pueden actualizarlo?
+
+Gracias.",acceso,no
+P-116,"Buenas tardes,
+
+Si no procedemos con la renovación de AgentHub, quisiera saber por cuánto tiempo seguirán nuestros datos disponibles con el fin de poder exportarlos.
+
+Quedo a la espera.",cancelacion,no
+P-117,"Buenas tardes,
+
+Desde las 14:05, la API de Altanoria Copilot está devolviendo un error 503 en todas las solicitudes de producción, lo que impide a nuestros clientes finales finalizar sus pedidos.
+
+Muchas gracias de antemano.",rendimiento,no
+P-118,"¿Ofrecen descuentos para fines educativos o para organizaciones sin ánimo de lucro? Somos una fundación.
+
+Un saludo,
+Álvaro Quiles Arroyo",consulta,no
+P-119,"Hola Marta,
+
+¿Es posible que AgentHub ofrezca respuestas en gallego, o se limita únicamente a castellano y catalán? Este punto es imprescindible para su uso en una administración autonómica.
+
+Gracias y un saludo.
+Claudia Barberá Cuesta
+
+Adjunto: captura_error.png",funcionalidad,no
+P-120,"Desde el cambio de contraseñas de ayer, los usuarios del equipo de Recursos Humanos reciben 'credenciales no válidas' en AgentHub. El resto de equipos entra bien. Somos 15 personas sin acceso.
+
+Saludos cordiales,
+Adrián Ibáñez Alcaraz
+Ayuntamiento de Villanueva del Río",acceso,no
+P-121,"---------- Mensaje reenviado ----------
+Hola Marta,
+
+nos gustaría saber en qué ubicación físicos se encuentran almacenados los datos de agenthub y si estos se utilizan con el fin de entrenar modelos de procesamiento, ya que es una información esencial para incluir en nuestro informe de protección de datos.
+
+Gracias.",seguridad,no
+P-122,"Hola Marta,
+
+¿Es posible limitar el acceso a DocuMind únicamente a través del rango de IP de la red de la oficina? Me pregunto si esta funcionalidad está disponible en el plan Starter.",funcionalidad,no
+P-123,"Buenas tardes,
+
+Nos gustaría saber con detalle qué cubre el plan Team comparado con el plan Starter, ya que necesitamos tomar una decisión antes de 30 de enero de 2026.
+
+Gracias.",consulta,no
+P-124,"Buenas tardes,
+
+¿Ofrecen descuento para organizaciones sin ánimo de lucro o para educación? Somos una fundación.
+
+Quedo a la espera.
+
+Le paso también el PDF de la factura.",consulta,no
+P-125,"la velocidad de respuesta de la primera consulta del día en documind resulta excesivamente lenta, con un tiempo de espera de aproximadamente 20 segundos, mientras que las consultas posteriores se ejecutan sin problemas; quisiera saber si este comportamiento es algo habitual o si podría indicar un problema.
+
+Un saludo,
+Sara Zaragozá Escribano
+
+Enviado desde mi iPhone",rendimiento,no
+P-126,"¿Hay alguna opción para copiar un flujo de AgentHub de un espacio de trabajo a otro, o es necesario crearlo nuevamente manualmente?",funcionalidad,no
+P-127,"Hemos pedido pasar de 120 a 118 licencias en el próximo ciclo, pero la factura ALT-2026-03004 sigue contando las 120. ¿Pueden ajustarla? Por otro lado, la información en Altanoria Copilot se está eliminando en vez de actualizarse durante la sincronización con el conector de correo, lo que nos ha provocado una pérdida de datos durante 40 minutos y, en este momento, no contamos con el método para detenerlo.",facturacion,si
+P-128,"El equipo de Recursos Humanos está incapaz de publicar ninguna automatización debido a que el botón ‘Guardar’ del editor de flujos de AgentHub no funciona, lo que está provocando la pérdida de todos los cambios realizados.
+
+Saludos cordiales,
+Sergio Navarro Aguilar
+Gestoría Rubio y Asociados
+
+Obtener Outlook para Android",error,no
+P-129,"Hola,
+
+El proceso de autenticación en dos pasos de AgentHub presenta un retraso de diez minutos, por lo que el código expira antes de que podamos utilizarlo, y en algunas ocasiones ni siquiera llega.
+
+Gracias.",acceso,no
+P-130,"Desde la actualización de ayer, AgentHub borra los comentarios de las revisiones de código al volver a abrir el panel. Perdemos trabajo cada vez.",error,no
+P-131,"El código de la autenticación en dos pasos de DocuMind llega con 10 minutos de retraso y caduca antes de poder usarlo. A veces ni llega. Por otro lado, ¿Qué nivel de disponibilidad asegura el servicio nivelado del plan Team? Además, quisiera saber cuál es el tipo de compensación establecida en caso de no cumplirse dicha disponibilidad.",acceso,si
+P-132,"Buenas tardes,
+
+La extensión de DocuMind en PyCharm no logra conectarse a través de nuestro proxy corporativo y muestra el error 'ECONNRESET'. Adjunto la configuración correspondiente para su revisión.
+
+Saludos cordiales,
+Gonzalo Campos Carrasco
+Olivares de Jaén Cooperativa",integracion,no
+P-133,"El asistente de DocuMind devuelve error SSO-1207 en todas las peticiones desde hace 40 minutos. Nuestro centro de atención al cliente depende de él y no hay alternativa.
+
+Gracias.",rendimiento,no
+P-134,"La velocidad de la primera consulta del día en Altanoria Copilot resulta demasiado lenta, alrededor de 20 segundos, mientras que las consultas posteriores se ejecutan sin problemas; ¿esto es algo que debería considerarse dentro de lo normal?
+
+Saludos cordiales,
+Patricia Carrasco Cuesta
+Aguas de Cantabria",rendimiento,no
+P-135,"Hola,
+
+Un antiguo colaborador de Aguas de Cantabria sigue figurando como administrador en AgentHub y, de hecho, ha descargado documentos durante la semana pasada; es urgente revocarle el acceso y obtener información detallada sobre los contenidos a los que ha tenido acceso.
+
+--
+Estela Navarro Peiró
+Aguas de Cantabria
+Tel. 91 555 01 23",seguridad,no
+P-136,"En la última factura emitida con número ALT-2026-02627, aún se reflejan 120 licencias, cuando solicitamos la reducción a 118 para el próximo ciclo. ¿Sería posible corregir este error en la facturación? Por otro lado, nuestro departamento de seguridad requiere acceder al informe más reciente de pruebas de penetración correspondiente a DocuMind, así como conocer la fecha programada para la siguiente evaluación; ¿serían tan amables de proporcionarnos esta información?",facturacion,si
+P-137,"¿Ofrecen descuento para organizaciones sin ánimo de lucro o para educación? Somos una fundación.
+
+Saludos cordiales,
+Carlos Zaragozá Galiana
+Gestoría Rubio y Asociados",consulta,no
+P-138,"Al revisar la factura ALT-2026-07268, observo que se ha aplicado un IVA del 21 % a una filial de Papelera del Segura ubicada fuera de la UE, cuando en realidad debería estar exenta de este impuesto. ¿Podrían por favor corregir este error? Por otro lado, desde hace dos días, los usuarios recientes de Recursos Humanos no están obteniendo ninguna invitación para AgentHub, lo cual nos impide agregar a 6 individuos.",facturacion,si
+P-139,"Desde las 10:40, la API de Altanoria Copilot está devolviendo un error 503 en todas las solicitudes de producción, lo que impide que nuestros clientes finales puedan finalizar sus pedidos.
+
+Un saludo,
+Óscar Arroyo Roig",rendimiento,no
+P-140,"Hola,
+
+Desde la actualización de ayer, al volver a abrir el panel, Altanoria Copilot elimina los comentarios de las revisiones de código, lo que hace que perdamos trabajo con cada ocurrencia.
+
+Saludos cordiales,
+Álvaro Muñoz Zaragozá
+Aceros del Turia",error,no
+P-141,"Buenos días,
+
+Me han cobrado la renovación anual de AgentHub aunque envié un correo pidiendo la baja hace tres semanas. Solicito la cancelación y la devolución.",cancelacion,no
+P-142,"Desde la actualización de hoy, Altanoria Copilot devuelve respuestas de otra cuenta a algunos usuarios de Operaciones: aparecen resultados que no son nuestros.
+
+Quedo a la espera.",seguridad,no
+P-143,"Buenos días,
+
+Desde la actualización implementada hoy, algunos usuarios de Recursos Humanos han reportado que DocuMind está arrojando respuestas correspondientes a otra cuenta, mostrando resultados que no pertenecen a nuestra organización.
+
+Muchas gracias de antemano.",seguridad,no
+P-144,"Buenos días,
+
+Solicité la baja por escrito el 22 de febrero de 2026 y sigo recibiendo facturas. Pido la confirmación de la cancelación y el abono de lo cobrado después.",cancelacion,no
+P-145,"Hola equipo de soporte:
+
+Desde la última actualización del IDE, la extensión de PyCharm para AgentHub ha dejado de ofrecer autocompletado; mientras que en Visual Studio Code funciona correctamente, el problema se limita exclusivamente a PyCharm.
+
+Muchas gracias de antemano.",integracion,no
+P-146,"Hola equipo de soporte:
+
+Desde el cambio de contraseñas de ayer, los usuarios del equipo de Marketing reciben 'credenciales no ávlidas' en DocuMind. El resto de equipos entra bien. Somos 6 personas sin acceso.",acceso,no
+P-147,"Estimados señores:
+
+Superamos el límite de 90 peticiones por minuto de la API en las horas punta y recibimos errores 429. ¿Se puede ampliar el límite sin cambiar de plan?
+
+Un saludo,
+Cristina Navarro Lacalle",integracion,no
